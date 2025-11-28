@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>GHI – API</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Documentation de l’API du Global HashCost Index." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="page-shell">
+
+    <header>
+      <div class="site-title">
+        <h1>Global HashCost Index</h1>
+        <p style="color:#f9fafb; text-shadow:0 1px 2px rgba(15,23,42,0.7);">
+          Un indicateur ouvert du coût de production du Bitcoin.
+        </p>
+        <p style="color:#cbd5e1; font-size:0.85rem; margin-top:2px;">
+          Version : GHI v1.0
+        </p>
+      </div>
+    </header>
+
+    <nav>
+      <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="methodology.html">Méthodologie</a></li>
+        <li><a href="regions.html">Régions</a></li>
+        <li><a href="api.html" class="active">API</a></li>
+        <li><a href="governance.html">Gouvernance</a></li>
+        <li><a href="roadmap.html">Roadmap</a></li>
+        <li><a href="about.html">À propos</a></li>
+        <li><a href="legal.html">Mentions légales</a></li>
+      </ul>
+    </nav>
+
+    <main>
+      <main class="api-section">
+      <h2>API GHI – Documentation (pré-version)</h2>
+      <p>
+        L’API GHI permet d’accéder par programme aux snapshots, à l’historique et aux statistiques du modèle.
+        Cette page décrit la structure cible de l’API. La pré-version peut retourner des données de test.
+      </p>
+
+      <h3>Principes généraux</h3>
+      <ul>
+        <li>Toutes les réponses sont au format JSON.</li>
+        <li>Les timestamps sont en UTC.</li>
+        <li>Chaque réponse indique la version du modèle (<code>model_version</code>).</li>
+        <li>Les codes de statut HTTP suivent la convention standard (2xx, 4xx, 5xx).</li>
+      </ul>
+
+      <h3>GET /v1/ghi/snapshot</h3>
+      <p>Retourne le snapshot global courant du coût de production du BTC.</p>
+      <p><strong>Exemple de requête</strong></p>
+      <pre><code>GET /v1/ghi/snapshot HTTP/1.1
+Host: api.ghi.example</code></pre>
+
+      <p><strong>Exemple de réponse (JSON, illustratif)</strong></p>
+      <pre><code>{
+  "timestamp": "2025-01-01T00:00:00Z",
+  "model_version": "GHI v1.0",
+  "global": {
+    "cost_min_usd_per_btc": 20000,
+    "cost_avg_usd_per_btc": 28000,
+    "cost_max_usd_per_btc": 36000
+  }
+}</code></pre>
+
+      <h3>GET /v1/ghi/regions</h3>
+      <p>Liste les régions suivies par GHI, avec des informations synthétiques.</p>
+      <p><strong>Exemple de requête</strong></p>
+      <pre><code>GET /v1/ghi/regions HTTP/1.1
+Host: api.ghi.example</code></pre>
+
+      <p><strong>Exemple de réponse (JSON, illustratif)</strong></p>
+      <pre><code>{
+  "timestamp": "2025-01-01T00:00:00Z",
+  "model_version": "GHI v1.0",
+  "regions": [
+    {
+      "region_id": "na",
+      "name": "Amérique du Nord",
+      "hashrate_share": 0.40
+    },
+    {
+      "region_id": "eu",
+      "name": "Europe",
+      "hashrate_share": 0.15
+    }
+  ]
+}</code></pre>
+
+      <h3>GET /v1/ghi/regions/{region_id}</h3>
+      <p>Retourne le détail du coût de production pour une région.</p>
+      <p><strong>Paramètres path</strong> : <code>region_id</code> (par ex. <code>na</code>, <code>eu</code>).</p>
+
+      <p><strong>Exemple de requête</strong></p>
+      <pre><code>GET /v1/ghi/regions/na HTTP/1.1
+Host: api.ghi.example</code></pre>
+
+      <p><strong>Exemple de réponse (JSON, illustratif)</strong></p>
+      <pre><code>{
+  "timestamp": "2025-01-01T00:00:00Z",
+  "model_version": "GHI v1.0",
+  "region": {
+    "region_id": "na",
+    "name": "Amérique du Nord",
+    "hashrate_share": 0.40,
+    "cost_min_usd_per_btc": 22000,
+    "cost_avg_usd_per_btc": 29000,
+    "cost_max_usd_per_btc": 37000
+  }
+}</code></pre>
+
+      <h3>GET /v1/ghi/history</h3>
+      <p>Retourne l’historique global du coût de production.</p>
+      <p><strong>Paramètres query (exemples)</strong> :</p>
+      <ul>
+        <li><code>from</code> – date de début (ISO 8601).</li>
+        <li><code>to</code> – date de fin (ISO 8601).</li>
+        <li><code>interval</code> – agrégation (<code>daily</code>, <code>weekly</code>, etc.).</li>
+      </ul>
+
+      <p><strong>Exemple de requête</strong></p>
+      <pre><code>GET /v1/ghi/history?from=2024-12-01&amp;to=2025-01-01&amp;interval=daily HTTP/1.1
+Host: api.ghi.example</code></pre>
+
+      <p><strong>Exemple de réponse (JSON, illustratif)</strong></p>
+      <pre><code>{
+  "model_version": "GHI v1.0",
+  "interval": "daily",
+  "points": [
+    {
+      "date": "2024-12-01",
+      "cost_min_usd_per_btc": 19500,
+      "cost_avg_usd_per_btc": 27000,
+      "cost_max_usd_per_btc": 35000
+    }
+  ]
+}</code></pre>
+
+      <h3>GET /v1/ghi/stats</h3>
+      <p>Retourne des statistiques (moyennes, médianes, etc.) sur une période donnée.</p>
+      <p><strong>Paramètres query (exemples)</strong> :</p>
+      <ul>
+        <li><code>from</code> – date de début.</li>
+        <li><code>to</code> – date de fin.</li>
+      </ul>
+
+      <p><strong>Exemple de requête</strong></p>
+      <pre><code>GET /v1/ghi/stats?from=2024-01-01&amp;to=2024-12-31 HTTP/1.1
+Host: api.ghi.example</code></pre>
+
+      <p><strong>Exemple de réponse (JSON, illustratif)</strong></p>
+      <pre><code>{
+  "model_version": "GHI v1.0",
+  "period": {
+    "from": "2024-01-01",
+    "to": "2024-12-31"
+  },
+  "global_stats": {
+    "avg_cost_usd_per_btc_mean": 26000,
+    "avg_cost_usd_per_btc_median": 25500
+  }
+}</code></pre>
+    </main>
+
+  </div>
+
+  <footer>
+    <p>© Global HashCost Index – Modèle ouvert. Aucune recommandation d’investissement.</p>
+  </footer>
+</body>
+</html>

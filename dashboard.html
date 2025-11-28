@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>GHI – Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Dashboard préliminaire du Global HashCost Index." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="page-shell">
+    <header>
+      <div class="site-title">
+        <h1>Global HashCost Index</h1>
+        <p style="color:#f9fafb; text-shadow:0 1px 2px rgba(15,23,42,0.7);">
+          Un indicateur ouvert du coût de production du Bitcoin.
+        </p>
+        <p style="color:#cbd5e1; font-size:0.85rem; margin-top:2px;">
+          Version : GHI v1.0
+        </p>
+      </div>
+    </header>
+
+    <nav>
+      <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="dashboard.html" class="active">Dashboard</a></li>
+        <li><a href="methodology.html">Méthodologie</a></li>
+        <li><a href="regions.html">Régions</a></li>
+        <li><a href="api.html">API</a></li>
+        <li><a href="governance.html">Gouvernance</a></li>
+        <li><a href="roadmap.html">Roadmap</a></li>
+        <li><a href="about.html">À propos</a></li>
+        <li><a href="legal.html">Mentions légales</a></li>
+      </ul>
+    </nav>
+
+    <main>
+      <!-- Partie dashboard statique existante -->
+      <h2>Dashboard Global HashCost Index (pré-version)</h2>
+      <p>
+        Cette page présente une version statique du dashboard GHI. Les valeurs ci-dessous sont illustratives.
+        La version en ligne sera alimentée automatiquement par le moteur Python et l’API FastAPI.
+      </p>
+
+      <h3>Snapshot global – Exemple</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Date de référence</th>
+            <th>Coût min (USD/BTC)</th>
+            <th>Coût moyen (USD/BTC)</th>
+            <th>Coût max (USD/BTC)</th>
+            <th>Version du modèle</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>2025-01-01</td>
+            <td>20 000</td>
+            <td>28 000</td>
+            <td>36 000</td>
+            <td>GHI v1.0 (exemple)</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Coût de production par région – Exemple</h3>
+      <p class="text-muted">
+        Tableau illustratif de la structure de données par région de minage.
+      </p>
+      <table>
+        <thead>
+          <tr>
+            <th>Région</th>
+            <th>Coût min</th>
+            <th>Coût moyen</th>
+            <th>Coût max</th>
+            <th>Part du hashrate</th>
+            <th>Version des données</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Amérique du Nord</td>
+            <td>22 000</td>
+            <td>29 000</td>
+            <td>37 000</td>
+            <td>40&nbsp;%</td>
+            <td>GHI v1.0 (exemple)</td>
+          </tr>
+          <tr>
+            <td>Europe</td>
+            <td>24 000</td>
+            <td>31 000</td>
+            <td>39 000</td>
+            <td>15&nbsp;%</td>
+            <td>GHI v1.0 (exemple)</td>
+          </tr>
+          <tr>
+            <td>Asie</td>
+            <td>18 000</td>
+            <td>26 000</td>
+            <td>34 000</td>
+            <td>35&nbsp;%</td>
+            <td>GHI v1.0 (exemple)</td>
+          </tr>
+          <tr>
+            <td>Autres</td>
+            <td>19 000</td>
+            <td>27 000</td>
+            <td>35 000</td>
+            <td>10&nbsp;%</td>
+            <td>GHI v1.0 (exemple)</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Historique global – Placeholder</h3>
+      <p class="text-muted">
+        Un graphique montrera ici l’évolution du coût de production global (min / moyen / max) par jour ou par
+        semaine. Dans cette pré-version, seule la structure de la section est définie.
+      </p>
+
+      <!-- ===========================================================
+           INDICATEUR GHI – PRIX / COUT (sous le dashboard)
+           =========================================================== -->
+      <section class="ghi-indicator">
+        <div class="ghi-indicator-header">
+          <h2 class="ghi-indicator-title">
+            Relation prix / coût global de production (GHI)
+          </h2>
+          <p class="ghi-indicator-subtitle">
+            Cet indicateur met en regard le prix observé du Bitcoin et une estimation du coût moyen
+            global de production basée sur le modèle Global HashCost Index (GHI).
+          </p>
+        </div>
+
+        <!-- Jauge -->
+        <div class="ghi-gauge-wrapper">
+          <div class="ghi-gauge-labels">
+            <span>Prix &lt; coût</span>
+            <span>Zone d’équilibre</span>
+            <span>Prix &gt; coût</span>
+          </div>
+          <div class="ghi-gauge-track">
+            <div id="ghi-gauge-marker" class="ghi-gauge-marker"></div>
+          </div>
+        </div>
+
+        <!-- Valeurs numériques -->
+        <div class="ghi-metrics-grid">
+          <div class="ghi-metric-card">
+            <div class="ghi-metric-label">Prix du Bitcoin</div>
+            <div id="ghi-btc-price" class="ghi-metric-value">–</div>
+            <div class="ghi-metric-help">
+              Cours spot BTC en USD (source externe de marché).
+            </div>
+          </div>
+
+          <div class="ghi-metric-card">
+            <div class="ghi-metric-label">Coût moyen GHI</div>
+            <div id="ghi-avg-cost" class="ghi-metric-value">–</div>
+            <div class="ghi-metric-help">
+              Coût de production moyen global estimé par GHI (USD/BTC).
+            </div>
+          </div>
+
+          <div class="ghi-metric-card">
+            <div class="ghi-metric-label">Ratio prix / coût</div>
+            <div id="ghi-ratio" class="ghi-metric-value">–</div>
+            <div class="ghi-metric-help">
+              1,0 indique un prix proche du coût moyen estimé.
+            </div>
+          </div>
+
+          <div class="ghi-metric-card">
+            <div class="ghi-metric-label">Score GHI</div>
+            <div id="ghi-score" class="ghi-metric-value">–</div>
+            <div class="ghi-metric-help">
+              Score synthétique 0–100 basé sur le ratio, à finalité purement informative.
+            </div>
+          </div>
+        </div>
+
+        <!-- Disclaimer -->
+        <div class="ghi-indicator-footer">
+          <p class="ghi-disclaimer">
+            Cet indicateur est fourni à titre strictement informatif. Il ne constitue ni une recommandation
+            d’investissement, ni une incitation à acheter ou vendre un actif financier. Toute décision
+            d’investissement demeure de la seule responsabilité de l’utilisateur.
+          </p>
+        </div>
+
+        <!-- Formulaire e-mail -->
+        <div class="ghi-email-signup">
+          <h4>Recevoir les mises à jour GHI</h4>
+          <p>
+            Vous pouvez recevoir périodiquement une synthèse des données GHI et des mises à jour
+            sur cet indicateur prix / coût, sans recommandation d’investissement.
+          </p>
+
+          <form
+            class="ghi-email-form"
+            method="post"
+            action="https://example.mailprovider.com/your-list-endpoint"
+          >
+            <input
+              type="email"
+              name="email"
+              required
+              placeholder="Votre adresse e-mail"
+              aria-label="Adresse e-mail"
+            />
+            <button type="submit">S’inscrire</button>
+          </form>
+
+          <p class="ghi-privacy">
+            Votre adresse e-mail est utilisée uniquement pour l’envoi des mises à jour GHI.
+            Vous pouvez vous désinscrire à tout moment via le lien présent dans chaque message.
+          </p>
+        </div>
+      </section>
+      <!-- ======================================================= -->
+    </main>
+  </div>
+
+  <footer>
+    <p>© Global HashCost Index – Modèle ouvert. Aucune recommandation d’investissement.</p>
+  </footer>
+
+  <!-- SCRIPT INDICATEUR GHI -->
+  <script>
+    (function () {
+      // 1) Base de l’API
+      // Si le HTML et l’API sont sur le même domaine (cas QNAP actuel), laisser vide.
+      // Sinon, exemple : const API_BASE = "https://api.ghi.io";
+      const API_BASE = "";
+
+      // 2) Helpers
+      function toNumber(v) {
+        if (v === null || v === undefined) return null;
+        const n = Number(v);
+        return Number.isNaN(n) ? null : n;
+      }
+
+      function formatUsd(value) {
+        if (value === null || value === undefined || isNaN(value)) return "–";
+        return new Intl.NumberFormat("en-US", {
+          style: "currency",
+          currency: "USD",
+          maximumFractionDigits: 0
+        }).format(Number(value));
+      }
+
+      function formatRatio(value) {
+        if (value === null || value === undefined || isNaN(value)) return "–";
+        return Number(value).toFixed(2);
+      }
+
+      function formatScore(value) {
+        if (value === null || value === undefined || isNaN(value)) return "–";
+        return Number(value).toFixed(0);
+      }
+
+      // Ratio -> position (0.5 -> 0%, 2.0 -> 100%)
+      function ratioToPercent(ratio) {
+        if (ratio === null || ratio === undefined || isNaN(ratio)) return 50;
+        const minR = 0.5;
+        const maxR = 2.0;
+        const r = Math.max(minR, Math.min(maxR, ratio));
+        return ((r - minR) / (maxR - minR)) * 100;
+      }
+
+      // 3) Mise à jour de la vue
+      function updateIndicatorView(raw) {
+        console.log("Données /v1/ghi/indicator :", raw);
+
+        const indicatorEl = document.querySelector(".ghi-indicator");
+        const markerEl    = document.getElementById("ghi-gauge-marker");
+
+        const priceEl = document.getElementById("ghi-btc-price");
+        const costEl  = document.getElementById("ghi-avg-cost");
+        const ratioEl = document.getElementById("ghi-ratio");
+        const scoreEl = document.getElementById("ghi-score");
+
+        if (!indicatorEl || !markerEl || !priceEl || !costEl || !ratioEl || !scoreEl) {
+          console.warn("Éléments DOM de l’indicateur GHI manquants.");
+          return;
+        }
+
+        // a) Normalisation des données
+        const price = toNumber(
+          raw.btc_price_usd ??
+          raw.btc_price ??
+          raw.price_usd
+        );
+
+        const avgCost = toNumber(
+          raw.avg_cost_usd ??
+          (raw.global_cost_per_btc && raw.global_cost_per_btc.avg) ??
+          raw.cost_per_btc_avg ??
+          raw.global_cost_avg_usd
+        );
+
+        let ratio = toNumber(raw.price_cost_ratio);
+        if (ratio === null && price !== null && avgCost !== null && avgCost !== 0) {
+          ratio = price / avgCost;
+        }
+
+        let score = toNumber(raw.ghi_score);
+
+        let zone = raw.zone;
+        if (!zone && ratio !== null) {
+          if (ratio <= 0.9) zone = "below_cost";
+          else if (ratio >= 1.1) zone = "above_cost";
+          else zone = "near_cost";
+        }
+
+        // b) Affichage des valeurs
+        priceEl.textContent = price !== null ? formatUsd(price) : "–";
+        costEl.textContent  = avgCost !== null ? formatUsd(avgCost) : "–";
+        ratioEl.textContent = ratio !== null ? formatRatio(ratio) : "–";
+
+        if (score === null && ratio !== null) {
+          // mapping linéaire 0.5–2.0 -> 0–100 (neutre)
+          const minR = 0.5;
+          const maxR = 2.0;
+          const rClamped = Math.min(maxR, Math.max(minR, ratio));
+          const t = (rClamped - minR) / (maxR - minR);
+          score = Math.round(t * 100);
+        }
+
+        scoreEl.textContent = score !== null ? formatScore(score) : "–";
+
+        // c) Position de la jauge
+        const percent = ratioToPercent(ratio);
+        markerEl.style.left = percent + "%";
+
+        // d) Classes de zone (pour teinter le marqueur via CSS)
+        markerEl.classList.remove("zone-below_cost", "zone-near_cost", "zone-above_cost");
+        if (zone === "below_cost") {
+          markerEl.classList.add("zone-below_cost");
+        } else if (zone === "near_cost") {
+          markerEl.classList.add("zone-near_cost");
+        } else if (zone === "above_cost") {
+          markerEl.classList.add("zone-above_cost");
+        }
+      }
+
+      // 4) Appel API
+      async function loadGhiIndicator() {
+        try {
+          const url = API_BASE + "/v1/ghi/indicator";
+          const res = await fetch(url, {
+            method: "GET",
+            headers: { "Accept": "application/json" }
+          });
+
+          if (!res.ok) {
+            console.error("Erreur HTTP /v1/ghi/indicator:", res.status);
+            return;
+          }
+
+          const data = await res.json();
+          updateIndicatorView(data);
+        } catch (err) {
+          console.error("Erreur chargement indicateur GHI:", err);
+        }
+      }
+
+      // 5) Initialisation
+      document.addEventListener("DOMContentLoaded", function () {
+        loadGhiIndicator();
+        // Option : rafraîchir régulièrement
+        // setInterval(loadGhiIndicator, 5 * 60 * 1000);
+      });
+    })();
+  </script>
+</body>
+</html>

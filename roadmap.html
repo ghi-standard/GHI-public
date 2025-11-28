@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>GHI – Roadmap &amp; versions</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Roadmap et versions du Global HashCost Index." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="page-shell">
+
+    <header>
+      <div class="site-title">
+        <h1>Global HashCost Index</h1>
+        <p style="color:#f9fafb; text-shadow:0 1px 2px rgba(15,23,42,0.7);">
+          Un indicateur ouvert du coût de production du Bitcoin.
+        </p>
+        <p style="color:#cbd5e1; font-size:0.85rem; margin-top:2px;">
+          Version : GHI v1.0
+        </p>
+      </div>
+    </header>
+
+    <nav>
+      <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="methodology.html">Méthodologie</a></li>
+        <li><a href="regions.html">Régions</a></li>
+        <li><a href="api.html">API</a></li>
+        <li><a href="governance.html">Gouvernance</a></li>
+        <li><a href="roadmap.html" class="active">Roadmap</a></li>
+        <li><a href="about.html">À propos</a></li>
+        <li><a href="legal.html">Mentions légales</a></li>
+      </ul>
+    </nav>
+
+    <main>
+      <h2>Roadmap &amp; versions</h2>
+      <p>
+        Cette page présente les grandes étapes de développement de GHI et le principe de versionnage du modèle.
+        La roadmap détaillée pourra être enrichie au fil du temps.
+      </p>
+
+      <h3>Version actuelle – GHI v1.0 (prévue)</h3>
+      <ul>
+        <li>Découpage régional de base (Amérique du Nord, Europe, Asie, etc.).</li>
+        <li>Moteur Python de calcul du coût par région et global.</li>
+        <li>API FastAPI avec endpoints principaux (snapshot, régions, historique, stats).</li>
+        <li>Dashboard web simple, basé sur des appels à l’API.</li>
+        <li>Documentation de méthodologie et de gouvernance.</li>
+      </ul>
+
+      <h3>Étapes suivantes (exemples)</h3>
+
+      <h4>v1.x – Améliorations incrémentales</h4>
+      <ul>
+        <li>Affinage des sources de données énergétiques par région.</li>
+        <li>Meilleure modélisation du mix machines par région.</li>
+        <li>Amélioration de la couverture temporelle de l’historique.</li>
+        <li>Ajout de métriques dérivées (par exemple coût / TH, comparaisons avec le prix spot).</li>
+      </ul>
+
+      <h4>v2.0 – Extension de périmètre</h4>
+      <ul>
+        <li>Segmentation régionale plus fine, si les données le permettent.</li>
+        <li>Ouverture à davantage de partenaires pour la fourniture de données.</li>
+        <li>Modules complémentaires possibles (par exemple composante GES, scénarios).</li>
+      </ul>
+
+      <h3>Changelog</h3>
+      <p>
+        Le détail des changements (changelog) pour chaque version de GHI pourra être publié
+        dans un dépôt public, avec pour chaque entrée :
+      </p>
+      <ul>
+        <li>la version concernée,</li>
+        <li>la date de publication,</li>
+        <li>les modifications principales,</li>
+        <li>l’impact attendu sur les résultats.</li>
+      </ul>
+    </main>
+
+  </div>
+
+  <footer>
+    <p>© Global HashCost Index – Modèle ouvert. Aucune recommandation d’investissement.</p>
+  </footer>
+</body>
+</html>

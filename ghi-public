@@ -1,0 +1,34 @@
+# GHI – Global HashCost Index
+Le GHI est un standard ouvert visant à mesurer le coût de production du Bitcoin à l'échelle mondiale, en compilant :
+- données énergétiques,
+- typologies de machines,
+- efficacités régionales,
+- signaux de stress sur les mineurs.
+
+Cette publication représente la **version minimale** destinée à établir la visibilité, la gouvernance et la méthodologie générale, sans dévoiler les composants techniques sensibles.
+
+## Objectifs
+- Définir un standard indépendant de mesure du coût du hashrate.
+- Offrir un outil fiable aux institutions, analystes, gestionnaires d’actifs et chercheurs.
+- Améliorer la transparence économique du minage BTC.
+
+## Ce que contient cette version
+- Vision, gouvernance et principes.
+- Méthodologie partielle (sans formules ni code).
+- Schéma API public (endpoints non actifs).
+- Roadmap institutionnelle.
+- Engagements de transparence.
+
+## Ce que cette version ne contient pas
+- Aucun code du moteur interne.
+- Aucun modèle complet.
+- Aucune formule propriétaire.
+- Aucune donnée en temps réel.
+
+## Licence
+Ce projet est publié sous licence **CC BY-NC-SA 4.0**.  
+Licence complète : `LICENSE.md`.
+
+## Contact
+Pour partenariats institutionnels :  
+ghi.caregiver931@simplelogin.com
