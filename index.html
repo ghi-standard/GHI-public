@@ -31,6 +31,7 @@
         <li><a href="regions.html">Régions</a></li>
         <li><a href="api.html">API</a></li>
         <li><a href="governance.html">Gouvernance</a></li>
+        <li><a href="ghi-for-institutions.html">GHI for Institutions</a></li>
         <li><a href="roadmap.html">Roadmap</a></li>
         <li><a href="about.html">À propos</a></li>
         <li><a href="legal.html">Mentions légales</a></li>
@@ -44,35 +45,11 @@
         dans le monde entier. Pourtant, il existe très peu de métriques transparentes, reproductibles et
         indépendantes pour estimer le coût réel de production d’un BTC.
       </p>
+
       <p>
         Le Global HashCost Index (GHI) propose un modèle ouvert, documenté et versionné qui estime ce coût
         par grandes régions de minage, puis au niveau global, en pondérant par le hashrate.
       </p>
-
-      <!-- VUE D’ENSEMBLE DES COÛTS -->
-      <h2>Vue d’ensemble des coûts (exemple)</h2>
-      <p class="text-muted">
-        Les valeurs ci-dessous sont illustratives pour cette pré-version locale. La version en ligne sera
-        alimentée automatiquement par le moteur Python et l’API GHI.
-      </p>
-      <table>
-        <thead>
-          <tr>
-            <th>Date de référence</th>
-            <th>Coût min (USD/BTC)</th>
-            <th>Coût moyen (USD/BTC)</th>
-            <th>Coût max (USD/BTC)</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>2025-01-01</td>
-            <td>20 000</td>
-            <td>28 000</td>
-            <td>36 000</td>
-          </tr>
-        </tbody>
-      </table>
 
       <h2>Ce que fournit GHI</h2>
       <ul>
@@ -88,6 +65,7 @@
         un mix de machines et une estimation de hashrate. Ces briques permettent de calculer un coût de
         production par région, puis un coût global pondéré par la part de hashrate.
       </p>
+
       <p class="text-muted">
         La méthodologie complète est décrite dans la page
         <a href="methodology.html">Méthodologie</a>.
@@ -98,6 +76,7 @@
         Cette pré-version du site présente la structure du projet. Le jour J, les pages seront alimentées
         automatiquement par le moteur Python et l’API FastAPI.
       </p>
+
       <div class="cta-links">
         <a href="dashboard.html">Voir le dashboard</a>
         <a href="methodology.html">Lire la méthodologie</a>
