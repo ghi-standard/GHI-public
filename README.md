@@ -66,6 +66,16 @@ Vous êtes autorisé à partager et adapter le contenu de ce dépôt à des fins
 1. Créditer l’auteur original (GHI / Global HashCost Index).  
 2. Ne pas en faire un usage commercial.  
 3. Redistribuer les versions modifiées sous la même licence.
+## Project Governance & Contribution
+
+This repository follows the official governance model of the Global HashCost Index (GHI).
+
+- [Governance](GOVERNANCE.md)
+- [Contributing Guidelines](CONTRIBUTING.md)
+- [Security Policy](SECURITY.md)
+- [Code of Conduct](CODE_OF_CONDUCT.md)
+- [Architecture Overview](ARCHITECTURE.md)
+
 
 Texte complet de la licence :  
 https://creativecommons.org/licenses/by-nc-sa/4.0/
