@@ -484,6 +484,29 @@ header .site-title p {
     grid-template-columns: 1fr;
   }
 }
+
+/* Carte principale pour la page API */
+.api-section {
+  max-width: 1100px;
+  margin: 24px auto 40px auto;
+  padding: 24px 22px 26px 22px;
+  background: #ffffff;
+  border-radius: 18px;
+  border: 1px solid var(--border-subtle);
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.30);
+  color: var(--text-main);
+}
+
+/* Texte normal + texte atténué dans la carte API */
+.api-section p {
+  color: var(--text-main);
+}
+
+.api-section p.muted,
+.api-section .text-muted {
+  color: var(--text-muted);
+}
+
 /* ------------------------------
    STYLE PRO – BLOCS API / CODE
    ------------------------------ */
@@ -677,25 +700,273 @@ header .site-title p {
     grid-template-columns: 1fr;
   }
 }
+/* ------------------------------
+   Dashboard – styles spécifiques
+   ------------------------------ */
 
-/* Blocs de code lisibles en thème sombre */
-pre.code-block {
-  background-color: #020617;   /* fond bleu nuit */
-  color: #e5e7eb;              /* texte gris clair */
-  padding: 1rem 1.25rem;
-  border-radius: 0.75rem;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-               "Liberation Mono", "Courier New", monospace;
-  font-size: 0.9rem;
-  line-height: 1.5;
-  overflow-x: auto;
-  white-space: pre;
+main.dashboard-main {
+  max-width: 1200px;
+  margin: 32px auto 64px;
 }
 
-/* Sécurité : si jamais un <code> reste à l’intérieur */
-pre.code-block code {
-  background: transparent !important;
-  color: inherit !important;
-  padding: 0;
-  box-shadow: none;
+.dashboard-card {
+  background: #f9fafb;
+  border-radius: 24px;
+  padding: 24px 28px;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.35);
+  margin-bottom: 24px;
+}
+
+.dashboard-card h1 {
+  font-size: 1.6rem;
+  margin: 0 0 8px;
+  color: #020617;
+}
+
+.dashboard-card h2 {
+  font-size: 1.1rem;
+  margin-top: 20px;
+  margin-bottom: 6px;
+  color: #020617;
+}
+
+.dashboard-card p {
+  margin: 4px 0 10px;
+  color: #1e293b;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+table.snapshot-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 8px;
+  font-size: 0.9rem;
+}
+
+table.snapshot-table th,
+table.snapshot-table td {
+  padding: 8px 10px;
+  border-bottom: 1px solid #e2e8f0;
+  text-align: left;
+}
+
+table.snapshot-table thead th {
+  font-weight: 600;
+  color: #0f172a;
+  background: #e5e7eb;
+}
+
+table.snapshot-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* --- Bloc relation prix / coût + jauge --- */
+
+.ghi-indicator-card {
+  margin-top: 16px;
+  background: radial-gradient(circle at top left, #0f172a, #020617);
+  border-radius: 24px;
+  padding: 24px 28px 20px;
+  color: #f9fafb;
+  box-shadow: 0 20px 45px rgba(15, 23, 42, 0.7);
+}
+
+.ghi-indicator-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.ghi-indicator-header h2 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.ghi-badges {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+ 
+  /* Header indicateur GHI – mise en forme plus compacte */
+
+.ghi-indicator-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  margin-bottom: 16px;
+}
+
+.ghi-indicator-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #f9fafb;
+  margin: 0;
+}
+
+.ghi-indicator-meta {
+  font-size: 0.78rem;
+  color: #cbd5e1;
+  margin: 0;
+}
+
+.ghi-indicator-meta .meta-label {
+  font-weight: 400;
+}
+
+.ghi-indicator-meta .meta-value {
+  font-weight: 600;
+}
+
+.ghi-indicator-meta .meta-sep {
+  margin: 0 6px;
+  opacity: 0.7;
+}
+
+/* ---------------------------------
+   Corrections bloc "Relation prix / coût"
+   sur la carte du dashboard
+   --------------------------------- */
+
+/* Forcer l'alignement à gauche dans la carte */
+.ghi-indicator-card .ghi-indicator-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  gap: 4px;
+  margin-bottom: 12px;
+}
+
+/* Titre bien visible sur fond blanc */
+.ghi-indicator-card .ghi-indicator-title {
+  color: #111827;       /* gris très foncé */
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* Ligne "mode / sources" plus lisible */
+.ghi-indicator-card .ghi-indicator-meta {
+  font-size: 0.8rem;
+  color: #4b5563;       /* gris moyen lisible */
+  margin: 0;
+}
+
+.ghi-indicator-card .ghi-indicator-meta .meta-label {
+  font-weight: 400;
+}
+
+.ghi-indicator-card .ghi-indicator-meta .meta-value {
+  font-weight: 600;
+}
+
+.ghi-indicator-card .ghi-indicator-meta .meta-sep {
+  margin: 0 6px;
+  opacity: 0.75;
+}
+
+/* Texte descriptif FR/EN sous le header */
+.ghi-indicator-card > p {
+  font-size: 0.82rem;
+  color: #4b5563;
+}
+
+/* Bandeau "Vue rapide" dans la carte indicateur */
+
+.ghi-quick-indicator {
+  margin-top: 1.25rem;
+  margin-bottom: 1.75rem;
+  padding: 1rem 1.1rem;
+  border-radius: 0.9rem;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+}
+
+.ghi-quick-metrics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+  margin-bottom: 0.9rem;
+}
+
+.ghi-quick-metric {
+  min-width: 140px;
+}
+
+.ghi-quick-metric .label {
+  display: block;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #6b7280;
+}
+
+.ghi-quick-metric .value {
+  display: block;
+  margin-top: 0.15rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+/* Réutilisation de la jauge globale mais adaptée ici */
+
+.ghi-quick-indicator .ghi-gauge-wrapper {
+  margin-top: 0.2rem;
+}
+
+.ghi-quick-indicator .ghi-gauge-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.7rem;
+  color: #6b7280;
+  margin-bottom: 0.35rem;
+}
+
+.ghi-quick-indicator .ghi-gauge-track {
+  position: relative;
+  width: 100%;
+  height: 10px;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    rgba(52, 211, 153, 0.2),   /* sous le coût */
+    rgba(250, 204, 21, 0.3),   /* proche du coût */
+    rgba(248, 113, 113, 0.3)   /* largement au-dessus */
+  );
+  overflow: visible;
+}
+
+.ghi-quick-indicator .ghi-gauge-marker {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 14px;
+  height: 24px;
+  border-radius: 999px;
+  background: #111827;
+  box-shadow:
+    0 0 0 1px #ffffff,
+    0 8px 18px rgba(15, 23, 42, 0.55);
+  transition: left 0.3s ease-out;
+}
+
+/* Note sous la jauge */
+.ghi-quick-note {
+  margin-top: 0.65rem;
+  font-size: 0.78rem;
+  color: #6b7280;
+}
+
+/* Responsive */
+@media (max-width: 700px) {
+  .ghi-quick-metrics {
+    flex-direction: column;
+  }
 }
