@@ -39,228 +39,90 @@
     </header>
 
     <!-- Contenu spécifique à chaque page -->
-    <main class="page-section changelog-main">
-
+    <main>
   <div class="lang-switch">
     Langue / Language :
     <a href="#fr" class="active">FR</a> ·
     <a href="#en">EN</a>
   </div>
 
-  <!-- ================= SECTION FR ================= -->
+  <!-- ===== FR ===== -->
   <section id="fr" class="page-section">
-    <h2>Changelog – Global HashCost Index</h2>
-    <p>
-      Versioning basé sur <strong>Semantic Versioning (SemVer)</strong>.  
-      Tous les documents et standards sont publiés sous licence <strong>CC BY-NC-SA 4.0</strong>.
-    </p>
+    <h2>Changelog GHI</h2>
 
-    <h3 id="v0-2-2-docs">v0.2.2-docs — Documentation, standards &amp; bundle légal</h3>
+    <h3>v0.4.1 – Rafraîchissement du site public</h3>
     <ul>
-      <li><strong>Ajout</strong> des règles de contribution (FR + EN).</li>
-      <li><strong>Ajout</strong> du modèle de gouvernance pour le standard GHI.</li>
-      <li><strong>Ajout</strong> de la politique de sécurité pour le moteur et l’API publique.</li>
-      <li><strong>Ajout</strong> d’une vue d’ensemble de l’architecture (moteur public, moteur privé, flux de données).</li>
-      <li><strong>Ajout</strong> du bundle légal&nbsp;: licence, copyright, politique de marque, guide d’attribution.</li>
+      <li>Harmonisation du design sur toutes les pages (layout commun, thème sombre).</li>
+      <li>Navigation bilingue FR / EN générée à partir des fichiers <code>.content.html</code>.</li>
+      <li>Amélioration de la page Dashboard (pré-version) avec exemples plus clairs.</li>
+      <li>Préparation du workflow de release (branches <code>feature/</code> et <code>release/</code>, PR obligatoires vers <code>main</code>).</li>
     </ul>
 
-    <section class="changelog-entry">
-      <h3>v0.2.1 — Documentation technique</h3>
-      <ul>
-        <li>Ajout du document <strong>Engine Technical Summary (PDF)</strong> dans la section Moteur.</li>
-        <li>Mise à jour de l’arborescence institutionnelle des documents techniques.</li>
-      </ul>
-    </section>
+    <h3>v0.4.0 – Sandbox semi-opérationnelle</h3>
+    <ul>
+      <li>Ajout d’une API sandbox en “fake data” calquée sur le futur modèle GHI.</li>
+      <li>Documentation API dédiée (page “API GHI – Sandbox”).</li>
+      <li>Structuration des endpoints locaux et distants pour les snapshots et l’historique.</li>
+    </ul>
 
-    <section class="changelog-entry">
-      <h3>v0.1.0 — Première publication publique</h3>
-      <p class="date">30 novembre 2025</p>
+    <h3>v0.3.0 – Site institutionnel (bilingue)</h3>
+    <ul>
+      <li>Création du site globalhashcostindex.org (version introductive).</li>
+      <li>Pages dédiées : Méthodologie, Régions, Gouvernance, GHI for Institutions.</li>
+      <li>Base de documentation publique pour les premiers échanges avec les acteurs institutionnels.</li>
+    </ul>
 
-      <h4>Résumé</h4>
-      <p>
-        Première publication officielle du Global HashCost Index (GHI).  
-        Publication du standard, de la documentation institutionnelle et du site GHI.
-      </p>
+    <h3>v0.2.0 – Modèle GHI (interne)</h3>
+    <ul>
+      <li>Définition du GHI Data Model v1.0 (structures de coûts globaux et régionaux).</li>
+      <li>Premiers scripts Python pour agréger et normaliser les données.</li>
+    </ul>
 
-      <h4>Ajouts principaux</h4>
-      <ul>
-        <li>Whitepaper FR et EN.</li>
-        <li>Documents «&nbsp;Méthodologie &amp; Transparence&nbsp;» FR et EN.</li>
-        <li>GHI pour les Institutions FR et EN.</li>
-        <li>Standard technique <code>GHI Technical Standard v1.0</code>.</li>
-        <li>Modèle de données <code>GHI-Data-Model-v1.0</code>.</li>
-        <li>Site GHI-public (overview, méthodologie, régions, API, roadmap, gouvernance).</li>
-        <li>Référence API (sandbox)&nbsp;: <code>API_REFERENCE.md</code>.</li>
-      </ul>
-
-      <h4>Notes</h4>
-      <p>
-        Aucun moteur réel n’est exposé à ce stade.  
-        Cette release fige l’antériorité du standard et prépare la Phase&nbsp;2.
-      </p>
-    </section>
-
-    <section class="changelog-entry future">
-      <h3>v0.2.0 — Moteur sandbox &amp; API</h3>
-      <p class="date">Phase 2 — à venir</p>
-
-      <h4>Aperçu</h4>
-      <p>
-        Mise en ligne du moteur sandbox <code>ghi-engine</code> et de l’API FastAPI structurée,
-        utilisant des données synthétiques mais totalement conformes au modèle GHI v1.0.
-      </p>
-
-      <h4>Prévu</h4>
-      <ul>
-        <li>Endpoints fonctionnels (sandbox)&nbsp;:
-          <ul>
-            <li><code>/v1/ghi/snapshot</code></li>
-            <li><code>/v1/ghi/history</code></li>
-            <li><code>/v1/ghi/regions</code></li>
-            <li><code>/v1/ghi/regions/{region_id}</code></li>
-            <li><code>/v1/ghi/stats</code></li>
-          </ul>
-        </li>
-        <li>Moteur mocké (FakeEngine) entièrement aligné sur le GHI Data Model.</li>
-        <li>Tests automatisés (Pytest).</li>
-        <li>Mise à jour des pages API et de la documentation publique.</li>
-      </ul>
-    </section>
-
-    <section class="changelog-entry future">
-      <h3>v1.0.0 — Moteur de production</h3>
-      <p class="date">Phase 3 — planifiée</p>
-
-      <h4>Objectif</h4>
-      <p>
-        Première version institutionnelle du moteur GHI réel&nbsp;: calculs min/moy/max
-        basés sur le hashrate réel, l’énergie, le mix machines, par région.
-      </p>
-
-      <h4>Contenu prévu</h4>
-      <ul>
-        <li>Moteur GHI complet (calcul réel).</li>
-        <li>Snapshots quotidiens, puis intrajournaliers.</li>
-        <li>Historique complet.</li>
-        <li>API de production sécurisée, versionnée, stable.</li>
-        <li>Exports institutionnels (CSV / Parquet).</li>
-      </ul>
-
-      <h4>Institutionnel</h4>
-      <p>
-        Documentation renforcée, versioning strict, gouvernance du standard,
-        compatibilité ESG et extension CO₂.
-      </p>
-    </section>
+    <h3>v0.1.0 – Prototype interne</h3>
+    <ul>
+      <li>Premiers calculs de coût global de production du Bitcoin (ordre de grandeur).</li>
+      <li>Tests exploratoires sur la faisabilité d’un indice ouvert et documenté.</li>
+    </ul>
   </section>
 
-  <!-- ================= SECTION EN ================= -->
+  <!-- ===== EN ===== -->
   <section id="en" class="page-section">
-    <h2>Changelog – Global HashCost Index</h2>
-    <p>
-      Versioning based on <strong>Semantic Versioning (SemVer)</strong>.  
-      All documents and standards are published under the <strong>CC BY-NC-SA 4.0</strong> licence.
-    </p>
+    <h2>GHI Changelog</h2>
 
-    <h3 id="v0-2-2-docs-en">v0.2.2-docs — Documentation, standards &amp; legal bundle</h3>
+    <h3>v0.4.1 – Public site refresh</h3>
     <ul>
-      <li><strong>Added</strong> contribution guidelines (FR + EN).</li>
-      <li><strong>Added</strong> governance model for the GHI standard.</li>
-      <li><strong>Added</strong> security policy for the engine and public API.</li>
-      <li><strong>Added</strong> architecture overview (public engine, private engine, data flows).</li>
-      <li><strong>Added</strong> legal bundle: licence, copyright, trademark policy, attribution guide.</li>
+      <li>Unified design across all public pages (shared layout, dark theme).</li>
+      <li>Bilingual navigation FR / EN generated from <code>.content.html</code> files.</li>
+      <li>Improved Dashboard (pre-release) page with clearer example data.</li>
+      <li>Release workflow prepared (feature / release branches, mandatory PRs into <code>main</code>).</li>
     </ul>
 
-    <section class="changelog-entry">
-      <h3>v0.2.1 — Technical documentation</h3>
-      <ul>
-        <li>Added <strong>Engine Technical Summary (PDF)</strong> in the Engine section.</li>
-        <li>Updated institutional structure of technical documentation.</li>
-      </ul>
-    </section>
+    <h3>v0.4.0 – Semi-operational sandbox</h3>
+    <ul>
+      <li>Added a “fake data” sandbox API mirroring the future GHI production model.</li>
+      <li>Dedicated API documentation page (“GHI API – Sandbox”).</li>
+      <li>Structured local and remote endpoints for snapshots and historical data.</li>
+    </ul>
 
-    <section class="changelog-entry">
-      <h3>v0.1.0 — Initial public release</h3>
-      <p class="date">30 November 2025</p>
+    <h3>v0.3.0 – Institutional public site</h3>
+    <ul>
+      <li>Launch of globalhashcostindex.org (introductory public version).</li>
+      <li>Dedicated pages: Methodology, Regions, Governance, GHI for Institutions.</li>
+      <li>Base layer of public documentation for early discussions with institutional actors.</li>
+    </ul>
 
-      <h4>Summary</h4>
-      <p>
-        First official publication of the Global HashCost Index (GHI).  
-        Release of the standard, institutional documentation and the GHI website.
-      </p>
+    <h3>v0.2.0 – GHI model (internal)</h3>
+    <ul>
+      <li>Definition of GHI Data Model v1.0 (global and regional cost structures).</li>
+      <li>First Python scripts to aggregate and normalise data.</li>
+    </ul>
 
-      <h4>Main additions</h4>
-      <ul>
-        <li>Whitepaper in French and English.</li>
-        <li>“Methodology &amp; Transparency” documents in French and English.</li>
-        <li>“GHI for Institutions” documents in French and English.</li>
-        <li>Technical standard <code>GHI Technical Standard v1.0</code>.</li>
-        <li>Data model <code>GHI-Data-Model-v1.0</code>.</li>
-        <li>GHI-public website (overview, methodology, regions, API, roadmap, governance).</li>
-        <li>API Reference (sandbox): <code>API_REFERENCE.md</code>.</li>
-      </ul>
-
-      <h4>Notes</h4>
-      <p>
-        No real engine is exposed at this stage.  
-        This release fixes the priority date of the standard and prepares Phase&nbsp;2.
-      </p>
-    </section>
-
-    <section class="changelog-entry future">
-      <h3>v0.2.0 — Sandbox engine &amp; API</h3>
-      <p class="date">Phase 2 — upcoming</p>
-
-      <h4>Overview</h4>
-      <p>
-        Deployment of the sandbox engine <code>ghi-engine</code> and the structured FastAPI backend,
-        using synthetic data that are fully aligned with the GHI v1.0 model.
-      </p>
-
-      <h4>Planned</h4>
-      <ul>
-        <li>Functional sandbox endpoints:
-          <ul>
-            <li><code>/v1/ghi/snapshot</code></li>
-            <li><code>/v1/ghi/history</code></li>
-            <li><code>/v1/ghi/regions</code></li>
-            <li><code>/v1/ghi/regions/{region_id}</code></li>
-            <li><code>/v1/ghi/stats</code></li>
-          </ul>
-        </li>
-        <li>Mocked engine (FakeEngine) fully aligned with the GHI Data Model.</li>
-        <li>Automated tests (Pytest).</li>
-        <li>Updated API pages and public documentation.</li>
-      </ul>
-    </section>
-
-    <section class="changelog-entry future">
-      <h3>v1.0.0 — Production engine</h3>
-      <p class="date">Phase 3 — planned</p>
-
-      <h4>Goal</h4>
-      <p>
-        First institutional version of the real GHI engine: min/avg/max cost
-        based on real hashrate, energy, machine mix, by region.
-      </p>
-
-      <h4>Planned content</h4>
-      <ul>
-        <li>Full GHI engine (real calculations).</li>
-        <li>Daily, then intraday snapshots.</li>
-        <li>Full history.</li>
-        <li>Secure, versioned, stable production API.</li>
-        <li>Institutional exports (CSV / Parquet).</li>
-      </ul>
-
-      <h4>Institutional</h4>
-      <p>
-        Strengthened documentation, strict versioning, standard governance,
-        ESG compatibility and CO₂ extension.
-      </p>
-    </section>
+    <h3>v0.1.0 – Internal prototype</h3>
+    <ul>
+      <li>First computations of the global Bitcoin production cost (order of magnitude only).</li>
+      <li>Exploratory tests on the feasibility of an open, documented index.</li>
+    </ul>
   </section>
-
 </main>
 
     <footer>
