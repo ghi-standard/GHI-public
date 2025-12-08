@@ -73,7 +73,7 @@
       <div class="site-title">
         <h1>Global HashCost Index</h1>
         <p>Open indicator of Bitcoin’s production cost.</p>
-        <p class="text-muted">Version : GHI Standard v1.0</p>
+        <p>GHI – Global HashCost Index • API v1.0 • Méthodologie v1.0 • Engine v0.3.0</p>
       </div>
 
       <nav>
@@ -88,6 +88,7 @@
           <li><a href="ghi-for-institutions.html">GHI for Institutions</a></li>
           <li><a href="roadmap.html">Roadmap</a></li>
           <li><a href="changelog.html">Changelog</a></li>
+          <li><a href="transparency.html">Transparence</a></li>
           <li><a href="about.html">À propos</a></li>
           <li><a href="legal.html">Mentions légales</a></li>
           <li><a href="faq.html">FAQ</a></li>
@@ -96,171 +97,79 @@
     </header>
 
     <!-- Contenu spécifique à chaque page -->
-    <main class="api-section">
+    <!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Méthodologie – GHI v1.0</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
+</head>
 
-  <!-- Sélecteur de langue -->
-  <p class="lang-switch">
-    Langue / Language :
-    <a href="#fr" class="active">FR</a> ·
-    <a href="#en">EN</a>
-  </p>
+<body>
+  <div class="page-shell">
 
-  <!-- ========================================================= -->
-  <!-- ======================= SECTION FR ======================= -->
-  <!-- ========================================================= -->
-  <section id="fr" class="page-section">
-    <h2>Méthodologie GHI</h2>
+    <header>
+      <h1>Global HashCost Index – Méthodologie v1.0</h1>
+      <p class="subtitle">Standard ouvert pour mesurer le coût mondial de production du Bitcoin</p>
+    </header>
 
-    <p>
-      Le modèle GHI fournit une estimation cohérente, transparente et reproductible
-      du coût de production du Bitcoin par région, puis globalement.  
-      Toutes les hypothèses et sources sont documentées et versionnées dans
-      <strong>GHI Standard v1.0</strong>.
-    </p>
+    <nav>
+      <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="methodology.html" class="active">Méthodologie</a></li>
+        <li><a href="api.html">API</a></li>
+        <li><a href="transparency.html">Transparence</a></li>
+      </ul>
+    </nav>
 
-    <h3>Principes généraux</h3>
-    <ul>
-      <li>Transparence complète des sources et hypothèses.</li>
-      <li>Reproductibilité du modèle via un moteur Python ouvert.</li>
-      <li>Versionnage strict : GHI v1.0, v1.1, etc.</li>
-      <li>Séparation claire entre données et logique de calcul.</li>
-    </ul>
+    <main>
+      <section>
+        <h2>Version</h2>
+        <p>Méthodologie : <strong>v1.0.0</strong></p>
+        <p>Version API : <strong>v1.0</strong></p>
+        <p>Version moteur : <strong>v0.3.0 (Sandbox)</strong></p>
+        <p>Documentation complète : 
+          <a href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/methodology_public_v1.md" target="_blank">
+            methodology_public_v1.md
+          </a>
+        </p>
+      </section>
 
-    <h3>Structure du modèle</h3>
-    <p>Le calcul repose sur trois briques indépendantes :</p>
-    <ol>
-      <li>Hypothèses de coûts énergétiques et non-énergétiques par région.</li>
-      <li>Mix de machines (efficacité, génération, âge, répartition).</li>
-      <li>Estimateurs de hashrate régional pondérés.</li>
-    </ol>
+      <section>
+        <h2>Résumé</h2>
+        <p>La méthodologie GHI v1.0 définit une façon standardisée, transparente et reproductible de mesurer le coût mondial de production du Bitcoin.</p>
+        <ul>
+          <li>Coûts exprimés en USD par BTC</li>
+          <li>Trois métriques : min / avg / max cost</li>
+          <li>Indicateur global journalier</li>
+          <li>Snapshot global (structure longue, multi-jour)</li>
+          <li>Moteur Sandbox utilisé pour stabiliser l’API</li>
+        </ul>
+      </section>
 
-    <h3>Calcul du coût de production</h3>
-    <p>
-      Pour chaque région, le coût de production est obtenu à partir de :
-    </p>
-    <ul>
-      <li>
-        <strong>Coût énergétique</strong> = consommation électrique × prix de l’électricité.
-      </li>
-      <li>
-        <strong>Coûts non énergétiques</strong> : CAPEX, OPEX, sécurité, hosting.
-      </li>
-      <li>
-        <strong>Performance machines</strong> : efficacité (W/TH), uptime, dégradation.
-      </li>
-    </ul>
+      <section>
+        <h2>Principes</h2>
+        <ul>
+          <li>Standard de transparence : versionning, API stable</li>
+          <li>Non prédictif : mesure les coûts, pas le prix futur</li>
+          <li>Conçu pour les institutions, analystes & régulateurs</li>
+          <li>Le moteur réel (données mondiales) suivra sans casser l’API</li>
+        </ul>
+      </section>
 
-    <p>
-      Le coût global est un agrégat pondéré par la part de hashrate de chaque région.
-      Les valeurs sont fournies en <em>min / moyen / max</em> pour refléter
-      l’incertitude.
-    </p>
-
-    <h3>Versions et transparence</h3>
-    <p>
-      Toute modification importante du modèle (changement de segmentation, nouvelles données,
-      révision des hypothèses) entraîne une nouvelle version documentée dans le
-      <a href="changelog.html">Changelog</a>.
-    </p>
-
-    <h3>Limites</h3>
-    <p>
-      GHI ne vise pas à représenter la situation spécifique de chaque mineur, mais un référentiel
-      cohérent et global destiné à l’analyse économique, réglementaire et institutionnelle.
-    </p>
-
-    <h3>Téléchargements</h3>
-    <ul>
-      <li>
-        Méthodologie & Transparence (FR) —  
-        <a href="/docs/MÉTHODOLOGIE + TRANSPARENCE.pdf" target="_blank">Télécharger</a>
-      </li>
-      <li>
-        Methodology & Transparency (EN) —  
-        <a href="/docs/METHODOLOGY.pdf" target="_blank">Download</a>
-      </li>
-    </ul>
-  </section>
-
-
-
-  <!-- ========================================================= -->
-  <!-- ======================= SECTION EN ======================= -->
-  <!-- ========================================================= -->
-  <section id="en" class="page-section">
-    <h2>GHI Methodology</h2>
-
-    <p>
-      The GHI model provides a transparent, reproducible and globally consistent
-      estimate of the Bitcoin production cost, both per region and at global scale.
-      All assumptions and sources are documented and versioned in
-      <strong>GHI Standard v1.0</strong>.
-    </p>
-
-    <h3>Core Principles</h3>
-    <ul>
-      <li>Full transparency of data sources and assumptions.</li>
-      <li>Reproducibility ensured through an open Python engine.</li>
-      <li>Strict versioning: GHI v1.0, v1.1, etc.</li>
-      <li>Clear separation between data inputs and computational logic.</li>
-    </ul>
-
-    <h3>Model Structure</h3>
-    <p>The model is composed of three independent layers:</p>
-    <ol>
-      <li>Regional assumptions for energy and non-energy costs.</li>
-      <li>Machine mix (efficiency, generation, aging, distribution).</li>
-      <li>Regionalized hashrate estimation.</li>
-    </ol>
-
-    <h3>Cost of Production Calculation</h3>
-    <p>For each region, GHI computes a production cost from:</p>
-    <ul>
-      <li>
-        <strong>Energy cost</strong> = electrical consumption × energy price.
-      </li>
-      <li>
-        <strong>Non-energy costs</strong>: CAPEX, OPEX, hosting, security.
-      </li>
-      <li>
-        <strong>Machine performance</strong>: efficiency (W/TH), uptime, degradation.
-      </li>
-    </ul>
-
-    <p>
-      The global production cost is then obtained through a hashrate-weighted
-      aggregation of all regions.  
-      Results are given as <em>min / average / max</em> ranges to reflect uncertainty.
-    </p>
-
-    <h3>Versioning and Transparency</h3>
-    <p>
-      Any significant update (new sources, revised hypotheses, method changes)
-      results in a new GHI version, documented in the
-      <a href="changelog.html">Changelog</a>.
-    </p>
-
-    <h3>Model Limitations</h3>
-    <p>
-      GHI does not claim to represent the exact situation of individual miners.
-      It provides a structured and comparable reference framework for economic,
-      regulatory and institutional analysis.
-    </p>
-
-    <h3>Downloads</h3>
-    <ul>
-      <li>
-        Transparency Document (FR) —  
-        <a href="/docs/MÉTHODOLOGIE + TRANSPARENCE.pdf" target="_blank">Download</a>
-      </li>
-      <li>
-        Methodology Document (EN) —  
-        <a href="/docs/METHODOLOGY.pdf" target="_blank">Download</a>
-      </li>
-    </ul>
-  </section>
-
-</main>
+      <section>
+        <h2>Documents liés</h2>
+        <ul>
+          <li>Méthodologie publique : <a href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/methodology_public_v1.md" target="_blank">methodology_public_v1.md</a></li>
+          <li>Documentation API : <a href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/api.md" target="_blank">api.md</a></li>
+          <li>Release moteur : <a href="https://github.com/ghi-standard/ghi-engine/releases/tag/v0.3.0" target="_blank">v0.3.0</a></li>
+        </ul>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
 
     <footer>
       <p>© Global HashCost Index – Modèle ouvert. Aucune recommandation d’investissement.</p>
