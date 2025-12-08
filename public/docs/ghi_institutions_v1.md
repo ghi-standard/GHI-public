@@ -1,303 +1,311 @@
-# GHI – Dossier institutionnel (version longue)  
-Version : 1.0 • Décembre 2025  
-
-> Document de référence pour banques, régulateurs, gérants d’actifs, assureurs, fonds de pension et infrastructures de marché.
-
----
-
-## 1. Résumé exécutif (FR)
-
-Le **Global HashCost Index (GHI)** est un **standard ouvert** qui vise à mesurer, de manière transparente et reproductible, le **coût de production du Bitcoin** à l’échelle mondiale.
-
-L’ambition du GHI est triple :
-
-1. **Fournir un repère de coûts** (min / moyen / max) pour la production d’un bitcoin.  
-2. **Offrir un cadre méthodologique auditable**, suffisamment précis pour être critiqué, amélioré et comparé dans le temps.  
-3. **Proposer une API standardisée** permettant aux institutions d’intégrer facilement l’indicateur dans leurs modèles internes, tableaux de bord et outils d’analyse.
-
-Le GHI ne cherche pas à prédire le prix du Bitcoin, ni à conseiller d’acheter ou vendre.  
-C’est un **standard de mesure** qui décrit, à un instant donné, les **conditions économiques théoriques** de production d’un bitcoin, à partir d’hypothèses explicites.
-
-Le standard GHI v1.0 est structuré autour de quatre composants :
-
-- **Méthodologie v1.0.0** – cadre de modélisation ouvert et documenté,  
-- **API publique v1.0** – contrat technique pour accéder à l’indicateur,  
-- **Moteur sandbox v0.3.0** – implémentation de démonstration, open source,  
-- **Site public v1.0.0** – documentation, transparence et suivi de versions.
+# GHI – Dossier institutions (version longue)
+## Global HashCost Index – Institutional Brief (full version)
+Version : v1.0 – Décembre 2025
 
 ---
 
-## 2. Objectifs et positionnement
+## 1. Résumé exécutif / Executive summary
 
-### 2.1. Problème adressé
+**FR**
 
-Le secteur du minage de Bitcoin est :
+Le Global HashCost Index (GHI) est un standard ouvert qui vise à mesurer, de manière transparente et reproductible, le **coût global de production du Bitcoin**.  
+L’objectif n’est pas de fournir un modèle de prix, mais un **indicateur économique** du réseau, comparable dans le temps et entre juridictions.
 
-- **global**, distribué sur plusieurs continents,  
-- **énergivore**, dépendant de mix énergétiques locaux,  
-- **technologique**, avec des générations de matériel (ASICs) aux profils variés.
+GHI v1.0 se concentre sur :
 
-Pour un décideur (banque centrale, régulateur, gérant d’actifs, assureur), il est difficile de répondre à des questions simples :
+- un indicateur agrégé global (coût min / moyen / max),
+- une méthodologie publique, documentée et versionnée,
+- une API ouverte reposant sur un moteur “Sandbox” (données factices stables),
+- une architecture compatible avec un futur moteur réel (non public).
 
-- Quel est l’ordre de grandeur du **coût de production** d’un bitcoin aujourd’hui ?  
-- Comment ce coût se distribue-t-il entre régions ?  
-- Quelle est la **zone de stress** pour une majorité de mineurs (sous le coût moyen, sous le coût max) ?  
-- Comment ces conditions ont-elles évolué au fil des cycles de marché ?
+Ce dossier présente la vision, les cas d’usage institutionnels et la trajectoire de développement.
 
-Le GHI propose une réponse structurée à ces questions sous la forme d’un **standard ouvert**, plutôt que d’un modèle propriétaire opaque.
+**EN**
 
-### 2.2. Périmètre d’usage
+The Global HashCost Index (GHI) is an open standard designed to measure the **global cost of producing Bitcoin** in a transparent and reproducible way.  
+The goal is not to provide a price model, but a **network-level economic indicator**, consistent over time and across jurisdictions.
 
-Le GHI est conçu pour être utilisé comme :
+GHI v1.0 focuses on:
 
-- **indicateur de coût** dans des analyses de recherche,  
-- **entrée** dans des modèles de stress tests,  
-- **référence** de comparaison entre périodes (post-halving, bull/bear),  
-- **support neutre** dans le dialogue entre institutions et régulateurs.
+- a global aggregate indicator (min / avg / max production cost),
+- a public, versioned and documented methodology,
+- an open API backed by a “Sandbox Engine” (stable fake data),
+- an architecture ready for a future real engine (non-public).
 
-Il **n’a pas vocation** à remplacer le jugement des équipes internes ni leurs modèles propriétaires, mais à fournir une base commune, transparente, qui facilite la comparaison et l’audit.
-
----
-
-## 3. Architecture du standard GHI v1.0
-
-### 3.1. Méthodologie v1.0.0
-
-La méthodologie GHI v1.0.0 est définie dans un document public dédié.  
-Elle formalise :
-
-- la **segmentation par régions** (zones géographiques agrégées et stables),  
-- les **portefeuilles de machines** (familles d’ASICs, rendements, efficacité énergétique),  
-- les **hypothèses de coûts énergétiques** (prix de l’électricité, profils horaires),  
-- la construction d’un **coût de production par BTC**, puis l’agrégation globale.
-
-Les grands principes :
-
-1. **Régions agrégées**  
-   - Le monde est divisé en quelques grandes régions (ex. Amérique du Nord, Europe, Asie, etc.),  
-   - Chaque région regroupe un ensemble de pays présentant des profils de coûts et de mix machines comparables.
-
-2. **Profils machines (ASICs)**  
-   - Chaque région est associée à un panier de machines représentatif (par exemple anciennes générations, génération dominante, nouvelles générations),  
-   - Pour chaque profil, la méthodologie spécifie : hashrate, consommation, rendement.
-
-3. **Profils énergétiques**  
-   - Les coûts de l’électricité sont modélisés selon des hypothèses de prix (spot, contrats long terme, mix tarifaire).  
-   - Des profils horaires permettent de distinguer production continue ou adaptative.
-
-4. **Coût de production par BTC**  
-   - Pour chaque région, la méthodologie calcule un coût théorique de production, puis des agrégats :  
-     - **coût minimum**,  
-     - **coût moyen**,  
-     - **coût maximum**.
-
-Le détail complet est disponible dans :  
-`docs/methodology_public_v1.md` (dépôt GHI Engine).
-
-### 3.2. API publique v1.0
-
-L’API publique constitue le **contrat technique** entre le standard et ses utilisateurs.
-
-Endpoints principaux :
-
-- `GET /v1/ghi/indicator`  
-  → indicateur global pour une date donnée (par défaut : aujourd’hui),  
-- `GET /v1/ghi/snapshot`  
-  → vue agrégée sur une période, incluant les coûts min/avg/max, ainsi que les métadonnées nécessaires (timestamps, versions, etc.).
-
-Les réponses incluent systématiquement :
-
-- `min_cost`, `avg_cost`, `max_cost`,  
-- `network_difficulty`, `total_hashrate_eh_s`,  
-- `block_subsidy`, `hashprice` (lorsque pertinent),  
-- `methodology_version`, `ghi_version`,  
-- `data_timestamp_utc`,  
-- un champ `status` indiquant la nature de la réponse (ok, degraded, demo…).
-
-La spécification détaillée est exposée dans :  
-`docs/api.md` (dépôt GHI Engine).
-
-### 3.3. Moteur sandbox v0.3.0
-
-Le moteur sandbox :
-
-- implémente le contrat de l’API v1.0,  
-- s’appuie sur des **données de démonstration** (fake data) stables dans le temps,  
-- permet aux équipes techniques d’intégrer l’API et de tester leurs flux sans dépendre d’un moteur “temps réel” non public.
-
-Objectifs :
-
-- faciliter l’**intégration technique** (REST/JSON, exemple de dockerisation),  
-- permettre des **tests unitaires** et de non-régression,  
-- séparer clairement le standard (méthodologie, API) de son implémentation opérationnelle.
-
-### 3.4. Site public v1.0.0
-
-Le site public sert de **vitrine officielle** du standard :
-
-- description générale,  
-- pages “Méthodologie”, “API”, “Moteur”, “Gouvernance”, “Institutions”, “Transparence”,  
-- liens vers les dépôts GitHub publics, les releases, les versions de référence.
-
-La page “Transparence” liste :
-
-- les versions officielles (standard, méthodologie, API, moteur, site),  
-- les documents institutionnels (dont le présent dossier),  
-- la structure des changements.
+This document outlines the vision, institutional use-cases and development roadmap.
 
 ---
 
-## 4. Cas d’usage institutionnels détaillés
+## 2. Problématique / Problem statement
 
-### 4.1. Banques centrales et régulateurs
+**FR**
 
-**Questions typiques :**
+Le réseau Bitcoin consomme une quantité significative d’énergie.  
+Pour les institutions (banques, gestionnaires d’actifs, régulateurs, banques centrales), plusieurs questions reviennent :
 
-- À quel niveau de prix une part significative des mineurs devient-elle déficitaire ?  
-- Dans quels scénarios voit-on un risque de **capitulation synchronisée** des opérateurs ?  
-- Comment la concentration par région pourrait-elle amplifier certains risques (réseau, énergie, finance) ?
+- Quel est **le coût moyen de production** d’un bitcoin à l’échelle mondiale ?
+- Dans quelle mesure ce coût est-il **corrélé ou non** au prix de marché ?
+- Comment comparer ce coût entre **régions**, **mix énergétiques** ou **mix ASIC** différents ?
+- Comment disposer d’un indicateur **neutre, auditable, reproductible** ?
 
-Le GHI permet de :
+Aujourd’hui, il existe des estimations ponctuelles ou propriétaires, mais **aucun standard ouvert** permettant :
 
-- disposer d’un **repère chiffré** pour calibrer des scénarios,  
-- comparer des périodes (avant/après halving, bull / bear),  
-- documenter le dialogue avec les autres autorités (marchés, concurrence, énergie, climat…).
+- la comparaison dans le temps,
+- l’intégration simple dans des modèles de risque ou de valorisation,
+- la supervision par les autorités publiques.
 
-### 4.2. Gestion d’actifs, desks de recherche, fonds
+GHI vise à combler ce manque.
 
-Les gérants et analystes peuvent utiliser le GHI pour :
+**EN**
 
-- apprécier la **distance entre prix de marché et coûts de production**,  
-- construire des **scénarios de marge** pour le secteur minier,  
-- analyser l’évolution des coûts dans le temps (impact de nouvelles générations d’ASICs, d’un choc énergétique, etc.).
+Bitcoin uses a significant amount of energy.  
+For institutions (banks, asset managers, regulators, central banks), recurring questions are:
 
-Le GHI s’intègre :
+- What is the **average cost of producing** one bitcoin globally?
+- How does this cost **relate to** the market price?
+- How can we compare production costs across **regions**, **energy mixes** or **ASIC fleets**?
+- How can we rely on a **neutral, auditable and reproducible** indicator?
 
-- dans des tableaux de bord internes,  
-- dans des rapports de recherche,  
-- dans des outils quantitatifs (corrélations, régimes de marché, drawdowns, etc.).
+Current estimates are either proprietary or one-off studies. There is **no open standard** that allows:
 
-### 4.3. Assureurs, fonds de pension, infrastructures de marché
+- consistent time-series comparison,
+- straightforward integration into risk or valuation models,
+- supervision by public authorities.
 
-Les acteurs exposés de manière indirecte au Bitcoin (produits listés, ETP, fonds, dérivés) peuvent utiliser le GHI pour :
-
-- analyser la **robustesse économique** du réseau sous-jacent dans des scénarios extrêmes,  
-- éclairer les discussions avec les régulateurs et auditeurs,  
-- mieux documenter la **nature des risques** associés au minage et à l’écosystème.
-
----
-
-## 5. Gouvernance, versions et transparence
-
-### 5.1. Versionnage
-
-Le standard GHI suit un schéma de versionnage explicite :
-
-- `GHI_VERSION` – version du standard,  
-- `METHODOLOGY_VERSION` – version de la méthodologie,  
-- versions spécifiques pour l’API, le moteur, le site public.
-
-Chaque release publique :
-
-- est publiée sur GitHub (tags, changelog),  
-- référence la version de méthodologie sur laquelle elle s’appuie,  
-- documente les changements introduits (ajouts, corrections, clarifications).
-
-### 5.2. Transparence
-
-La transparence repose sur :
-
-- des dépôts publics (code, documentation),  
-- des documents méthodologiques lisibles par des non-développeurs,  
-- une séparation claire entre :
-  - ce qui relève de la **norme** (standard, API, méthodologie),  
-  - ce qui relève de l’**implémentation** (moteur, dashboards, intégrations).
-
-La page “Transparence” du site regroupe :
-
-- les versions actuelles,  
-- les liens officiels,  
-- les contacts pour institutions (revues, audits, partenariats).
+GHI aims to fill this gap.
 
 ---
 
-## 6. Limites, précautions et bonnes pratiques
+## 3. Ce que mesure GHI / What GHI measures
 
-### 6.1. Nature du GHI
+**FR**
 
-Le GHI est :
+GHI fournit principalement :
 
-- un **standard de mesure** et de publication,  
-- construit sur des **hypothèses explicites**,  
-- conçu pour être **critiqué et amélioré**.
+- un **coût global de production** du Bitcoin, exprimé en devise (USD dans la v1.0),
+- décliné en :
+  - **coût minimum** (par ex. régions à énergie très bon marché),
+  - **coût moyen** (pondéré selon les hypothèses de mix),
+  - **coût maximum** (opérations les moins efficientes incluses dans le périmètre),
+- un jeu de **métriques réseau** associés :
+  - difficulté, hashrate global estimé,
+  - récompense de bloc, paramètres de protocole,
+  - éventuellement hashprice.
 
-Il n’est pas :
+L’indicateur est **versionné** et rattaché à :
 
-- un modèle de valorisation financière,  
-- un conseil d’investissement,  
-- une garantie de rentabilité (passée ou future).
+- une version de **méthodologie** (`Methodology v1.0`),
+- une version de **moteur** (`Engine v0.3.0 – Sandbox`),
+- une version d’**API publique** (`API v1.0`).
 
-### 6.2. Usage prudentiel recommandé
+**EN**
 
-Tout usage pour :
+GHI mainly provides:
 
-- allocation d’actifs,  
-- décisions de financement,  
-- calibrage prudentiel,
+- a **global cost of production** for Bitcoin, in fiat currency (USD in v1.0),
+- broken down into:
+  - **minimum cost** (e.g. very cheap-energy regions),
+  - **average cost** (weighted according to mix assumptions),
+  - **maximum cost** (least efficient operations within scope),
+- a set of **network metrics** attached to each observation:
+  - difficulty, estimated global hashrate,
+  - block subsidy, protocol parameters,
+  - optionally hashprice.
 
-devrait :
+The indicator is **versioned** and linked to:
 
-- s’appuyer sur **d’autres sources d’information**,  
-- intégrer des analyses internes (macro, marchés, réglementation),  
-- considérer les **spécificités locales** (fiscalité, structure de coûts, régulation).
-
----
-
-## 7. Roadmap institutionnelle
-
-Les axes prioritaires pour les prochaines versions incluent :
-
-1. **Renforcement des données**  
-   - intégration de sources externes (coûts énergie, base de machines, hashprice),  
-   - amélioration de la granularité régionale lorsque cela est pertinent.
-
-2. **Audit et revue externe**  
-   - ouverture à des revues par des équipes indépendantes (énergie, données, finance, régulation),  
-   - publication de rapports de revue.
-
-3. **Dashboards institutionnels dédiés**  
-   - interfaces visuelles adaptées aux banques centrales, superviseurs, gérants d’actifs,  
-   - scénarios pré-paramétrés (stress tests, chocs de prix, halving, etc.).
-
-4. **Documentation juridique et conformité**  
-   - préparation de notes spécifiques pour différents cadres réglementaires (par ex. MiCA en Europe),  
-   - clarification de l’usage du GHI dans le cadre des obligations de transparence.
+- a **methodology** version (`Methodology v1.0`),
+- an **engine** version (`Engine v0.3.0 – Sandbox`),
+- a **public API** version (`API v1.0`).
 
 ---
 
-## 8. Résumé exécutif (EN)
+## 4. Architecture générale / Overall architecture
 
-The **Global HashCost Index (GHI)** is an **open standard** designed to measure, in a transparent and reproducible way, the **global cost of producing Bitcoin**.
+**FR**
 
-GHI Standard v1.0 is structured around:
+L’architecture de GHI est organisée en trois couches :
 
-- **Methodology v1.0.0** – open modelling framework,  
-- **Public API v1.0** – technical contract to access the indicator,  
-- **Sandbox engine v0.3.0** – demonstration implementation,  
-- **Public website v1.0.0** – documentation and transparency.
+1. **Données d’entrée (Input layer)**  
+   - paramètres réseau (difficulté, hashrate, récompense),
+   - caractéristiques matérielles (ASICs, efficacités, CAPEX/OPEX),
+   - profils de prix de l’électricité par région et par segment.
 
-The objective is **not** to predict price or provide investment advice, but to offer:
+2. **Moteur de calcul (Engine layer)**  
+   - Calcul des coûts de production selon la méthodologie publique,  
+   - Agrégation régionale puis globale,  
+   - Contrôles de cohérence et d’incertitude.
 
-- a **cost benchmark** (min / average / max),  
-- a **transparent and auditable framework**,  
-- an **integration-ready API** for institutions.
+3. **API & publication (API / Publication layer)**  
+   - Endpoint `/v1/ghi/indicator` (coût global au format journalier),  
+   - Endpoint `/v1/ghi/snapshot` (snapshot structuré GHI v1.0),  
+   - Documentation API + site web (`ghi-public`),  
+   - Dossiers et documents pour les institutions.
 
-GHI can be used by:
+Dans le dépôt public, seul le **moteur Sandbox** est exposé : il reproduit la forme de l’indicateur, sans publier de données réelles de production.
 
-- **central banks and regulators** – for cost structure and stress scenarios,  
-- **asset managers and research desks** – as an input in valuation and risk frameworks,  
-- **insurers, pension funds and market infrastructures** – to better understand the economic resilience of the mining sector.
+**EN**
 
-For audit, integration or partnership discussions, institutions are invited to use the contact channel indicated on the public GHI website (Transparency page).
+GHI’s architecture is structured in three layers:
+
+1. **Input layer**  
+   - network parameters (difficulty, hashrate, block reward),  
+   - hardware characteristics (ASICs, efficiencies, CAPEX/OPEX),  
+   - regional electricity price profiles and segments.
+
+2. **Engine layer**  
+   - Cost computations according to the public methodology,  
+   - Regional then global aggregation,  
+   - Consistency and uncertainty checks.
+
+3. **API / Publication layer**  
+   - `/v1/ghi/indicator` endpoint (global daily indicator),  
+   - `/v1/ghi/snapshot` endpoint (structured GHI v1.0 snapshot),  
+   - API documentation + public website (`ghi-public`),  
+   - Institutional dossiers and methodological reports.
+
+In the public repository, only the **Sandbox Engine** is exposed. It reproduces the indicator’s structure without publishing real production-cost data.
 
 ---
+
+## 5. Méthodologie & transparence / Methodology & transparency
+
+**FR**
+
+Les principes de la méthodologie GHI v1.0 sont :
+
+- **Ouverture** : description complète des hypothèses et des formules dans  
+  `docs/methodology_public_v1.md` (dépôt `ghi-engine`).
+- **Versionnement** : toute modification importante donne lieu à une nouvelle version de méthodologie, documentée et historisée.
+- **Neutralité** : GHI n’est lié à aucun mineur, pool ou fournisseur d’équipement.
+- **Reproductibilité** : le moteur réel peut être audité à partir des sources et des hypothèses.
+
+La page **“Méthodologie & Transparence”** du site public regroupe :
+
+- les liens vers la méthodologie v1.0,
+- les versions officielles (API, moteur, indicateur),
+- les changelogs et releases GitHub.
+
+**EN**
+
+GHI v1.0 methodology is built on the following principles:
+
+- **Openness**: full description of assumptions and formulae in  
+  `docs/methodology_public_v1.md` (`ghi-engine` repository).
+- **Versioning**: each significant change is captured as a new methodology version, with proper changelog.
+- **Neutrality**: GHI is independent from miners, pools or equipment vendors.
+- **Reproducibility**: the real engine can be audited based on published inputs and assumptions.
+
+The public **“Methodology & Transparency”** page gathers:
+
+- methodology v1.0 links,
+- official versions (API, engine, indicator),
+- GitHub changelogs and releases.
+
+---
+
+## 6. Cas d’usage pour les institutions / Institutional use-cases
+
+**FR – Exemples**
+
+1. **Supervision et régulation**  
+   - Indicateur objectif des conditions économiques du minage,  
+   - Suivi des évolutions de coût en fonction du prix de l’énergie, de la difficulté ou des halvings,  
+   - Support à des analyses d’impact (politique énergétique, fiscalité).
+
+2. **Gestion d’actifs & recherche**  
+   - Variable explicative ou de stress-test dans des modèles de valorisation,  
+   - Analyse de la soutenabilité du hashrate par rapport au prix,  
+   - Études de sensibilité (scénarios de prix de l’énergie, changements de mix ASIC).
+
+3. **Banques centrales & institutions publiques**  
+   - Compréhension fine du profil économique du réseau Bitcoin,  
+   - Base neutre pour des rapports publics ou consultations,  
+   - Comparaison internationale (future extension v2.0 par régions).
+
+**EN – Examples**
+
+1. **Supervision and regulation**  
+   - Objective indicator of mining economics,  
+   - Monitoring cost dynamics vs. energy prices, difficulty or halvings,  
+   - Support for impact assessments (energy policy, taxation).
+
+2. **Asset management & research**  
+   - Explanatory or stress-test variable in valuation models,  
+   - Analysis of hashrate sustainability relative to price,  
+   - Sensitivity studies (energy price scenarios, ASIC mix changes).
+
+3. **Central banks & public institutions**  
+   - Detailed understanding of Bitcoin’s economic profile,  
+   - Neutral basis for public reports or consultations,  
+   - International comparisons (future v2.0 regional extension).
+
+---
+
+## 7. Roadmap & prochaines étapes / Roadmap & next steps
+
+**FR**
+
+Pour la partie institutions, la feuille de route prévisionnelle est :
+
+- **2025 – v1.0**  
+  - Publication du moteur Sandbox v0.3.0,  
+  - API publique v1.0 (indicator + snapshot),  
+  - Méthodologie publique v1.0,  
+  - Dossiers court et long pour les institutions.
+
+- **Étape suivante (v1.x)**  
+  - Intégration de nouvelles sources de données,  
+  - Tests avec partenaires pilotes (non publics),  
+  - Première série de notes techniques ciblées (halving, chocs d’énergie).
+
+- **Perspectives v2.0**  
+  - Publication de **données régionales** (mix énergétique, mix ASIC),  
+  - Indicateurs complémentaires (intensité carbone estimée, profils horaires),  
+  - Renforcement des processus d’audit et de gouvernance.
+
+**EN**
+
+For the institutional track, the preliminary roadmap is:
+
+- **2025 – v1.0**  
+  - Publication of Sandbox Engine v0.3.0,  
+  - Public API v1.0 (indicator + snapshot),  
+  - Public Methodology v1.0,  
+  - Short and long institutional briefs.
+
+- **Next step (v1.x)**  
+  - Integration of additional data sources,  
+  - Tests with pilot partners (non-public),  
+  - First technical notes (halvings, energy shocks).
+
+- **v2.0 outlook**  
+  - Publication of **regional data** (energy mix, ASIC mix),  
+  - Complementary indicators (estimated carbon intensity, hourly patterns),  
+  - Strengthened audit and governance processes.
+
+---
+
+## 8. Contact & conditions d’usage / Contact & usage conditions
+
+**FR**
+
+- GHI est publié sous licence **CC BY-NC-SA 4.0** pour la documentation publique.  
+- Le code source public est disponible sur GitHub (`ghi-engine`, `GHI-public`).  
+- Pour un usage institutionnel, des accords spécifiques peuvent être envisagés.
+
+Pour tout contact institutionnel :
+
+- Email de contact indiqué sur le site GHI,
+- ou via les canaux professionnels (LinkedIn, etc.).
+
+**EN**
+
+- GHI public documentation is released under **CC BY-NC-SA 4.0**.  
+- Public source code is available on GitHub (`ghi-engine`, `GHI-public`).  
+- Specific agreements can be discussed for institutional-grade usage.
+
+For institutional contact:
+
+- Use the email address displayed on the GHI website,
+- or professional channels (LinkedIn, etc.).
