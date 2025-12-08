@@ -97,107 +97,63 @@
     </header>
 
     <!-- Contenu spécifique à chaque page -->
+    <body>
+  <div class="page-shell">
+
+    <header>
+      <h1>Transparence & Versions</h1>
+      <p class="subtitle">Un standard ouvert, vérifiable et reproductible</p>
+    </header>
+
+    <nav>
+      <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="methodology.html">Méthodologie</a></li>
+        <li><a href="api.html">API</a></li>
+        <li><a href="transparency.html" class="active">Transparence</a></li>
+      </ul>
+    </nav>
+
     <main>
-  <div class="lang-switch">
-    Langue / Language :
-    <a href="#fr" class="active">FR</a> ·
-    <a href="#en">EN</a>
+      <section>
+        <h2>Versions actuelles</h2>
+        <ul>
+          <li>Moteur : <strong>v0.3.0 (Sandbox)</strong></li>
+          <li>API : <strong>v1.0</strong></li>
+          <li>Méthodologie : <strong>v1.0.0</strong></li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Références GitHub</h2>
+        <ul>
+          <li>Release moteur : 
+            <a href="https://github.com/ghi-standard/ghi-engine/releases/tag/v0.3.0" target="_blank">v0.3.0</a>
+          </li>
+          <li>Code source moteur : 
+            <a href="https://github.com/ghi-standard/ghi-engine" target="_blank">ghi-engine</a>
+          </li>
+          <li>Documentation API :
+            <a href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/api.md" target="_blank">api.md</a>
+          </li>
+          <li>Méthodologie publique :
+            <a href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/methodology_public_v1.md" target="_blank">methodology_public_v1.md</a>
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Résolution des conflits</h2>
+        <p>Le GHI suit un versionning structuré :</p>
+        <ul>
+          <li><strong>v1.x</strong> : mêmes endpoints, même logique</li>
+          <li><strong>v2.x+</strong> : modifications majeures (nouvelle formule, nouvelles régions…)</li>
+        </ul>
+        <p>Le moteur réel remplacera le moteur sandbox sans casser l’API v1.0.</p>
+      </section>
+    </main>
   </div>
-
-  <!-- ================= SECTION FR ================= -->
-  <section id="fr" class="page-section">
-    <h2>Pourquoi GHI&nbsp;?</h2>
-    <p>
-      Le Bitcoin est produit à partir d’électricité, de matériel de minage et d’infrastructures répartis
-      dans le monde entier. Pourtant, il existe très peu de métriques transparentes, reproductibles et
-      indépendantes pour estimer le coût réel de production d’un BTC.
-    </p>
-
-    <p>
-      Le Global HashCost Index (GHI) propose un modèle ouvert, documenté et versionné qui estime ce coût
-      par grandes régions de minage, puis au niveau global, en pondérant par le hashrate.
-    </p>
-
-    <h2>Ce que fournit GHI</h2>
-    <ul>
-      <li>Coût min / moyen / max de production du BTC par région de minage.</li>
-      <li>Coût agrégé global pondéré par le hashrate.</li>
-      <li>Historique et statistiques par version de modèle.</li>
-      <li>API documentée pour intégration dans vos propres outils.</li>
-    </ul>
-
-    <h2>Comment fonctionne GHI (aperçu)</h2>
-    <p>
-      Le moteur GHI agrège pour chaque grande région de minage des hypothèses de coût (énergie, CAPEX, OPEX),
-      un mix de machines et une estimation de hashrate. Ces briques permettent de calculer un coût de
-      production par région, puis un coût global pondéré par la part de hashrate.
-    </p>
-
-    <p class="text-muted">
-      La méthodologie complète est décrite dans la page
-      <a href="methodology.html">Méthodologie</a>.
-    </p>
-
-    <h2>Accès aux données</h2>
-    <p>
-      Cette pré-version du site présente la structure du projet. Le jour J, les pages seront alimentées
-      automatiquement par le moteur Python et l’API FastAPI.
-    </p>
-
-    <div class="cta-links">
-      <a href="dashboard.html">Voir le dashboard</a>
-      <a href="methodology.html">Lire la méthodologie</a>
-      <a href="api.html">Explorer l’API</a>
-    </div>
-  </section>
-
-  <!-- ================= SECTION EN ================= -->
-  <section id="en" class="page-section">
-    <h2>Why GHI?</h2>
-    <p>
-      Bitcoin is produced using electricity, mining hardware and infrastructure distributed all around
-      the world. Yet very few transparent, reproducible and independent metrics exist to estimate
-      the real production cost of 1 BTC.
-    </p>
-
-    <p>
-      The Global HashCost Index (GHI) provides an open, documented, versioned model that estimates this cost
-      by major mining regions, and then at a global level, weighted by hashrate.
-    </p>
-
-    <h2>What GHI provides</h2>
-    <ul>
-      <li>Min / average / max BTC production cost by mining region.</li>
-      <li>Global aggregated cost weighted by hashrate.</li>
-      <li>History and statistics per model version.</li>
-      <li>A documented API for integration into your own tools.</li>
-    </ul>
-
-    <h2>How GHI works (overview)</h2>
-    <p>
-      The GHI engine aggregates, for each major mining region, cost assumptions (energy, CAPEX, OPEX),
-      a hardware mix and an estimated hashrate. These components are used to compute a regional
-      production cost, and then a global cost weighted by hashrate share.
-    </p>
-
-    <p class="text-muted">
-      The full methodology is described on the
-      <a href="methodology.html">Methodology</a> page.
-    </p>
-
-    <h2>Data access</h2>
-    <p>
-      This pre-release website presents the project structure. On launch day, all pages will be fed
-      automatically by the Python engine and the FastAPI backend.
-    </p>
-
-    <div class="cta-links">
-      <a href="dashboard.html">Open the dashboard</a>
-      <a href="methodology.html">Read the methodology</a>
-      <a href="api.html">Explore the API</a>
-    </div>
-  </section>
-</main>
+</body>
 
     <footer>
       <p>© Global HashCost Index – Modèle ouvert. Aucune recommandation d’investissement.</p>
