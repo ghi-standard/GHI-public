@@ -105,28 +105,156 @@
     <a href="#en-regions">EN</a>
   </div>
 
-  <!-- FR -->
+  <!-- ================= FR ================= -->
   <section id="fr-regions">
-    <h2>Régions / Regions</h2>
+    <h2>Régions GHI v1.0</h2>
+    <p>
+      Le <strong>Global HashCost Index (GHI)</strong> segmente le monde en grandes
+      <strong>macro-régions</strong> de minage. Dans la version publique
+      <strong>Sandbox Engine v0.4.0</strong>, ces régions sont
+      <strong>synthétiques</strong> : elles reproduisent la structure du modèle,
+      mais ne reflètent pas des estimations réelles de hashrate ou de coûts.
+    </p>
 
-    <h3>Statut actuel (GHI v1.0)</h3>
-    <p>Pas encore de données régionales publiées dans GHI v1.0.</p>
+    <h3>1. Liste des régions Sandbox v0.4.0</h3>
+    <p>Les régions actuellement exposées par l’API publique sont les suivantes&nbsp;:</p>
 
-    <h3>Objectif GHI v2.0</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Région</th>
+          <th>Code interne</th>
+          <th>Description</th>
+          <th>Remarques</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Amérique du Nord</strong></td>
+          <td><code>north_america</code></td>
+          <td>Bloc géographique regroupant les principaux hubs de minage nord-américains.</td>
+          <td>Profils machines et tarifs électriques entièrement synthétiques.</td>
+        </tr>
+        <tr>
+          <td><strong>Europe</strong></td>
+          <td><code>europe</code></td>
+          <td>Zone agrégée UE / Europe élargie, avec un mix énergétique simplifié.</td>
+          <td>Hypothèses tarifaires et mix machines illustratifs.</td>
+        </tr>
+        <tr>
+          <td><strong>Asie hors Chine</strong></td>
+          <td><code>asia_no_china</code></td>
+          <td>Zone couvrant les principaux pays asiatiques hors Chine continentale.</td>
+          <td>Répartition de hashrate <em>fictive</em>, uniquement pour la démonstration.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p style="margin-top:1rem;">
+      Dans le dépôt public, ces profils régionaux sont décrits dans le module
+      <code>app/engine/regional_sources</code> du moteur GHI&nbsp;:
+      définitions de <code>RegionalProfile</code>, hypothèses de hashrate,
+      mix machines et tarifs énergétiques <strong>fictifs</strong>.
+    </p>
+
+    <h3>2. Principes méthodologiques par région</h3>
     <ul>
-      <li>Définition de régions globales.</li>
-      <li>Mix énergétique par région.</li>
-      <li>Mix ASIC par région.</li>
-      <li>Coût régional + global pondéré.</li>
+      <li>Chaque région reçoit une part de hashrate estimée (somme ≈ 100&nbsp;% en sandbox).</li>
+      <li>Un mix d’ASICs synthétiques est défini (efficacité moyenne en J/TH, puissance installée).</li>
+      <li>Un profil tarifaire moyen est appliqué (USD/MWh, base + scénarios bas / central / haut).</li>
+      <li>Les coûts <code>min_cost</code>, <code>avg_cost</code>, <code>max_cost</code>
+        sont calculés par région, puis agrégés au niveau mondial.</li>
+    </ul>
+
+    <p>
+      Les détails méthodologiques complets se trouvent dans&nbsp;:
+      <a href="methodology.html">Méthodologie GHI v1.0.0</a> et
+      <a href="transparency.html">Transparence</a>.
+    </p>
+
+    <h3>3. Évolutions prévues (v2.0)</h3>
+    <ul>
+      <li>Segmentation plus fine (sous-régions, pays, hubs de minage spécifiques).</li>
+      <li>Intégration de données réelles multisources (hashrate, prix de l’énergie, énergie utilisée).</li>
+      <li>Possibilité de publier des <em>profils régionaux détaillés</em> sous NDA pour les institutions.</li>
+      <li>Ajout de métriques CO₂ et de scénarios réglementaires par région.</li>
     </ul>
   </section>
 
-  <!-- EN -->
+  <!-- ================= EN ================= -->
   <section id="en-regions">
-    <h2>Regions</h2>
+    <h2>GHI Regions v1.0</h2>
+    <p>
+      The <strong>Global HashCost Index (GHI)</strong> splits the world into large
+      <strong>mining macro-regions</strong>. In the public
+      <strong>Sandbox Engine v0.4.0</strong>, these regions are
+      <strong>synthetic</strong>: they reproduce the model structure but do not
+      represent real hashrate or cost estimates.
+    </p>
 
-    <h3>Current status (GHI v1.0)</h3>
-    <p>Regional data is not yet published in GHI v1.0.</p>
+    <h3>1. Sandbox regions (v0.4.0)</h3>
+    <p>The regions currently exposed by the public API are:</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Region</th>
+          <th>Internal code</th>
+          <th>Description</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>North America</strong></td>
+          <td><code>north_america</code></td>
+          <td>Aggregated view of the main North American mining hubs.</td>
+          <td>Machine and tariff profiles are fully synthetic.</td>
+        </tr>
+        <tr>
+          <td><strong>Europe</strong></td>
+          <td><code>europe</code></td>
+          <td>Aggregated EU / wider Europe region with a simplified energy mix.</td>
+          <td>Illustrative assumptions for both tariffs and ASIC fleet.</td>
+        </tr>
+        <tr>
+          <td><strong>Asia ex-China</strong></td>
+          <td><code>asia_no_china</code></td>
+          <td>Zone covering key Asian countries excluding mainland China.</td>
+          <td><em>Fictional</em> hashrate allocation, for demo purposes only.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p style="margin-top:1rem;">
+      In the public engine repository, these regional profiles are defined in
+      <code>app/engine/regional_sources</code>, through
+      <code>RegionalProfile</code> objects, synthetic hashrate weights,
+      ASIC mixes and energy tariffs.
+    </p>
+
+    <h3>2. Methodological principles per region</h3>
+    <ul>
+      <li>Each region receives an estimated hashrate share (summing to ≈ 100% in sandbox mode).</li>
+      <li>A synthetic ASIC mix is defined (average J/TH efficiency, installed power).</li>
+      <li>An average electricity price profile is applied (USD/MWh, low / central / high scenarios).</li>
+      <li>Regional <code>min_cost</code>, <code>avg_cost</code>, <code>max_cost</code>
+        are computed and then aggregated at global level.</li>
+    </ul>
+
+    <p>
+      Full methodological details are provided in
+      <a href="methodology.html">Methodology v1.0.0</a> and
+      <a href="transparency.html">Transparency</a>.
+    </p>
+
+    <h3>3. Planned extensions (v2.0)</h3>
+    <ul>
+      <li>Finer segmentation (sub-regions, countries, specific mining hubs).</li>
+      <li>Integration of real multi-source data (hashrate, energy prices, energy mix).</li>
+      <li>Optional <em>detailed regional profiles</em> under NDA for institutional users.</li>
+      <li>Add CO₂ metrics and regulatory scenarios per region.</li>
+    </ul>
   </section>
 </main>
 
