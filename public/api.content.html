@@ -1,110 +1,289 @@
 <main>
+
   <div class="lang-switch">
     Langue / Language :
     <a href="#fr-api">FR</a> ·
     <a href="#en-api">EN</a>
   </div>
 
-  <!-- ================= FR ================= -->
+  <!-- ========================================================= -->
+  <!-- ======================== FR ============================= -->
+  <!-- ========================================================= -->
+
   <section id="fr-api">
+    <h2>API GHI – Documentation Officielle</h2>
 
-    <h2>API GHI v1.0</h2>
-    <p>
-      L’API publique du Global HashCost Index expose un ensemble de points d’accès
-      stables permettant d’obtenir des coûts mondiaux de production du Bitcoin.
-      Toutes les données actuelles proviennent du <strong>Sandbox Engine v0.4.0</strong>.
-    </p>
+    <div class="card">
+      <h3>1. Présentation générale</h3>
+      <p>
+        Le <strong>Global HashCost Index (GHI)</strong> fournit une API professionnelle permettant d’accéder 
+        aux modèles institutionnels de coût de production du Bitcoin.  
+        L’API est conçue pour les équipes <strong>d’investissement</strong>, 
+        <strong>d’analyse quantitative</strong>, 
+        <strong>de gestion du risque</strong>, 
+        <strong>de conformité</strong> 
+        et <strong>d’infrastructures data</strong>.
+      </p>
 
-    <h3>Métadonnées moteur (Sandbox Engine v0.4.0)</h3>
-    <p>
-      Toutes les réponses incluent un bloc de métadonnées permettant d’identifier
-      précisément la version de l’API, la méthodologie et le moteur utilisé :
-    </p>
-    <ul>
-      <li><code>api_version</code> : version de l’API publique, ex. <code>v1.0</code>.</li>
-      <li><code>methodology_version</code> : version de la méthodologie GHI, ex. <code>1.0.0</code>.</li>
-      <li><code>engine_version</code> : version du moteur d’exécution, ex. <code>v0.4.0-sandbox</code>.</li>
-      <li><code>data_origin</code> : origine des données (<code>sandbox</code> pour données factices).</li>
-      <li><code>stability_seed</code> : entier technique assurant la stabilité du jeu de données.</li>
-    </ul>
+      <p>
+        La documentation API regroupe l’ensemble des normes GHI, les cycles de version, 
+        la stabilité contractuelle, et les garanties de compatibilité nécessaires à un usage institutionnel.
+        Toutes les données du Sandbox Engine sont offertes en accès libre ; des éditions premium (données enrichies,
+        historiques étendus, granularité plus fine) seront disponibles via un contrat institutionnel.
+      </p>
+    </div>
 
-    <h3>Base URL</h3>
-    <pre><code>/v1/ghi</code></pre>
+    <div class="card">
+      <h3>2. Versions disponibles</h3>
+      <p>
+        Deux versions stables sont maintenues pour les besoins de continuité opérationnelle :
+      </p>
 
-    <h3>1) GET /v1/ghi/indicator</h3>
-    <p>Renvoie l’indicateur quotidien : coût minimum, moyen et maximum (USD) avec métadonnées.</p>
-    <pre><code>curl "http://127.0.0.1:8000/v1/ghi/indicator"</code></pre>
+      <table class="table-api">
+        <thead>
+          <tr><th>Version</th><th>Statut</th><th>Description</th><th>Lien</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>API v1.1</strong></td>
+            <td>Active (stable)</td>
+            <td>Nouvelle structure de données unifiée, endpoints supplémentaires, métadonnées enrichies.</td>
+            <td><a href="{{ROOT}}api/api-v1.1.html">Documentation</a></td>
+          </tr>
+          <tr>
+            <td>API v1.0</td>
+            <td>Supportée (legacy)</td>
+            <td>Version historique ; maintenue pour compatibilité des intégrations existantes.</td>
+            <td><a href="{{ROOT}}api.html#api-v1-0">Documentation</a></td>
+          </tr>
+        </tbody>
+      </table>
 
-    <h3>2) GET /v1/ghi/snapshot</h3>
-    <p>Renvoie un snapshot global structuré au format GHI v1.0.</p>
+      <p>
+        Les nouvelles intégrations doivent utiliser <strong>API v1.1</strong>.
+      </p>
+    </div>
 
-    <h3>Endpoints hérités (stubs v1.0, utilisés par la suite de tests)</h3>
-    <ul>
-      <li><code>/v1/ghi/history</code> — renvoie une liste d’échantillons historiques.</li>
-      <li><code>/v1/ghi/regions</code> — renvoie une liste de régions disponibles.</li>
-      <li><code>/v1/ghi/regions/{region_id}</code> — renvoie les détails d’une région.</li>
-      <li><code>/v1/ghi/stats</code> — expose des statistiques globales simplifiées.</li>
-    </ul>
+    <div class="card">
+      <h3>3. Garanties de stabilité (Institutionnel)</h3>
+      <p>La politique de stabilité GHI garantit :</p>
+      <ul>
+        <li>aucune rupture de structure entre versions mineures (1.x) ;</li>
+        <li>un préavis de dépréciation pour tout élément modifié ou retiré ;</li>
+        <li>une compatibilité ascendante pour les usages institutionnels ;</li>
+        <li>une volumétrie stable et des formats strictement définis ;</li>
+        <li>une documentation synchronisée à chaque release officielle.</li>
+      </ul>
 
-    <h3>Documentation complète</h3>
-    <ul>
-      <li><a target="_blank" href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/api.md">
-        Spécification API (docs/api.md)
-      </a></li>
-      <li><a target="_blank" href="https://github.com/ghi-standard/ghi-engine">
-        Dépôt du moteur GHI
-      </a></li>
-    </ul>
+      <p>
+        Ces engagements sont adaptés aux environnements dépendants de pipelines automatiques (ETL, ingestion temps-réel, back-tests quantitatifs, SI bancaire).
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>4. Panorama des endpoints</h3>
+      <p>
+        Les endpoints suivants sont fournis en accès stable.
+        Les détails complets sont disponibles dans les pages dédiées (API Reference et API v1.1).
+      </p>
+
+      <table class="table-api">
+        <thead>
+          <tr><th>Endpoint</th><th>Description</th><th>Version</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>/v1/ghi/snapshot</code></td>
+            <td>Vue globale et régionale des coûts de production.</td>
+            <td>v1.0 / v1.1</td>
+          </tr>
+          <tr>
+            <td><code>/v1/ghi/history</code></td>
+            <td>Données temporelles agrégées (synthétiques).</td>
+            <td>v1.0 / v1.1</td>
+          </tr>
+          <tr>
+            <td><code>/v1/ghi/regions</code></td>
+            <td>Régions couvertes par le modèle GHI.</td>
+            <td>v1.1</td>
+          </tr>
+          <tr>
+            <td><code>/v1/ghi/metadata</code></td>
+            <td>Informations sur l’API et le moteur.</td>
+            <td>v1.1</td>
+          </tr>
+          <tr>
+            <td><code>/v1/ghi/network</code></td>
+            <td>Métriques réseau synthétiques (beta).</td>
+            <td>v1.1</td>
+          </tr>
+          <tr>
+            <td><code>/v1/ghi/forecast</code></td>
+            <td>Prévision de coût moyen (beta).</td>
+            <td>v1.1</td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+
+    <div class="card">
+      <h3>5. Cycle de vie et gouvernance des versions</h3>
+      <p>
+        Le cycle de vie des versions suit les règles suivantes :
+      </p>
+      <ul>
+        <li>Support actif : dernière version stable (actuellement v1.1)</li>
+        <li>Support étendu : versions legacy mineures (ex. v1.0)</li>
+        <li>Dépréciation : annoncée publiquement dans le changelog + GitHub</li>
+        <li>Suppression : jamais sans préavis institutionnel</li>
+      </ul>
+      <p>
+        Les évolutions du standard sont supervisées par la gouvernance GHI (prochainement ouverte aux partenaires institutionnels).
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>6. Ressources techniques</h3>
+      <ul>
+        <li><a href="{{ROOT}}api/api-v1.1.html">API v1.1</a></li>
+        <li><a href="{{ROOT}}api-reference.html">API Reference</a></li>
+        <li><a href="{{ROOT}}api-quickstart.html">API Quickstart</a></li>
+        <li><a href="https://github.com/ghi-standard/ghi-engine">GHI Engine (GitHub)</a></li>
+        <li><a href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/API_v1.1_Spec.md">Spécification API v1.1</a></li>
+      </ul>
+    </div>
+
   </section>
 
-  <!-- ================= EN ================= -->
+  <!-- ========================================================= -->
+  <!-- ======================== EN ============================= -->
+  <!-- ========================================================= -->
+
   <section id="en-api">
+    <h2>GHI API – Official Documentation</h2>
 
-    <h2>GHI API v1.0</h2>
-    <p>
-      The Global HashCost Index public API provides stable endpoints giving access
-      to global Bitcoin production costs. All current data is powered by the
-      <strong>Sandbox Engine v0.4.0</strong>.
-    </p>
+    <div class="card">
+      <h3>1. Overview</h3>
+      <p>
+        The <strong>Global HashCost Index (GHI)</strong> provides a professional-grade API 
+        exposing institutional Bitcoin production-cost models.  
+        It is designed for <strong>investment teams</strong>, 
+        <strong>quant desks</strong>, 
+        <strong>risk management</strong>, 
+        <strong>compliance</strong>, 
+        and <strong>enterprise data platforms</strong>.
+      </p>
 
-    <h3>Engine Metadata (Sandbox Engine v0.4.0)</h3>
-    <p>
-      Every API response includes a metadata block identifying the exact versions
-      used for API, methodology and engine execution:
-    </p>
-    <ul>
-      <li><code>api_version</code>: public API version, e.g. <code>v1.0</code>.</li>
-      <li><code>methodology_version</code>: methodology version, e.g. <code>1.0.0</code>.</li>
-      <li><code>engine_version</code>: execution engine version, e.g. <code>v0.4.0-sandbox</code>.</li>
-      <li><code>data_origin</code>: data source (<code>sandbox</code> means simulated data).</li>
-      <li><code>stability_seed</code>: technical integer ensuring deterministic outputs.</li>
-    </ul>
+      <p>
+        This page outlines the official API versions, lifecycle guarantees, 
+        compatibility rules, and stability commitments expected by institutional users.
+      </p>
+    </div>
 
-    <h3>Base URL</h3>
-    <pre><code>/v1/ghi</code></pre>
+    <div class="card">
+      <h3>2. Available versions</h3>
 
-    <h3>1) GET /v1/ghi/indicator</h3>
-    <p>Returns daily min / avg / max Bitcoin production cost (USD) with metadata.</p>
+      <table class="table-api">
+        <thead>
+          <tr><th>Version</th><th>Status</th><th>Description</th><th>Link</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>API v1.1</strong></td>
+            <td>Active (stable)</td>
+            <td>Unified response format, enriched metadata, additional endpoints.</td>
+            <td><a href="{{ROOT}}api/api-v1.1.html">Documentation</a></td>
+          </tr>
+          <tr>
+            <td>API v1.0</td>
+            <td>Supported (legacy)</td>
+            <td>Historical version maintained for migration needs.</td>
+            <td><a href="{{ROOT}}api.html#api-v1-0">Documentation</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
-    <h3>2) GET /v1/ghi/snapshot</h3>
-    <p>Returns a structured snapshot following the GHI v1.0 standard.</p>
+    <div class="card">
+      <h3>3. Stability commitments</h3>
+      <p>GHI guarantees:</p>
+      <ul>
+        <li>no breaking changes within minor versions (1.x);</li>
+        <li>clear deprecation notices and migration paths;</li>
+        <li>backward compatibility for institutional integrations;</li>
+        <li>predictable data structures and volumes;</li>
+        <li>fully synchronized documentation for each release.</li>
+      </ul>
+    </div>
 
-    <h3>Legacy endpoints (v1.0 stubs, used by test suite)</h3>
-    <ul>
-      <li><code>/v1/ghi/history</code> — returns a sample historical list.</li>
-      <li><code>/v1/ghi/regions</code> — returns the list of available regions.</li>
-      <li><code>/v1/ghi/regions/{region_id}</code> — returns a region detail.</li>
-      <li><code>/v1/ghi/stats</code> — exposes simplified global statistics.</li>
-    </ul>
+    <div class="card">
+      <h3>4. Endpoint overview</h3>
+      <table class="table-api">
+        <thead>
+          <tr><th>Endpoint</th><th>Description</th><th>Version</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>/v1/ghi/snapshot</code></td>
+            <td>Regional production costs + global statistics.</td>
+            <td>v1.0 / v1.1</td>
+          </tr>
+          <tr>
+            <td><code>/v1/ghi/history</code></td>
+            <td>Synthetic aggregated time series.</td>
+            <td>v1.0 / v1.1</td>
+          </tr>
+          <tr>
+            <td><code>/v1/ghi/regions</code></td>
+            <td>GHI regional definitions.</td>
+            <td>v1.1</td>
+          </tr>
+          <tr>
+            <td><code>/v1/ghi/metadata</code></td>
+            <td>API and engine metadata.</td>
+            <td>v1.1</td>
+          </tr>
+          <tr>
+            <td><code>/v1/ghi/network</code></td>
+            <td>Synthetic network metrics.</td>
+            <td>v1.1</td>
+          </tr>
+          <tr>
+            <td><code>/v1/ghi/forecast</code></td>
+            <td>Cost forecast (beta).</td>
+            <td>v1.1</td>
+          </tr>
+        </tbody>
+      </table>
 
-    <h3>Full documentation</h3>
-    <ul>
-      <li><a target="_blank" href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/api.md">
-        API specification
-      </a></li>
-      <li><a target="_blank" href="https://github.com/ghi-standard/ghi-engine">
-        GHI Engine repository
-      </a></li>
-    </ul>
+    </div>
+
+    <div class="card">
+      <h3>5. Version lifecycle & governance</h3>
+      <ul>
+        <li>Active support: last stable version (currently v1.1)</li>
+        <li>Extended support: legacy versions (e.g. v1.0)</li>
+        <li>Deprecation: published in changelog & GitHub versions</li>
+        <li>Removal: never without formal institutional notice</li>
+      </ul>
+      <p>
+        Version governance is coordinated by GHI and will be opened to qualified institutional partners
+        for future extensions.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>6. Technical resources</h3>
+      <ul>
+        <li><a href="{{ROOT}}api/api-v1.1.html">API v1.1</a></li>
+        <li><a href="{{ROOT}}api-reference.html">API Reference</a></li>
+        <li><a href="{{ROOT}}api-quickstart.html">API Quickstart</a></li>
+        <li><a href="https://github.com/ghi-standard/ghi-engine">GHI Engine (GitHub)</a></li>
+        <li><a href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/API_v1.1_Spec.md">API v1.1 specification</a></li>
+      </ul>
+    </div>
+
   </section>
+
 </main>
