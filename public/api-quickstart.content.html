@@ -1,178 +1,174 @@
 <main>
+
   <div class="lang-switch">
     Langue / Language :
-    <a href="#fr-api-qs">FR</a> ·
-    <a href="#en-api-qs">EN</a>
+    <a href="#fr-quickstart">FR</a> ·
+    <a href="#en-quickstart">EN</a>
   </div>
 
-  <!-- ================= FR ================= -->
-  <section id="fr-api-qs">
-    <h2>API GHI v1.0 – Quickstart</h2>
-    <p>
-      Cette page présente la manière la plus simple d’interroger l’API publique GHI.
-      Le moteur actuellement exposé est le <strong>Sandbox Engine v0.4.0</strong>, qui
-      renvoie des données factices mais stables.
-    </p>
+  <!-- ========================================================= -->
+  <!-- ========================= FR ============================= -->
+  <!-- ========================================================= -->
 
-    <h3>1. Base URL</h3>
-    <p>En local, via le moteur sandbox :</p>
-    <pre><code>http://127.0.0.1:8000/v1/ghi</code></pre>
+  <section id="fr-quickstart">
+    <h2>API Quickstart – Version 1.1</h2>
 
-    <h3>2. Endpoints principaux</h3>
-    <ul>
-      <li><code>GET /v1/ghi/indicator</code> : indicateur quotidien global (min / avg / max).</li>
-      <li><code>GET /v1/ghi/snapshot</code> : snapshot structuré au format GHI v1.0.</li>
-    </ul>
+    <div class="card">
+      <h3>1. Introduction</h3>
+      <p>
+        Cette page offre un démarrage rapide pour utiliser l’API GHI v1.1.  
+        Tous les appels sont accessibles sans authentification dans l’édition Sandbox.  
+        Les éditions institutionnelles (API clés, données enrichies, SLA) seront annoncées prochainement.
+      </p>
+      <p>
+        Les exemples ci-dessous montrent comment interroger les endpoints 
+        <strong>snapshot</strong>, <strong>history</strong> et <strong>regions</strong>.
+      </p>
+    </div>
 
-    <h3>3. Exemple – GET /v1/ghi/indicator</h3>
-    <pre><code>curl "http://127.0.0.1:8000/v1/ghi/indicator"</code></pre>
+    <div class="card">
+      <h3>2. URL de base</h3>
+      <pre><code>https://globalhashcostindex.org/api/v1/ghi/</code></pre>
+      <p>Tous les appels API utilisent ce préfixe.</p>
+    </div>
 
-    <p>Réponse typique (extrait) :</p>
-    <pre><code>{
-  "date": "2025-12-08",
-  "currency": "USD",
-  "min_cost": 38000.12,
-  "avg_cost": 41000.45,
-  "max_cost": 44000.89,
-  "hashprice": 0.0654,
-  "block_subsidy": 3.125,
-  "total_hashrate_eh_s": 678.4,
-  "ghi_version": "1.0.0",
-  "methodology_version": "1.0.0",
-  "api_version": "v1.0",
-  "engine_version": "v0.4.0-sandbox",
-  "data_origin": "sandbox",
-  "stability_seed": 42,
-  "status": "ok"
+    <div class="card">
+      <h3>3. Appels immédiats (cURL)</h3>
+
+      <h4>Snapshot (coût global + régional)</h4>
+      <pre><code>curl https://globalhashcostindex.org/api/v1/ghi/snapshot</code></pre>
+
+      <h4>Historique (global)</h4>
+      <pre><code>curl "https://globalhashcostindex.org/api/v1/ghi/history?region_id=global"</code></pre>
+
+      <h4>Liste des régions</h4>
+      <pre><code>curl https://globalhashcostindex.org/api/v1/ghi/regions</code></pre>
+    </div>
+
+    <div class="card">
+      <h3>4. Exemple Python (requests)</h3>
+      <pre><code>import requests
+
+BASE = "https://globalhashcostindex.org/api/v1/ghi"
+
+r = requests.get(f"{BASE}/snapshot")
+data = r.json()
+
+print("Global avg cost:", data["global_avg_cost_usd"])
+</code></pre>
+      <p>S’intègre dans n’importe quel pipeline Python, ETL, airflow, backtests, etc.</p>
+    </div>
+
+    <div class="card">
+      <h3>5. Exemple JavaScript (fetch)</h3>
+      <pre><code>const url = "https://globalhashcostindex.org/api/v1/ghi/snapshot";
+
+fetch(url)
+  .then(res => res.json())
+  .then(data => {
+    console.log("Global avg cost:", data.global_avg_cost_usd);
+  });
+</code></pre>
+    </div>
+
+    <div class="card">
+      <h3>6. Exemple pour données historiques</h3>
+      <pre><code>curl "https://globalhashcostindex.org/api/v1/ghi/history?region_id=us"</code></pre>
+
+      <p>Réponse typique :</p>
+      <pre><code>{
+  "version": "1.1",
+  "timestamp_utc": "...",
+  "region_id": "us",
+  "points": [
+    {"date": "2025-12-01", "min_cost_usd": 41000, "avg_cost_usd": 45000, "max_cost_usd": 49500}
+  ]
 }</code></pre>
+    </div>
 
-    <h3>4. Exemple – GET /v1/ghi/snapshot</h3>
-    <pre><code>curl "http://127.0.0.1:8000/v1/ghi/snapshot"</code></pre>
-
-    <p>Réponse typique (extrait) :</p>
-    <pre><code>{
-  "start_date": "2025-12-08",
-  "end_date": "2025-12-08",
-  "currency": "USD",
-  "ghi_version": "1.0.0",
-  "methodology_version": "1.0.0",
-  "count": 1,
-  "data": [
-    {
-      "date": "2025-12-08",
-      "min_cost": 38000.12,
-      "avg_cost": 41000.45,
-      "max_cost": 44000.89
-    }
-  ],
-  "api_version": "v1.0",
-  "engine_version": "v0.4.0-sandbox",
-  "data_origin": "sandbox",
-  "stability_seed": 42
-}</code></pre>
-
-    <h3>5. Métadonnées moteur (Sandbox Engine v0.4.0)</h3>
-    <p>
-      Toutes les réponses GHI v1.0 exposent les champs de métadonnées suivants&nbsp;:
-    </p>
-    <ul>
-      <li><code>api_version</code> : version de l’API publique (ex. <code>v1.0</code>).</li>
-      <li><code>methodology_version</code> : version de la méthodologie (ex. <code>1.0.0</code>).</li>
-      <li><code>engine_version</code> : version du moteur (ex. <code>v0.4.0-sandbox</code>).</li>
-      <li><code>data_origin</code> : origine des données (<code>sandbox</code> pour la démo).</li>
-      <li><code>stability_seed</code> : entier technique garantissant la stabilité des données factices.</li>
-    </ul>
-
-    <h3>6. Documentation complète</h3>
-    <ul>
-      <li><a target="_blank" href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/api.md">Spécification détaillée de l’API (docs/api.md)</a></li>
-      <li><a target="_blank" href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/ENGINE_DESIGN.md">Engine Design Overview</a></li>
-      <li><a target="_blank" href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/VERSIONS.md">Versioning Model</a></li>
-    </ul>
+    <div class="card">
+      <h3>7. Ressources utiles</h3>
+      <ul>
+        <li><a href="{{ROOT}}api/api-v1.1.html">API v1.1 – Documentation complète</a></li>
+        <li><a href="{{ROOT}}api-reference.html">API Reference</a></li>
+        <li><a target="_blank" href="https://github.com/ghi-standard/ghi-engine">Moteur GHI (GitHub)</a></li>
+      </ul>
+    </div>
   </section>
 
-  <!-- ================= EN ================= -->
-  <section id="en-api-qs">
-    <h2>GHI API v1.0 – Quickstart</h2>
-    <p>
-      This page explains how to call the public GHI API using the
-      <strong>Sandbox Engine v0.4.0</strong>, which provides deterministic demo data.
-    </p>
+  <!-- ========================================================= -->
+  <!-- ========================= EN ============================= -->
+  <!-- ========================================================= -->
 
-    <h3>1. Base URL</h3>
-    <p>Locally, using the sandbox engine:</p>
-    <pre><code>http://127.0.0.1:8000/v1/ghi</code></pre>
+  <section id="en-quickstart">
+    <h2>API Quickstart – Version 1.1</h2>
 
-    <h3>2. Main endpoints</h3>
-    <ul>
-      <li><code>GET /v1/ghi/indicator</code>: daily global indicator (min / avg / max).</li>
-      <li><code>GET /v1/ghi/snapshot</code>: structured snapshot following GHI v1.0.</li>
-    </ul>
+    <div class="card">
+      <h3>1. Introduction</h3>
+      <p>
+        This page provides a fast onboarding guide for GHI API v1.1.  
+        All endpoints are publicly accessible in the Sandbox edition.  
+        Institutional editions (API keys, enriched datasets, SLA) will be announced soon.
+      </p>
+    </div>
 
-    <h3>3. Example – GET /v1/ghi/indicator</h3>
-    <pre><code>curl "http://127.0.0.1:8000/v1/ghi/indicator"</code></pre>
+    <div class="card">
+      <h3>2. Base URL</h3>
+      <pre><code>https://globalhashcostindex.org/api/v1/ghi/</code></pre>
+    </div>
 
-    <p>Typical response (excerpt):</p>
-    <pre><code>{
-  "date": "2025-12-08",
-  "currency": "USD",
-  "min_cost": 38000.12,
-  "avg_cost": 41000.45,
-  "max_cost": 44000.89,
-  "hashprice": 0.0654,
-  "block_subsidy": 3.125,
-  "total_hashrate_eh_s": 678.4,
-  "ghi_version": "1.0.0",
-  "methodology_version": "1.0.0",
-  "api_version": "v1.0",
-  "engine_version": "v0.4.0-sandbox",
-  "data_origin": "sandbox",
-  "stability_seed": 42,
-  "status": "ok"
+    <div class="card">
+      <h3>3. Immediate calls (cURL)</h3>
+
+      <h4>Snapshot</h4>
+      <pre><code>curl https://globalhashcostindex.org/api/v1/ghi/snapshot</code></pre>
+
+      <h4>History</h4>
+      <pre><code>curl "https://globalhashcostindex.org/api/v1/ghi/history?region_id=global"</code></pre>
+
+      <h4>Regions</h4>
+      <pre><code>curl https://globalhashcostindex.org/api/v1/ghi/regions</code></pre>
+    </div>
+
+    <div class="card">
+      <h3>4. Python example</h3>
+      <pre><code>import requests
+
+BASE = "https://globalhashcostindex.org/api/v1/ghi"
+data = requests.get(f"{BASE}/snapshot").json()
+print("Global avg cost:", data["global_avg_cost_usd"])
+</code></pre>
+    </div>
+
+    <div class="card">
+      <h3>5. JavaScript example</h3>
+      <pre><code>fetch("https://globalhashcostindex.org/api/v1/ghi/snapshot")
+  .then(res => res.json())
+  .then(data => console.log("Global avg cost:", data.global_avg_cost_usd));
+</code></pre>
+    </div>
+
+    <div class="card">
+      <h3>6. History example</h3>
+      <pre><code>curl "https://globalhashcostindex.org/api/v1/ghi/history?region_id=us"</code></pre>
+
+      <pre><code>{
+  "region_id": "us",
+  "points": [
+    {"date": "2025-12-01", "avg_cost_usd": 45000}
+  ]
 }</code></pre>
+    </div>
 
-    <h3>4. Example – GET /v1/ghi/snapshot</h3>
-    <pre><code>curl "http://127.0.0.1:8000/v1/ghi/snapshot"</code></pre>
+    <div class="card">
+      <h3>7. Resources</h3>
+      <ul>
+        <li><a href="{{ROOT}}api/api-v1.1.html">API v1.1 – Full documentation</a></li>
+        <li><a href="{{ROOT}}api-reference.html">API Reference</a></li>
+        <li><a target="_blank" href="https://github.com/ghi-standard/ghi-engine">GHI Engine (GitHub)</a></li>
+      </ul>
+    </div>
 
-    <p>Typical response (excerpt):</p>
-    <pre><code>{
-  "start_date": "2025-12-08",
-  "end_date": "2025-12-08",
-  "currency": "USD",
-  "ghi_version": "1.0.0",
-  "methodology_version": "1.0.0",
-  "count": 1,
-  "data": [
-    {
-      "date": "2025-12-08",
-      "min_cost": 38000.12,
-      "avg_cost": 41000.45,
-      "max_cost": 44000.89
-    }
-  ],
-  "api_version": "v1.0",
-  "engine_version": "v0.4.0-sandbox",
-  "data_origin": "sandbox",
-  "stability_seed": 42
-}</code></pre>
-
-    <h3>5. Engine metadata (Sandbox Engine v0.4.0)</h3>
-    <p>
-      All GHI v1.0 responses expose a small metadata block:
-    </p>
-    <ul>
-      <li><code>api_version</code>: public API version (e.g. <code>v1.0</code>).</li>
-      <li><code>methodology_version</code>: methodology version (e.g. <code>1.0.0</code>).</li>
-      <li><code>engine_version</code>: engine implementation version (e.g. <code>v0.4.0-sandbox</code>).</li>
-      <li><code>data_origin</code>: data origin (<code>sandbox</code> for demo data).</li>
-      <li><code>stability_seed</code>: technical seed ensuring deterministic fake data.</li>
-    </ul>
-
-    <h3>6. Full documentation</h3>
-    <ul>
-      <li><a target="_blank" href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/api.md">Full API specification (docs/api.md)</a></li>
-      <li><a target="_blank" href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/ENGINE_DESIGN.md">Engine Design Overview</a></li>
-      <li><a target="_blank" href="https://github.com/ghi-standard/ghi-engine/blob/main/docs/VERSIONS.md">Versioning Model</a></li>
-    </ul>
   </section>
+
 </main>
