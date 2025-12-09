@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Global HashCost Index – Titre de la page</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    name="description"
+    content="Global HashCost Index – Indicateur ouvert du coût de production du Bitcoin."
+  />
+  <!-- Styles globaux du site -->
+  <!-- Referencement Institutionnel -->
+  <link rel="stylesheet" href="style.css" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": "https://globalhashcostindex.org/#organization",
+  "name": "Global HashCost Index (GHI)",
+  "url": "https://globalhashcostindex.org/",
+  "description": "Le Global HashCost Index (GHI) est un standard ouvert visant à mesurer le coût de production du Bitcoin à l'échelle mondiale, à destination des institutions, chercheurs et acteurs de marché.",
+  "foundingDate": "2025",
+  "logo": "https://globalhashcostindex.org/PATH-VERS-VOTRE-LOGO.png",
+  "sameAs": [
+    "https://globalhashcostindex.org/",
+    "https://globalhashcostindex.org/api.html"
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Dataset",
+  "@id": "https://globalhashcostindex.org/#dataset",
+  "name": "Global HashCost Index (GHI)",
+  "url": "https://globalhashcostindex.org/dashboard.html",
+  "description": "Jeu de données agrégé décrivant une estimation du coût global de production du Bitcoin, région par région, à partir de modèles publics et transparents. Le GHI fournit un indicateur institutionnel pour analyser la relation entre prix du Bitcoin et coût de production.",
+  "creator": {
+    "@id": "https://globalhashcostindex.org/#organization"
+  },
+  "inLanguage": "fr",
+  "keywords": [
+    "Bitcoin",
+    "coût de production",
+    "minage",
+    "énergie",
+    "indice",
+    "standard ouvert"
+  ],
+  "measurementTechnique": "Modélisation des coûts de production du Bitcoin par région en fonction du mix machines, des tarifs d'électricité et des profils d'utilisation.",
+  "variableMeasured": [
+    "Coût moyen global de production du Bitcoin (USD/BTC)",
+    "Coût régional de production du Bitcoin (USD/BTC)",
+    "Relation prix / coût de production"
+  ],
+  "spatialCoverage": "Global",
+  "temporalCoverage": "2010-01-01/ongoing",
+  "isAccessibleForFree": true,
+  "distribution": [
+    {
+      "@type": "DataDownload",
+      "encodingFormat": "text/html",
+      "contentUrl": "https://globalhashcostindex.org/api.html",
+      "name": "Documentation API du Global HashCost Index (GHI)"
+    }
+  ]
+}
+</script>
+</head>
+<body>
+  <div class="page-shell">
+    <header>
+      <div class="site-title">
+        <h1>Global HashCost Index</h1>
+        <p>Open indicator of Bitcoin’s production cost.</p>
+        <p>GHI – Global HashCost Index • API v1.0 • Méthodologie v1.0 • Engine v0.4.0-sandbox</p>
+      </div>
+
+      <nav>
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="dashboard.html">Dashboard</a></li>
+          <li><a href="methodology.html">Méthodologie</a></li>
+          <li><a href="regions.html">Régions</a></li>
+          <li><a href="api.html">API</a></li>
+          <li><a href="api-quickstart.html">Quickstart API</a></li>
+          <li><a href="api-reference.html">API Reference</a></li>
+          <li><a href="engine.html">Moteur</a></li>
+          <li><a href="governance.html">Gouvernance</a></li>
+          <li><a href="ghi-for-institutions.html">GHI for Institutions</a></li>
+          <li><a href="roadmap.html">Roadmap</a></li>
+          <li><a href="changelog.html">Changelog</a></li>
+          <li><a href="transparency.html">Transparence</a></li>
+          <li><a href="about.html">À propos</a></li>
+          <li><a href="legal.html">Mentions légales</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Contenu spécifique à chaque page -->
+    <main>
+  <div class="lang-switch">
+    Langue / Language :
+    <a href="#fr-api-ref">FR</a> ·
+    <a href="#en-api-ref">EN</a>
+  </div>
+
+  <!-- ================= FR ================= -->
+  <section id="fr-api-ref">
+    <h2>API GHI v1.0 – Référence détaillée</h2>
+    <p>
+      Cette page décrit la référence de l’API publique du
+      <strong>Global HashCost Index (GHI)</strong>, version <strong>v1.0</strong>.
+      Toutes les réponses sont générées par le <strong>Sandbox Engine v0.4.0-sandbox</strong>,
+      qui fournit des données factices mais stables pour la démonstration et les tests
+      d’intégration.
+    </p>
+
+    <h3>1. Base URL et version</h3>
+    <p>
+      L’API GHI v1.0 est exposée sous un préfixe de base, suivi des endpoints
+      stables de la version 1&nbsp;:
+    </p>
+    <pre><code>Base path : /v1/ghi</code></pre>
+    <p>
+      Exemples d’URL complètes (selon l’environnement de déploiement) :
+    </p>
+    <pre><code>https://sandbox.globalhashcostindex.org/v1/ghi/indicator
+https://sandbox.globalhashcostindex.org/v1/ghi/snapshot</code></pre>
+    <p>
+      Les chemins documentés ci-dessous sont indépendants du nom de domaine
+      et restent valables tant que l’API publique GHI v1.0 est active.
+    </p>
+
+    <h3>2. Formats et en-têtes</h3>
+    <ul>
+      <li><strong>Format de réponse</strong> : JSON UTF-8.</li>
+      <li><strong>En-tête recommandé</strong> : <code>Accept: application/json</code>.</li>
+      <li><strong>Authentification</strong> : aucune dans le Sandbox public v0.4.0.
+        Des mécanismes d’accès restreint (clé API, OAuth2, etc.) pourront être
+        introduits dans des déploiements institutionnels dédiés.</li>
+    </ul>
+
+    <h3>3. Métadonnées de version (réponses)</h3>
+    <p>
+      Toutes les réponses GHI v1.0 incluent un bloc de métadonnées permettant
+      d’identifier précisément la version de l’API, la méthodologie et le moteur
+      utilisés&nbsp;:
+    </p>
+    <pre><code>{
+  "api_version": "v1.0",
+  "methodology_version": "1.0.0",
+  "engine_version": "v0.4.0-sandbox",
+  "data_origin": "sandbox",
+  "stability_seed": 42
+}</code></pre>
+    <ul>
+      <li><code>api_version</code> : version de l’API publique (v1.0).</li>
+      <li><code>methodology_version</code> : version de la méthodologie GHI (1.0.0).</li>
+      <li><code>engine_version</code> : version du moteur utilisé (Sandbox Engine v0.4.0-sandbox).</li>
+      <li><code>data_origin</code> : nature de la source de données
+        (ici <code>"sandbox"</code> pour indiquer qu’il s’agit d’un jeu synthétique).</li>
+      <li><code>stability_seed</code> : identifiant technique garantissant la
+        stabilité du jeu de données factices.</li>
+    </ul>
+
+    <h3>4. Endpoint&nbsp;: GET /v1/ghi/indicator</h3>
+
+    <h4>4.1. Description</h4>
+    <p>
+      Renvoie l’indicateur quotidien global du coût de production du Bitcoin,
+      sous la forme d’un triplet <strong>min / avg / max</strong> pour une date donnée.
+      Dans le Sandbox v0.4.0, les valeurs sont générées de manière déterministe
+      mais ne reflètent pas les coûts réels.
+    </p>
+
+    <h4>4.2. Requête</h4>
+    <pre><code>GET /v1/ghi/indicator HTTP/1.1
+Host: sandbox.globalhashcostindex.org
+Accept: application/json</code></pre>
+
+    <h4>4.3. Paramètres de requête</h4>
+    <table>
+      <thead>
+        <tr>
+          <th>Paramètre</th>
+          <th>Type</th>
+          <th>Obligatoire</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>date</code></td>
+          <td>string (YYYY-MM-DD)</td>
+          <td>Non</td>
+          <td>
+            Date de l’indicateur souhaité. Si omis, le Sandbox renvoie la
+            dernière date disponible pour le jeu de données factices.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h4>4.4. Exemple avec <code>curl</code></h4>
+    <pre><code>curl "https://sandbox.globalhashcostindex.org/v1/ghi/indicator"</code></pre>
+
+    <h4>4.5. Exemple de réponse (simplifiée)</h4>
+    <pre><code>{
+  "date": "2025-12-08",
+  "currency": "USD",
+  "min_cost": 38000.12,
+  "avg_cost": 41000.45,
+  "max_cost": 44000.89,
+  "api_version": "v1.0",
+  "methodology_version": "1.0.0",
+  "engine_version": "v0.4.0-sandbox",
+  "data_origin": "sandbox",
+  "stability_seed": 42
+}</code></pre>
+    <p>
+      Dans le Sandbox Engine v0.4.0, le champ <code>currency</code> est
+      systématiquement égal à <code>"USD"</code>.
+    </p>
+
+    <h4>4.6. Codes de réponse</h4>
+    <ul>
+      <li><strong>200 OK</strong> : indicateur retourné avec succès.</li>
+      <li><strong>400 Bad Request</strong> : paramètres invalides (ex. format de date incorrect).</li>
+      <li><strong>404 Not Found</strong> : aucune donnée disponible pour la date demandée
+        (peut dépendre de la configuration du Sandbox).</li>
+      <li><strong>500 Internal Server Error</strong> : erreur interne inattendue.</li>
+    </ul>
+
+    <h4>4.7. Exemple d’erreur JSON</h4>
+    <pre><code>{
+  "detail": "Invalid date format, expected YYYY-MM-DD.",
+  "api_version": "v1.0"
+}</code></pre>
+
+    <h3>5. Endpoint&nbsp;: GET /v1/ghi/snapshot</h3>
+
+    <h4>5.1. Description</h4>
+    <p>
+      Renvoie un <strong>snapshot structuré</strong> du coût de production du Bitcoin,
+      comprenant un indicateur global et un détail par région, conformément au
+      <em>GHI Data Model v1.0</em>. Le contenu précis des objets (champs régionaux,
+      énergie, machines, etc.) est défini dans la spécification de données.
+    </p>
+
+    <h4>5.2. Requête</h4>
+    <pre><code>GET /v1/ghi/snapshot HTTP/1.1
+Host: sandbox.globalhashcostindex.org
+Accept: application/json</code></pre>
+
+    <h4>5.3. Paramètres de requête</h4>
+    <table>
+      <thead>
+        <tr>
+          <th>Paramètre</th>
+          <th>Type</th>
+          <th>Obligatoire</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>date</code></td>
+          <td>string (YYYY-MM-DD)</td>
+          <td>Non</td>
+          <td>
+            Date du snapshot souhaité. Si omis, le Sandbox renvoie la dernière
+            date disponible pour le jeu de données factices.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h4>5.4. Exemple avec <code>curl</code></h4>
+    <pre><code>curl "https://sandbox.globalhashcostindex.org/v1/ghi/snapshot"</code></pre>
+
+    <h4>5.5. Exemple de réponse (structure générale)</h4>
+    <pre><code>{
+  "date": "2025-12-08",
+  "currency": "USD",
+  "indicator": {
+    "min_cost": 38000.12,
+    "avg_cost": 41000.45,
+    "max_cost": 44000.89
+  },
+  "regions": [
+    {
+      "region_id": "north_america",
+      "name": "North America",
+      "hashrate_pct": 0.35,
+      "min_cost": 39000.10,
+      "avg_cost": 41500.25,
+      "max_cost": 44500.90
+      // ... autres champs définis dans le Data Model v1.0
+    }
+    // ... autres régions
+  ],
+  "api_version": "v1.0",
+  "methodology_version": "1.0.0",
+  "engine_version": "v0.4.0-sandbox",
+  "data_origin": "sandbox",
+  "stability_seed": 42
+}</code></pre>
+    <p>
+      La structure complète des objets <code>regions</code> (coût, énergie,
+      machines, métadonnées) est définie dans le
+      <strong>GHI Data Model v1.0</strong>. Le Sandbox Engine respecte ce
+      modèle, mais avec des valeurs purement synthétiques.
+    </p>
+
+    <h4>5.6. Codes de réponse</h4>
+    <ul>
+      <li><strong>200 OK</strong> : snapshot renvoyé avec succès.</li>
+      <li><strong>400 Bad Request</strong> : paramètres invalides.</li>
+      <li><strong>404 Not Found</strong> : aucune donnée disponible pour la date demandée.</li>
+      <li><strong>500 Internal Server Error</strong> : erreur interne inattendue.</li>
+    </ul>
+
+    <h3>6. Gestion des versions et compatibilité</h3>
+    <ul>
+      <li>L’API GHI v1.0 est conçue pour rester <strong>stable</strong> :
+        les endpoints, les noms de champs et les types principaux ne
+        changent pas sans nouvelle version majeure.</li>
+      <li>Les évolutions mineures (ex. champs supplémentaires non obligatoires)
+        peuvent être introduites avec des numéros de patch, en conservant la
+        compatibilité ascendante.</li>
+      <li>Les futures versions (v2.x, v3.x, …) seront exposées sur d’autres
+        préfixes (<code>/v2/ghi</code>, etc.) afin de ne pas casser les
+        intégrations existantes.</li>
+    </ul>
+
+    <h3>7. Références</h3>
+    <ul>
+      <li><a href="standard/GHI-Data-Model-v1.0.md" target="_blank">
+        GHI Data Model v1.0</a></li>
+      <li><a href="standard/GHI-Technical-Standard-v1.0.md" target="_blank">
+        GHI Technical Standard v1.0</a></li>
+      <li><a href="api-quickstart.html">
+        Guide de démarrage rapide API GHI v1.0</a></li>
+    </ul>
+  </section>
+
+  <!-- ================= EN ================= -->
+  <section id="en-api-ref">
+    <h2>GHI API v1.0 – Detailed Reference</h2>
+    <p>
+      This page describes the public API reference for the
+      <strong>Global HashCost Index (GHI)</strong>, version <strong>v1.0</strong>.
+      All responses are produced by the <strong>Sandbox Engine v0.4.0-sandbox</strong>,
+      which serves synthetic but stable data for demonstration and integration tests.
+    </p>
+
+    <h3>1. Base URL and version</h3>
+    <p>
+      The GHI v1.0 API is exposed under a stable base path, followed by the
+      versioned endpoints:
+    </p>
+    <pre><code>Base path: /v1/ghi</code></pre>
+    <p>Examples of full URLs (deployment-dependent):</p>
+    <pre><code>https://sandbox.globalhashcostindex.org/v1/ghi/indicator
+https://sandbox.globalhashcostindex.org/v1/ghi/snapshot</code></pre>
+    <p>
+      The paths documented below are independent from the hostname and remain
+      valid as long as the GHI public API v1.0 is active.
+    </p>
+
+    <h3>2. Formats and headers</h3>
+    <ul>
+      <li><strong>Response format</strong>: JSON UTF-8.</li>
+      <li><strong>Recommended header</strong>: <code>Accept: application/json</code>.</li>
+      <li><strong>Authentication</strong>: none for the public Sandbox v0.4.0.
+        Restricted-access deployments (API keys, OAuth2, etc.) may be used in
+        institutional environments.</li>
+    </ul>
+
+    <h3>3. Version metadata (responses)</h3>
+    <p>
+      All GHI v1.0 responses include a metadata block identifying the API,
+      methodology and engine versions used:
+    </p>
+    <pre><code>{
+  "api_version": "v1.0",
+  "methodology_version": "1.0.0",
+  "engine_version": "v0.4.0-sandbox",
+  "data_origin": "sandbox",
+  "stability_seed": 42
+}</code></pre>
+    <ul>
+      <li><code>api_version</code>: public API version (v1.0).</li>
+      <li><code>methodology_version</code>: GHI methodology version (1.0.0).</li>
+      <li><code>engine_version</code>: engine version in use (Sandbox Engine v0.4.0-sandbox).</li>
+      <li><code>data_origin</code>: nature of the data source (here <code>"sandbox"</code>
+        to indicate synthetic data).</li>
+      <li><code>stability_seed</code>: technical identifier ensuring stability of
+        the synthetic dataset.</li>
+    </ul>
+
+    <h3>4. Endpoint: GET /v1/ghi/indicator</h3>
+
+    <h4>4.1. Description</h4>
+    <p>
+      Returns the daily global indicator of Bitcoin production cost, as a
+      <strong>min / avg / max</strong> triplet for a given date. In Sandbox
+      v0.4.0, values are deterministic but do not reflect real-world costs.
+    </p>
+
+    <h4>4.2. Request</h4>
+    <pre><code>GET /v1/ghi/indicator HTTP/1.1
+Host: sandbox.globalhashcostindex.org
+Accept: application/json</code></pre>
+
+    <h4>4.3. Query parameters</h4>
+    <table>
+      <thead>
+        <tr>
+          <th>Parameter</th>
+          <th>Type</th>
+          <th>Required</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>date</code></td>
+          <td>string (YYYY-MM-DD)</td>
+          <td>No</td>
+          <td>
+            Target date for the indicator. If omitted, the Sandbox returns the
+            last available date in the synthetic dataset.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h4>4.4. Example using <code>curl</code></h4>
+    <pre><code>curl "https://sandbox.globalhashcostindex.org/v1/ghi/indicator"</code></pre>
+
+    <h4>4.5. Example response (simplified)</h4>
+    <pre><code>{
+  "date": "2025-12-08",
+  "currency": "USD",
+  "min_cost": 38000.12,
+  "avg_cost": 41000.45,
+  "max_cost": 44000.89,
+  "api_version": "v1.0",
+  "methodology_version": "1.0.0",
+  "engine_version": "v0.4.0-sandbox",
+  "data_origin": "sandbox",
+  "stability_seed": 42
+}</code></pre>
+    <p>
+      In Sandbox Engine v0.4.0, the <code>currency</code> field is always set
+      to <code>"USD"</code>.
+    </p>
+
+    <h4>4.6. Response codes</h4>
+    <ul>
+      <li><strong>200 OK</strong>: indicator successfully returned.</li>
+      <li><strong>400 Bad Request</strong>: invalid parameters (e.g. wrong date format).</li>
+      <li><strong>404 Not Found</strong>: no data available for the requested date
+        (behaviour may depend on Sandbox configuration).</li>
+      <li><strong>500 Internal Server Error</strong>: unexpected internal error.</li>
+    </ul>
+
+    <h4>4.7. Error JSON example</h4>
+    <pre><code>{
+  "detail": "Invalid date format, expected YYYY-MM-DD.",
+  "api_version": "v1.0"
+}</code></pre>
+
+    <h3>5. Endpoint: GET /v1/ghi/snapshot</h3>
+
+    <h4>5.1. Description</h4>
+    <p>
+      Returns a <strong>structured snapshot</strong> of Bitcoin production costs,
+      including a global indicator and a regional breakdown, as defined in the
+      <em>GHI Data Model v1.0</em>. The exact content of regional objects
+      (cost, energy, hardware, metadata, etc.) is defined in the data model
+      specification.
+    </p>
+
+    <h4>5.2. Request</h4>
+    <pre><code>GET /v1/ghi/snapshot HTTP/1.1
+Host: sandbox.globalhashcostindex.org
+Accept: application/json</code></pre>
+
+    <h4>5.3. Query parameters</h4>
+    <table>
+      <thead>
+        <tr>
+          <th>Parameter</th>
+          <th>Type</th>
+          <th>Required</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>date</code></td>
+          <td>string (YYYY-MM-DD)</td>
+          <td>No</td>
+          <td>
+            Target date for the snapshot. If omitted, the Sandbox returns the
+            last available date in the synthetic dataset.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h4>5.4. Example using <code>curl</code></h4>
+    <pre><code>curl "https://sandbox.globalhashcostindex.org/v1/ghi/snapshot"</code></pre>
+
+    <h4>5.5. Example response (overall structure)</h4>
+    <pre><code>{
+  "date": "2025-12-08",
+  "currency": "USD",
+  "indicator": {
+    "min_cost": 38000.12,
+    "avg_cost": 41000.45,
+    "max_cost": 44000.89
+  },
+  "regions": [
+    {
+      "region_id": "north_america",
+      "name": "North America",
+      "hashrate_pct": 0.35,
+      "min_cost": 39000.10,
+      "avg_cost": 41500.25,
+      "max_cost": 44500.90
+      // ... additional fields as defined in Data Model v1.0
+    }
+    // ... other regions
+  ],
+  "api_version": "v1.0",
+  "methodology_version": "1.0.0",
+  "engine_version": "v0.4.0-sandbox",
+  "data_origin": "sandbox",
+  "stability_seed": 42
+}</code></pre>
+    <p>
+      The full structure of <code>regions</code> objects (cost, energy,
+      hardware, metadata) is defined in <strong>GHI Data Model v1.0</strong>.
+      The Sandbox Engine follows this model but uses synthetic values only.
+    </p>
+
+    <h4>5.6. Response codes</h4>
+    <ul>
+      <li><strong>200 OK</strong>: snapshot successfully returned.</li>
+      <li><strong>400 Bad Request</strong>: invalid parameters.</li>
+      <li><strong>404 Not Found</strong>: no data available for the requested date.</li>
+      <li><strong>500 Internal Server Error</strong>: unexpected internal error.</li>
+    </ul>
+
+    <h3>6. Versioning and compatibility</h3>
+    <ul>
+      <li>The GHI v1.0 API is designed to remain <strong>stable</strong>:
+        endpoints, field names and main types will not change without a new
+        major version.</li>
+      <li>Minor evolutions (e.g. additional optional fields) may be introduced
+        using patch numbers while preserving backward compatibility.</li>
+      <li>Future versions (v2.x, v3.x, …) will be exposed on separate prefixes
+        (<code>/v2/ghi</code>, etc.) to avoid breaking existing integrations.</li>
+    </ul>
+
+    <h3>7. References</h3>
+    <ul>
+      <li><a href="standard/GHI-Data-Model-v1.0.md" target="_blank">
+        GHI Data Model v1.0</a></li>
+      <li><a href="standard/GHI-Technical-Standard-v1.0.md" target="_blank">
+        GHI Technical Standard v1.0</a></li>
+      <li><a href="api-quickstart.html">
+        GHI API v1.0 – Quickstart Guide</a></li>
+    </ul>
+  </section>
+</main>
+
+    <footer>
+      <p>© Global HashCost Index – Modèle ouvert. Aucune recommandation d’investissement.</p>
+      <p>
+        © 2025 GHI – Global HashCost Index.
+        Contenu publié sous licence
+        <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener noreferrer">
+          CC BY-NC-SA 4.0
+        </a>.
+      </p>
+    </footer>
+  </div>
+  <footer class="footer-social">
+  <a href="https://github.com/ghi-standard" target="_blank" class="social-icon" aria-label="GitHub">
+    <!-- Logo GitHub -->
+    <svg viewBox="0 0 16 16" width="28" height="28" fill="#ffffff">
+      <path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 
+      5.47 7.59c.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.91-.89-1.15-.89-1.15-.73-.5.06-.49.06-.49.81.06 
+      1.24.83 1.24.83.72 1.23 1.88.87 2.34.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 
+      0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 
+      2.2.82a7.53 7.53 0 0 1 4 0c1.53-1.03 2.2-.82 
+      2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.28.82 
+      2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48v2.2c0 
+      .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+    </svg>
+  </a>
+
+  <a href="https://www.linkedin.com/company/global-hashcost-index-ghi/" target="_blank" class="social-icon" aria-label="LinkedIn">
+    <!-- Logo LinkedIn -->
+    <svg viewBox="0 0 24 24" width="28" height="28" fill="#ffffff">
+      <path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 
+      3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.22 
+      8.99h4.56V24H.22V8.99zM8.62 8.99h4.37v2.05h.06c.61-1.15 
+      2.1-2.37 4.33-2.37C22.75 8.67 24 11.3 24 
+      15.27V24h-4.53v-8.01c0-1.91-.03-4.37-2.66-4.37-2.66 
+      0-3.07 2.08-3.07 4.23V24H9.21V8.99h-.59z"/>
+    </svg>
+  </a>
+</footer>
+</body>
+</html>
