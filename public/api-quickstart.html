@@ -84,7 +84,7 @@
       <h1>Global HashCost Index</h1>
       <p>Open indicator of Bitcoin’s production cost.</p>
       <p>
-        GHI – Global HashCost Index • API v1.1 • Methodology v1.0 • Engine v0.4.2-sandbox
+        GHI – Global HashCost Index • API v1.1 • Methodology v1.0 • Engine v0.4.3-sandbox
       </p>
     </div>
   </div>
@@ -210,6 +210,29 @@ fetch(url)
 }</code></pre>
     </div>
 
+<h3 id="fr-metadata">4. Endpoint /metadata</h3>
+<p>
+  L’endpoint <code>GET /v1/ghi/metadata</code> renvoie des informations structurées
+  sur la version de l’API et du moteur sandbox.
+</p>
+
+<pre>
+GET https://globalhashcostindex.org/api/v1/ghi/metadata
+</pre>
+
+<p>Exemple de réponse (simplifiée) :</p>
+
+<pre>
+{
+  "version": "1.1",
+  "timestamp_utc": "2025-12-10T09:30:00Z",
+  "engine_version": "0.4.3-sandbox",
+  "environment": "sandbox",
+  "api_current": "1.1",
+  "api_supported": ["1.0", "1.1"]
+}
+</pre>
+
     <div class="card">
       <h3>7. Ressources utiles</h3>
       <ul>
@@ -297,6 +320,29 @@ print("Global avg cost:", data["global_avg_cost_usd"])
   ]
 }</code></pre>
     </div>
+
+<h3 id="en-metadata">4. /metadata endpoint</h3>
+<p>
+  The <code>GET /v1/ghi/metadata</code> endpoint returns structured information
+  about the API and the sandbox engine.
+</p>
+
+<pre>
+GET https://globalhashcostindex.org/api/v1/ghi/metadata
+</pre>
+
+<p>Example response (simplified):</p>
+
+<pre>
+{
+  "version": "1.1",
+  "timestamp_utc": "2025-12-10T09:30:00Z",
+  "engine_version": "0.4.3-sandbox",
+  "environment": "sandbox",
+  "api_current": "1.1",
+  "api_supported": ["1.0", "1.1"]
+}
+</pre>
 
     <div class="card">
       <h3>7. Resources</h3>
