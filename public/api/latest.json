@@ -1,3 +1,8 @@
+cd /Users/jeoffrey/Desktop/GHI2/GHI/ghi-public
+
+mkdir -p public/api
+
+cat > public/api/latest.json << 'EOF'
 {
   "as_of": "2025-12-04T00:00:00Z",
   "version": "0.1-sandbox",
@@ -27,3 +32,4 @@
     }
   ]
 }
+EOF
