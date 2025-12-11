@@ -1,102 +1,108 @@
-"""
-Tests institutionnels – GHI Sandbox API
+from __future__ import annotations
 
-Global HashCost Index Initiative
-Developer Pack v0.2.0
-
-Ces tests vérifient :
-
-- la disponibilité de la sandbox,
-- la structure de base des réponses,
-- la présence de régions,
-- la cohérence minimale de l'historique.
-
-Ils peuvent être exécutés :
-
-- en local (sandbox FastAPI),
-- sur un environnement distant (en définissant BASE_URL).
-"""
-
-import os
-from typing import Any, Dict, List
+from datetime import datetime
+from typing import Any, Dict, List, Union
 
 import requests
 
-BASE_URL = os.getenv("BASE_URL", "http://127.0.0.1:8000/v1/ghi")
+BASE_URL = "http://127.0.0.1:8000/v1/ghi"
 
 
-def _get(path: str) -> Any:
-    url = f"{BASE_URL.rstrip('/')}/{path.lstrip('/')}"
-    resp = requests.get(url, timeout=10)
+def _get(path: str) -> Union[Dict[str, Any], List[Dict[str, Any]]]:
+    """
+    Helper HTTP GET sur l'API sandbox locale.
+
+    Nécessite que le moteur sandbox tourne en local sur 127.0.0.1:8000.
+    """
+    url = f"{BASE_URL}/{path}"
+    resp = requests.get(url, timeout=5)
     resp.raise_for_status()
     return resp.json()
 
 
 def test_snapshot_basic_structure():
-    """Le snapshot doit contenir les champs principaux du modèle GHI."""
+    """
+    Le snapshot global doit exposer les champs clés du modèle v1.1.
+    """
     data = _get("snapshot")
+    assert isinstance(data, dict)
 
-    assert "timestamp" in data
-    assert "ghi" in data
-    assert "difficulty" in data
-    assert "hashrate_total_th" in data
-    assert "block_reward_btc" in data
-    assert "regions" in data
+    # Champs de métadonnées principaux
+    assert "timestamp_utc" in data
+    assert "engine_sandbox_version" in data
 
-    ghi = data["ghi"]
-    assert "min_cost_btc" in ghi
-    assert "avg_cost_btc" in ghi
-    assert "max_cost_btc" in ghi
+    # Champs de coût globaux (min / avg / max)
+    for key in ("global_min_cost_usd", "global_avg_cost_usd", "global_max_cost_usd"):
+        assert key in data
+
+    min_cost = data["global_min_cost_usd"]
+    avg_cost = data["global_avg_cost_usd"]
+    max_cost = data["global_max_cost_usd"]
+
+    assert min_cost <= avg_cost <= max_cost
 
 
 def test_regions_non_empty():
-    """Il doit y avoir au moins une région exposée par la sandbox."""
-    data = _get("regions")
-    assert isinstance(data, list)
-    assert len(data) > 0
+    """
+    L'endpoint /regions doit renvoyer un objet avec au moins une région.
+    """
+    payload = _get("regions")
+    assert isinstance(payload, dict)
 
-    first = data[0]
-    assert "region_id" in first
-    assert "name" in first
-    assert "hashrate_pct" in first
-    assert "cost" in first
+    assert "regions" in payload
+    regions = payload["regions"]
+    assert isinstance(regions, list)
+    assert len(regions) > 0
+
+    # Champ de comptage cohérent
+    if "region_count" in payload:
+        assert payload["region_count"] == len(regions)
 
 
 def test_single_region_detail():
-    """Les détails d'une région doivent respecter le Data Model."""
-    regions: List[Dict[str, Any]] = _get("regions")
-    region_id = regions[0]["region_id"]
+    """
+    Chaque région doit contenir des champs de base (id, name).
+    """
+    payload = _get("regions")
+    regions = payload["regions"]
+    first = regions[0]
 
-    detail = _get(f"regions/{region_id}")
-
-    assert detail["region_id"] == region_id
-    assert "cost" in detail
-    assert "energy" in detail
-    assert "hardware" in detail
-    assert "metadata" in detail
-
-    cost = detail["cost"]
-    assert "min_cost_btc" in cost
-    assert "avg_cost_btc" in cost
-    assert "max_cost_btc" in cost
+    assert "id" in first
+    assert "name" in first
+    assert isinstance(first["id"], str)
+    assert isinstance(first["name"], str)
 
 
 def test_history_monotonic_timestamps():
-    """L'historique doit être trié par timestamp croissant."""
-    history: List[Dict[str, Any]] = _get("history")
-    assert isinstance(history, list)
-    assert len(history) > 0
+    """
+    L'historique global doit être trié par date croissante.
+    """
+    history = _get("history")
+    assert isinstance(history, dict)
+    assert "points" in history
 
-    timestamps = [h["timestamp"] for h in history]
-    # simple check: l'ordre doit être non décroissant
-    assert timestamps == sorted(timestamps)
+    points = history["points"]
+    assert isinstance(points, list)
+    assert len(points) > 0
+
+    dates = [p["date"] for p in points]
+    # Format attendu : YYYY-MM-DD → comparaison lexicographique suffisante
+    assert dates == sorted(dates)
 
 
-def test_stats_object():
-    """L'endpoint /stats doit renvoyer un objet avec quelques métriques clés."""
-    stats = _get("stats")
-    assert "regions_count" in stats
-    assert "avg_hashrate_total_th" in stats
-    assert "avg_cost_btc" in stats
-    assert "notes" in stats
+def test_metadata_object():
+    """
+    L'endpoint /metadata doit exposer les informations de version de l'API sandbox.
+    """
+    meta = _get("metadata")
+    assert isinstance(meta, dict)
 
+    # API v1.1 active
+    assert meta.get("api_current") == "1.1"
+    assert "api_supported" in meta
+    assert "available_endpoints" in meta
+
+    endpoints = meta["available_endpoints"]
+    assert "/v1/ghi/snapshot" in endpoints
+    assert "/v1/ghi/history" in endpoints
+    assert "/v1/ghi/regions" in endpoints
