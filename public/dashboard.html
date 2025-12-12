@@ -126,25 +126,24 @@
 
   <section class="dashboard-card">
     <h1>Dashboard Global HashCost Index (pré-version) / Global HashCost Index Dashboard (pre-release)</h1>
-
     <p>
-      Cette page présente une première version du dashboard GHI. Les tableaux ci-dessous sont encore
-      illustratifs, mais le bloc indicateur « prix vs coût » est désormais connecté à l’API sandbox
-      (<code>/api/latest.json</code>).
+      Cette page présente une première version du dashboard GHI, alignée avec la
+      <strong>roadmap publique v1.2 / v1.3</strong>. Les tableaux ci-dessous sont encore
+      illustratifs, mais le bloc indicateur <strong>“prix vs coût global de production”</strong>
+      est connecté à l’API sandbox GHI (API v1.1).
     </p>
     <p class="text-muted">
-      This page shows a pre-release version of the GHI dashboard. The tables below are still
-      illustrative, but the “price vs cost” indicator block is now wired to the sandbox API
-      (<code>/api/latest.json</code>).
+      This page shows a pre-release version of the GHI dashboard, aligned with the
+      <strong>public roadmap v1.2 / v1.3</strong>. The tables below are still illustrative, but
+      the “price vs global production cost” indicator block is now wired to the GHI sandbox API
+      (API v1.1).
     </p>
 
-    <!-- ===================================================== -->
-    <!-- ======================== FR ========================= -->
-    <!-- ===================================================== -->
-    <section id="fr-dashboard" class="page-section">
-      <h2>Sandbox GHI Snapshot (API v1)</h2>
-
+    <!-- ======================= SECTION FR ======================= -->
+    <section id="fr-dashboard">
+      <h2>Sandbox GHI Snapshot (API v1.1)</h2>
       <p><strong>Exemple statique de structure de données.</strong></p>
+
       <ul>
         <li>As of : N/A</li>
         <li>BTC price (USD) : N/A</li>
@@ -246,7 +245,7 @@
       </div>
 
       <!-- Bloc indicateur FR -->
-      <section id="fr-indicator" class="page-section">
+      <section id="fr" class="page-section">
         <h2>Relation prix / coût global de production (GHI)</h2>
         <p>
           Cet indicateur met en regard le <strong>prix observé du Bitcoin</strong> et une
@@ -270,23 +269,23 @@
 
           <p>
             Les valeurs ci-dessous sont chargées en temps réel depuis l’API sandbox GHI.
-            Elles illustrent la position du prix du Bitcoin par rapport au coût moyen
-            de production estimé.
+            Elles illustrent la position du prix du Bitcoin par rapport au coût moyen de
+            production estimé.
           </p>
 
           <div class="ghi-quick-indicator">
             <div class="ghi-quick-metrics">
               <div class="ghi-quick-metric">
                 <span class="label">Prix BTC (USD)</span>
-                <span class="value" id="ghi-price-btc-fr">–</span>
+                <span class="value" id="ghi-price-btc">–</span>
               </div>
               <div class="ghi-quick-metric">
                 <span class="label">Coût moyen (USD/BTC)</span>
-                <span class="value" id="ghi-avg-cost-btc-fr">–</span>
+                <span class="value" id="ghi-avg-cost-btc">–</span>
               </div>
               <div class="ghi-quick-metric">
                 <span class="label">Coût min / max (USD/BTC)</span>
-                <span class="value" id="ghi-min-max-cost-btc-fr">–</span>
+                <span class="value" id="ghi-min-max-cost-btc">–</span>
               </div>
             </div>
 
@@ -297,15 +296,11 @@
                 <span>Au-dessus du coût</span>
               </div>
               <div class="ghi-gauge-track">
-                <div
-                  class="ghi-gauge-marker"
-                  id="ghi-gauge-marker-fr"
-                  style="left: 50%;"
-                ></div>
+                <div class="ghi-gauge-marker" id="ghi-gauge-marker" style="left: 50%;"></div>
               </div>
             </div>
 
-            <p class="ghi-quick-note" id="ghi-quick-note-fr">
+            <p class="ghi-quick-note" id="ghi-quick-note">
               Chargement des données sandbox…
             </p>
           </div>
@@ -313,13 +308,11 @@
       </section>
     </section>
 
-    <!-- ===================================================== -->
-    <!-- ======================== EN ========================= -->
-    <!-- ===================================================== -->
-    <section id="en-dashboard" class="page-section" style="margin-top: 2rem;">
-      <h2>Sandbox GHI Snapshot (API v1)</h2>
-
+    <!-- ======================= SECTION EN ======================= -->
+    <section id="en-dashboard" style="margin-top: 2rem;">
+      <h2>Sandbox GHI Snapshot (API v1.1)</h2>
       <p><strong>Static example of the data structure.</strong></p>
+
       <ul>
         <li>As of: N/A</li>
         <li>BTC price (USD): N/A</li>
@@ -421,7 +414,7 @@
       </div>
 
       <!-- Bloc indicateur EN -->
-      <section id="en-indicator" class="page-section">
+      <section id="en" class="page-section">
         <h2>Price vs Global Production Cost (GHI)</h2>
         <p>
           This indicator compares the <strong>observed Bitcoin price</strong> to a
@@ -487,10 +480,9 @@
         </div>
       </section>
     </section>
-  </section>
 
-  <!-- JS dashboard (API v1.1 indicator) -->
-  <script src="dashboard.js?v=4"></script>
+    <script src="dashboard.js?v=4"></script>
+  </section>
 </main>
 
     <footer>
