@@ -1,117 +1,261 @@
 <main>
+
   <div class="lang-switch">
     Langue / Language :
     <a href="#fr-roadmap">FR</a> ·
     <a href="#en-roadmap">EN</a>
   </div>
 
-  <!-- ========================= FR ========================= -->
-  <section id="fr-roadmap">
-    <h2>Feuille de route GHI – Roadmap v1.0</h2>
+  <!-- ========================================================= -->
+  <!-- ======================= FR VERSION ======================= -->
+  <!-- ========================================================= -->
+  <section id="fr-roadmap" class="page-section">
+
+    <h2>Feuille de route publique GHI — v1.2 &amp; v1.3</h2>
+
     <p>
-      Cette feuille de route présente les prochaines étapes du
-      <strong>Global HashCost Index</strong>, organisées par version
-      et par niveau de maturité. Le standard GHI évolue selon trois axes :
-      <strong>méthodologie</strong>, <strong>moteur</strong> et
-      <strong>infrastructure API</strong>.
+      Cette feuille de route décrit l’évolution prévue du <strong>Global HashCost Index (GHI)</strong>
+      entre les versions <strong>v1.2</strong> et <strong>v1.3</strong>. L’objectif est de faire passer GHI
+      d’un moteur sandbox démonstrateur à un <strong>standard ouvert, auditable et exploitable</strong>
+      par les institutions, chercheurs et acteurs de la filière minière.
     </p>
 
-    <h3>1. Version publique actuelle – v1.0.0</h3>
-    <ul>
-      <li>Méthodologie v1.0.0 publiée (FR/EN).</li>
-      <li>Sandbox Engine v0.4.0 opérationnel.</li>
-      <li>API publique v1.0 opérationnelle.</li>
-      <li>Documentation complète : Quickstart, Méthodologie, Transparence, Institutions.</li>
-      <li>Architecture stable pour intégration tiers.</li>
-    </ul>
+    <div class="card">
+      <h3>Objectifs stratégiques</h3>
+      <ul>
+        <li>Renforcer la <strong>cohérence interne</strong> du modèle sandbox et de l’API.</li>
+        <li>Proposer une première <strong>projection économique semi-réaliste</strong> du coût de production.</li>
+        <li>Préparer GHI à une utilisation institutionnelle (“<em>Institutional readiness</em>”).</li>
+        <li>Structurer la gouvernance des versions (API, moteur, standard de données).</li>
+        <li>Préparer la transition vers un modèle de coût plus complet en v2.0.</li>
+      </ul>
+    </div>
 
-    <h3>2. Travaux en cours – v1.1 à v1.x</h3>
-    <p>Objectif : compléter le standard GHI v1.x avant le passage à v2.0.</p>
-    <ul>
-      <li>Ajout des pages Régions (Amérique du Nord, Europe, Asie hors Chine, Reste du monde).</li>
-      <li>Affinement des profils régionaux (machine mix, tarifs synthétiques).</li>
-      <li>Mise à jour progressive de la documentation API.</li>
-      <li>Stabilisation du moteur sandbox (v0.5.0).</li>
-      <li>Support amélioré pour dashboards (export, CSV/JSON structurés).</li>
-    </ul>
+    <!-- ==================== v1.2 ===================== -->
+    <div class="card">
+      <h3>v1.2 — Consolidation &amp; première projection économique</h3>
+      <p><strong>Fenêtre cible :</strong> 1er semestre 2026 (indicatif).</p>
 
-    <h3>3. Version majeure – v2.0 (prochain grand chantier)</h3>
-    <p>
-      La version 2.0 représente la transition vers un moteur réel
-      (non-sandbox) avec données consolidées et gouvernance renforcée.
-    </p>
-    <ul>
-      <li>Modèle méthodologique v2.0 (ajustements, scénarios étendus).</li>
-      <li>Data Model v2.0 (structures régionales plus détaillées).</li>
-      <li>Intégration de données multi-sources vérifiables.</li>
-      <li>Moteur GHI Engine v2.0 (calcul réel, non synthétique).</li>
-      <li>Profil énergétique horaire par région.</li>
-      <li>Segments par type d’opérateur (industriel, retail).</li>
-      <li>Metrics CO₂, énergie primaire, mix énergétique.</li>
-      <li>Refonte API → API v2.0.</li>
-    </ul>
+      <h4>API publique v1.2</h4>
+      <ul>
+        <li>Stabilisation des réponses <code>/v1/ghi/snapshot</code>, <code>/history</code> et <code>/regions</code>.</li>
+        <li>Format unifié pour les points temporels : <code>timestamp_utc</code>, <code>difficulty</code>,
+            <code>hashrate_eh</code>, <code>block_reward_btc</code>, <code>avg_cost_usd</code> (synthetic v1.2).</li>
+        <li>Version enrichie de <code>/stats</code> (métriques globales, bornes min/max, volatilité simple).</li>
+        <li>Spécification publique <strong>API v1.2 Spec</strong> (Markdown + PDF).</li>
+      </ul>
 
-    <h3>4. Vision long terme (3.x – 5.x)</h3>
-    <ul>
-      <li>GHI en temps réel (rolling snapshots).</li>
-      <li>Réseau de contributeurs régionaux certifiés.</li>
-      <li>Indices sectoriels (ASIC efficiency index, Grid Mix Index, etc.).</li>
-      <li>Modèle open data (export complet, licences publiques).</li>
-    </ul>
+      <h4>Sandbox Engine v0.5.x</h4>
+      <ul>
+        <li>Introduction d’un <strong>Light Cost Model</strong> semi-réaliste basé sur :
+          <ul>
+            <li>prix spot BTC,</li>
+            <li>difficulté réseau,</li>
+            <li>bloc par jour et récompense par bloc.</li>
+          </ul>
+        </li>
+        <li>Production de courbes min / moyenne / max plus cohérentes dans le temps.</li>
+        <li>Jeu de données sandbox documenté et versionné (v0.5.x-sandbox).</li>
+      </ul>
+
+      <h4>Dashboard v2 (pré-version)</h4>
+      <ul>
+        <li>Refonte du dashboard “prix vs coût global” en cohérence avec l’API v1.2.</li>
+        <li>Affichage simplifié des indicateurs globaux (prix, coût moyen, min/max, zone GHI).</li>
+        <li>Préparation d’un mini-graphique historique (structure HTML/CSS, données sandbox).</li>
+        <li>Meilleure lisibilité FR/EN, mise à jour de la légende et des textes explicatifs.</li>
+      </ul>
+
+      <h4>Documentation v1.2</h4>
+      <ul>
+        <li>Mise à jour de la <strong>Méthodologie v1.1</strong> (hypothèses du Light Cost Model).</li>
+        <li>Documentation technique du moteur : <code>ENGINE_DESIGN_CHANGES_v0.5.x.md</code>.</li>
+        <li>Guide succinct “Comment lire GHI v1.2 ?” (orientation grand public / médias).</li>
+      </ul>
+    </div>
+
+    <!-- ==================== v1.3 ===================== -->
+    <div class="card">
+      <h3>v1.3 — Institutional readiness</h3>
+      <p><strong>Fenêtre cible :</strong> 2e semestre 2026 (indicatif).</p>
+
+      <h4>Exports &amp; packs institutionnels</h4>
+      <ul>
+        <li>Exports standardisés : <strong>JSON, CSV</strong> et “<strong>GHI Audit Pack</strong>”.</li>
+        <li>Structure dédiée pour les cabinets d’audit, chercheurs et risk managers.</li>
+        <li>Versioning clair des jeux de données et des hypothèses utilisées.</li>
+      </ul>
+
+      <h4>Standardisation &amp; gouvernance</h4>
+      <ul>
+        <li>Endpoint public <code>/standards</code> décrivant :
+          <ul>
+            <li>définitions précises des champs GHI,</li>
+            <li>conventions de nommage,</li>
+            <li>règles de rétrocompatibilité des versions 1.x.</li>
+          </ul>
+        </li>
+        <li>Politique de dépréciation formalisée (cycle de vie des endpoints).</li>
+        <li>Annexe “GHI Governance” pour décrire le processus de décision technique.</li>
+      </ul>
+
+      <h4>Dashboard v2.5 (Institutional view)</h4>
+      <ul>
+        <li>Ajout d’une vue “Institutional” avec tableaux comparatifs par région.</li>
+        <li>Affichage de métriques supplémentaires (volatilité de coût, fourchettes d’incertitude sandbox).</li>
+        <li>Préparation des futurs modèles réalistes (tarifs énergétiques réels, mix machines).</li>
+      </ul>
+
+      <h4>Documentation v1.3</h4>
+      <ul>
+        <li>Publication du <strong>GHI Technical Standard v1.3</strong> (Markdown + PDF).</li>
+        <li>Guides d’intégration pour :
+          <ul>
+            <li>analystes de marché,</li>
+            <li>institutions financières,</li>
+            <li>équipes de recherche universitaires.</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <!-- ==================== v2.0 (aperçu) ===================== -->
+    <div class="card">
+      <h3>Au-delà de v1.3 — aperçu de GHI v2.0</h3>
+      <p>
+        La version <strong>v2.0</strong> vise l’intégration progressive de données réelles :
+        tarifs énergétiques, mix machines, profils horaires, CAPEX/OPEX. GHI restera sandbox
+        par défaut, mais offrira des <strong>modèles calibrés</strong> pour certaines régions
+        ou scénarios documentés.
+      </p>
+    </div>
+
   </section>
 
-  <!-- ========================= EN ========================= -->
-  <section id="en-roadmap">
-    <h2>GHI Roadmap – v1.0</h2>
+  <!-- ========================================================= -->
+  <!-- ======================= EN VERSION ======================= -->
+  <!-- ========================================================= -->
+  <section id="en-roadmap" class="page-section">
+
+    <h2>GHI Public Roadmap — v1.2 &amp; v1.3</h2>
+
     <p>
-      This roadmap outlines the upcoming milestones of the
-      <strong>Global HashCost Index</strong>, organised by version and
-      maturity level. GHI evolves along three axes:
-      <strong>methodology</strong>, <strong>engine</strong>,
-      and <strong>API infrastructure</strong>.
+      This roadmap describes how the <strong>Global HashCost Index (GHI)</strong> will evolve
+      between versions <strong>v1.2</strong> and <strong>v1.3</strong>. The goal is to move from a
+      sandbox demonstration engine to an <strong>open, auditable, and actionable standard</strong>
+      for institutions, researchers, and mining industry stakeholders.
     </p>
 
-    <h3>1. Current public version – v1.0.0</h3>
-    <ul>
-      <li>Methodology v1.0.0 published (FR/EN).</li>
-      <li>Sandbox Engine v0.4.0 operational.</li>
-      <li>Public API v1.0 available.</li>
-      <li>Complete documentation: Quickstart, Methodology, Transparency, Institutions.</li>
-      <li>Stable architecture for integrations.</li>
-    </ul>
+    <div class="card">
+      <h3>Strategic goals</h3>
+      <ul>
+        <li>Strengthen the <strong>internal consistency</strong> of the sandbox engine and API.</li>
+        <li>Deliver a first <strong>semi-realistic economic projection</strong> of production costs.</li>
+        <li>Achieve <strong>institutional readiness</strong> for GHI v1.x.</li>
+        <li>Formalize API / engine / data standard governance.</li>
+        <li>Prepare the transition towards a richer cost model in v2.0.</li>
+      </ul>
+    </div>
 
-    <h3>2. Work in progress – v1.1 to v1.x</h3>
-    <p>Goal: complete the GHI v1.x standard before transitioning to v2.0.</p>
-    <ul>
-      <li>Creation of Region pages (North America, Europe, Asia ex-China, Rest of World).</li>
-      <li>Refinement of synthetic regional profiles.</li>
-      <li>Progressive update of API documentation.</li>
-      <li>Sandbox engine improvements (v0.5.0).</li>
-      <li>Enhanced dashboard and export support (CSV/JSON).</li>
-    </ul>
+    <!-- ==================== v1.2 ===================== -->
+    <div class="card">
+      <h3>v1.2 — Consolidation &amp; first economic projection</h3>
+      <p><strong>Target window:</strong> H1 2026 (indicative).</p>
 
-    <h3>3. Major release – v2.0 (next large milestone)</h3>
-    <p>
-      Version 2.0 represents the transition to a real engine
-      with consolidated data and enhanced governance.
-    </p>
-    <ul>
-      <li>Methodology v2.0 (revised assumptions, advanced scenarios).</li>
-      <li>Data Model v2.0 (richer regional structures).</li>
-      <li>Integration of verifiable multi-source datasets.</li>
-      <li>GHI Engine v2.0 (real computation, non-synthetic).</li>
-      <li>Hourly electricity profiles per region.</li>
-      <li>Segmentation by miner type (industrial vs retail).</li>
-      <li>CO₂ and primary energy metrics.</li>
-      <li>API v2.0 redesign.</li>
-    </ul>
+      <h4>Public API v1.2</h4>
+      <ul>
+        <li>Stabilized responses for <code>/v1/ghi/snapshot</code>, <code>/history</code> and <code>/regions</code>.</li>
+        <li>Unified time-series format: <code>timestamp_utc</code>, <code>difficulty</code>,
+            <code>hashrate_eh</code>, <code>block_reward_btc</code>, <code>avg_cost_usd</code> (synthetic v1.2).</li>
+        <li>Enriched <code>/stats</code> endpoint (global metrics, min/max bounds, simple volatility).</li>
+        <li>Public <strong>API v1.2 Spec</strong> (Markdown + PDF).</li>
+      </ul>
 
-    <h3>4. Long-term vision (v3.x – v5.x)</h3>
-    <ul>
-      <li>Real-time GHI (rolling snapshots).</li>
-      <li>Certified regional contributor network.</li>
-      <li>Sector sub-indices (ASIC efficiency index, Grid Mix Index, etc.).</li>
-      <li>Open data model with full public export.</li>
-    </ul>
+      <h4>Sandbox Engine v0.5.x</h4>
+      <ul>
+        <li>Introduction of a <strong>Light Cost Model</strong> based on:
+          <ul>
+            <li>BTC spot price,</li>
+            <li>network difficulty,</li>
+            <li>blocks per day and block reward.</li>
+          </ul>
+        </li>
+        <li>More coherent min / average / max cost curves over time.</li>
+        <li>Documented and versioned sandbox dataset (v0.5.x-sandbox).</li>
+      </ul>
+
+      <h4>Dashboard v2 (pre-release)</h4>
+      <ul>
+        <li>Refreshed “price vs global production cost” dashboard aligned with API v1.2.</li>
+        <li>Simplified view of global indicators (price, average cost, min/max, GHI zone).</li>
+        <li>Preparation of a small historical chart (HTML/CSS in place, sandbox data).</li>
+        <li>Improved readability in both FR and EN, updated captions and explanations.</li>
+      </ul>
+
+      <h4>Documentation v1.2</h4>
+      <ul>
+        <li>Updated <strong>Methodology v1.1</strong> describing Light Cost Model assumptions.</li>
+        <li>Engine design notes: <code>ENGINE_DESIGN_CHANGES_v0.5.x.md</code>.</li>
+        <li>Short guide “How to read GHI v1.2?” (for media and non-technical audiences).</li>
+      </ul>
+    </div>
+
+    <!-- ==================== v1.3 ===================== -->
+    <div class="card">
+      <h3>v1.3 — Institutional readiness</h3>
+      <p><strong>Target window:</strong> H2 2026 (indicative).</p>
+
+      <h4>Institutional exports</h4>
+      <ul>
+        <li>Standard exports: <strong>JSON, CSV</strong> and a dedicated <strong>GHI Audit Pack</strong>.</li>
+        <li>Structures tailored for audit firms, researchers and risk managers.</li>
+        <li>Clear versioning of datasets and assumptions.</li>
+      </ul>
+
+      <h4>Standardization &amp; governance</h4>
+      <ul>
+        <li>Public <code>/standards</code> endpoint exposing:
+          <ul>
+            <li>precise field definitions,</li>
+            <li>naming conventions,</li>
+            <li>backward-compatibility rules for 1.x.</li>
+          </ul>
+        </li>
+        <li>Formal deprecation policy (endpoint life-cycle).</li>
+        <li>“GHI Governance” annex describing technical decision processes.</li>
+      </ul>
+
+      <h4>Dashboard v2.5 (Institutional view)</h4>
+      <ul>
+        <li>New “Institutional view” with comparative regional tables.</li>
+        <li>Additional metrics (cost volatility, simple uncertainty bands for sandbox data).</li>
+        <li>Preparation for future real-world models (energy prices, machine mix).</li>
+      </ul>
+
+      <h4>Documentation v1.3</h4>
+      <ul>
+        <li>Publication of the <strong>GHI Technical Standard v1.3</strong> (Markdown + PDF).</li>
+        <li>Integration guides for:
+          <ul>
+            <li>market analysts,</li>
+            <li>financial institutions,</li>
+            <li>university research teams.</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <!-- ==================== v2.0 preview ===================== -->
+    <div class="card">
+      <h3>Beyond v1.3 — preview of GHI v2.0</h3>
+      <p>
+        Version <strong>v2.0</strong> aims to progressively integrate real-world inputs:
+        energy tariffs, hardware mix, hourly profiles, CAPEX/OPEX assumptions. GHI will
+        remain sandbox-first, but will offer <strong>calibrated models</strong> for specific
+        regions or documented scenarios.
+      </p>
+    </div>
+
   </section>
+
 </main>
