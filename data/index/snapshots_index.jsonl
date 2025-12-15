@@ -1,0 +1,15 @@
+{"snapshot_id":"2025-01-01","sha256":"b0e39ab96114560d044e1d93a10ce63fe68eb0ae6ecc266558c025c3aac90898","indexed_at":"2025-12-15T20:12:36Z","schema_version":"1.0"}
+{"snapshot_id":"2025-12-15-t1","sha256":"4a84f4dc36f5a8198fff97b25d7a53076d6c81b7b15c2fb431b51bb271c70f31","indexed_at":"2025-12-15T20:19:49Z","schema_version":"1.0"}
+{"snapshot_id":"2025-12-15-t2","sha256":"5c49a11476df4a048478fb0aa410c8a0618930ba5142a8875a2259eb567f403f","indexed_at":"2025-12-15T20:25:39Z","schema_version":"1.0"}
+{"snapshot_id":"2025-12-15-t3","sha256":"db06ee04b76334de1cb7cf7184332c24cb45a8c2e9faa01d22892237d166390a","indexed_at":"2025-12-15T20:27:51Z","schema_version":"1.0"}
+{"snapshot_id":"2025-12-15-p1","sha256":"05e9fc9909102a4dcb23cf14f6300a72df18ab514b33fbd04f4417dcff9112fe","indexed_at":"2025-12-15T20:36:32Z","schema_version":"1.0"}
+{"snapshot_id":"2025-12-15-p2","sha256":"b747eb687a3851df0bea93c4e479eccdce3d0d3822ba02bd9f6e0219a6a66e4b","indexed_at":"2025-12-15T20:45:40Z","schema_version":"1.0"}
+{"snapshot_id":"2025-12-15-p214719","sha256":"681a0b1a5fde3773393ec1570ab06ee6ca2fd333cd1097187122bb59bdb59edd","indexed_at":"2025-12-15T20:47:19Z","schema_version":"1.0"}
+{"snapshot_id":"2025-12-15","sha256":"1eb41c00be51e7c4d3c9cf36ca36a942aafc1a5c1680c905eedca0bc49b4b678","indexed_at":"2025-12-15T20:49:46Z","schema_version":"1.0"}
+{"snapshot_id":"2025-12-15-r220556","sha256":"70c4fbfc1a23c521cd87e0d523fdf80a74d9375ebe1a654629475a434b82c46e","indexed_at":"2025-12-15T21:05:56Z","schema_version":"1.0"}
+{"snapshot_id":"2025-12-15-r220851","sha256":"b5bccc699d80f6fda1660721f5da79a98478f37e72387bf9d6b0abe3cd4b03a5","indexed_at":"2025-12-15T21:08:51Z","schema_version":"1.0"}
+{"snapshot_id":"2025-12-15-r221138","sha256":"850d82f79e6f68f8467940e32e8490c1e084a0b527d02dad8552e9ee455160db","indexed_at":"2025-12-15T21:11:38Z","schema_version":"1.0"}
+{"snapshot_id":"2025-12-15-r221851","sha256":"2ad8c68f90aaea90a9802541b6dc62baff1d7b419ab706b0fb6bb91ff7705570","indexed_at":"2025-12-15T21:18:52Z","schema_version":"1.0"}
+{"snapshot_id":"2025-12-15-r223834","sha256":"6f135270e075d14ac32b4d94646ed6083c1c2334bfb744c81ad294a0864c9d43","indexed_at":"2025-12-15T21:38:35Z","schema_version":"1.0"}
+{"snapshot_id":"2025-12-15-r224616","sha256":"10dc504cd7dea2fb397eae19afff68c56084a6aae3b839e620532093f248d3f6","indexed_at":"2025-12-15T21:46:17Z","schema_version":"1.0"}
+{"snapshot_id":"2025-12-15-r230129","sha256":"c70733791343155a62f3a35a35d9adf46b45c850bb819c73399284a229679f6d","indexed_at":"2025-12-15T22:01:30Z","schema_version":"1.0"}
