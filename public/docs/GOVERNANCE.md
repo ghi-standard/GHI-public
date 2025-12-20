@@ -3,11 +3,22 @@
 ## 1. Objet / Purpose
 
 **FR**  
-Ce document décrit les principes de gouvernance du standard « Global HashCost Index (GHI) » pour le dépôt `GHI-public` : rôles, processus de décision, et gestion des évolutions.
+Ce document décrit les principes de gouvernance du standard « Global HashCost Index (GHI) » pour le dépôt `GHI-public`, incluant :
+- la gouvernance du standard, de la méthodologie et de la documentation,
+- la gouvernance des données publiées sous forme de snapshots et d’index publics.
+
+Il distingue explicitement :
+- la gouvernance de l’évolution du standard (code, documentation, méthodologie),
+- la gouvernance des données publiées, qui sont immuables une fois rendues publiques.
 
 **EN**  
-This document describes the governance principles of the “Global HashCost Index (GHI)” standard for the `GHI-public` repository: roles, decision-making processes, and how changes are managed.
+This document describes the governance principles of the “Global HashCost Index (GHI)” standard for the `GHI-public` repository, including:
+- governance of the standard, methodology and documentation,
+- governance of published data in the form of snapshots and public indexes.
 
+It explicitly distinguishes between:
+- governance of standard evolution (code, documentation, methodology),
+- governance of published data, which becomes immutable once publicly released.
 ---
 
 ## 2. Rôles principaux / Main roles
@@ -153,3 +164,85 @@ Tout utilisateur est libre de le consulter, le reproduire ou l’adapter, sous r
 **EN**  
 This document is part of the GHI open standard and is released under the **MIT license**, as specified in the repository’s `LICENSE.md`.  
 Users are free to view, reproduce or adapt it, provided they comply with the license terms.
+
+## 8. Gouvernance des snapshots et des données publiées / Governance of snapshots and published data
+
+### 8.1. Nature des snapshots
+
+**FR**  
+Les snapshots GHI représentent un état figé du modèle de données à un instant donné.  
+Chaque snapshot est identifié de manière unique (`snapshot_id`) et associé à un hash cryptographique (`sha256`).
+
+Une fois publié dans le dépôt `GHI-public` :
+- un snapshot est considéré comme **immuable**,
+- il ne peut ni être modifié, ni supprimé, ni réécrit rétroactivement.
+
+**EN**  
+GHI snapshots represent a frozen state of the data model at a given point in time.  
+Each snapshot is uniquely identified (`snapshot_id`) and associated with a cryptographic hash (`sha256`).
+
+Once published in the `GHI-public` repository:
+- a snapshot is considered **immutable**,
+- it cannot be modified, deleted, or retroactively rewritten.
+
+---
+
+### 8.2. Publication des données
+
+**FR**  
+La publication des snapshots et des index publics est effectuée selon un processus contrôlé :
+- génération depuis le moteur privé,
+- validation locale,
+- export vers un index public,
+- publication via commit Git traçable.
+
+La fréquence de publication (quotidienne, hebdomadaire, mensuelle) est un **choix opérationnel**, sans impact sur l’immutabilité des données déjà publiées.
+
+**EN**  
+Snapshots and public indexes are published through a controlled process:
+- generation from the private engine,
+- local validation,
+- export to a public index,
+- publication via a traceable Git commit.
+
+Publication frequency (daily, weekly, monthly) is an **operational choice** and does not affect the immutability of already published data.
+
+---
+
+### 8.3. Corrections et erreurs
+
+**FR**  
+En cas d’erreur détectée a posteriori :
+- aucun snapshot publié n’est modifié,
+- une correction est apportée via la publication d’un **nouveau snapshot**,
+- la traçabilité historique est préservée.
+
+Les snapshots incorrects restent accessibles à des fins d’audit et de transparence.
+
+**EN**  
+If an error is detected after publication:
+- no published snapshot is modified,
+- corrections are applied through the publication of a **new snapshot**,
+- full historical traceability is preserved.
+
+Incorrect snapshots remain accessible for audit and transparency purposes.
+
+---
+
+### 8.4. Relation avec l’évolution du standard
+
+**FR**  
+L’évolution du standard GHI (méthodologie, structure, API) est indépendante des snapshots déjà publiés.
+
+Un changement de version du standard :
+- n’invalide pas les snapshots historiques,
+- peut introduire de nouveaux champs ou structures pour les snapshots futurs,
+- est documenté via le versioning et le changelog.
+
+**EN**  
+Evolution of the GHI standard (methodology, structure, API) is independent from already published snapshots.
+
+A standard version change:
+- does not invalidate historical snapshots,
+- may introduce new fields or structures for future snapshots,
+- is documented through versioning and changelog updates.
