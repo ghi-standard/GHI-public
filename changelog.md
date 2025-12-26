@@ -47,7 +47,7 @@
   </p>
 </div>
 
-    <!-- v0.4.2-sandbox / API v1.1 -->
+     <!-- v0.4.2-sandbox / API v1.1 -->
     <div class="card">
       <h3>2025-12-09 – Sandbox Engine v0.4.2 & API v1.1</h3>
       <p>
@@ -119,6 +119,7 @@
       This page summarizes the main changes to the GHI standard, public API,
       sandbox engine <strong>and governance framework</strong>.
     </p>
+
 
 <!-- Governance v0.1 -->
 <div class="card">
