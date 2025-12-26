@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-GHI – Simple static builder (clean version)
+GHI – Simple static builder (root-safe)
 
 - Uses public/layout.html as the global template.
 - Recursively finds all *.content.html files under public/.
@@ -9,6 +9,8 @@ GHI – Simple static builder (clean version)
     - root file          -> ""
     - /api/file.html     -> "../"
     - /x/y/file.html     -> "../../"
+- IMPORTANT: {{ROOT}} is replaced BOTH in layout.html and in *.content.html
+  to prevent broken asset/script links.
 - Writes the corresponding .html file (same path, without .content).
 """
 
@@ -35,13 +37,16 @@ def build_page(content_path: Path, layout_html: str) -> None:
     """
     Generate the .html file corresponding to a *.content.html file.
     """
-    page_content = content_path.read_text(encoding="utf-8")
-
     root_prefix = compute_root_prefix(content_path)
 
     if PLACEHOLDER not in layout_html:
         raise SystemExit(f"Placeholder not found in layout.html: {PLACEHOLDER}")
 
+    # Read content and also replace {{ROOT}} in it (critical for scripts/links inside content)
+    page_content_raw = content_path.read_text(encoding="utf-8")
+    page_content = page_content_raw.replace(ROOT_TOKEN, root_prefix)
+
+    # Apply ROOT in layout, then inject content
     final_html = (
         layout_html
         .replace(ROOT_TOKEN, root_prefix)
