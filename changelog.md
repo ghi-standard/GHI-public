@@ -19,31 +19,33 @@
       techniques, aux intégrateurs et aux parties prenantes externes.
     </p>
 
-    <!-- Governance v0.1 -->
-    <div class="card">
-      <h3>2025-12-26 – Gouvernance v0.1 (fondation)</h3>
-      <p>
-        Cette entrée établit le cadre initial de gouvernance du projet GHI.
-      </p>
+  <!-- Gouvernance v0.1 -->
+<div class="card">
+  <h3>2025-12-26 – Gouvernance v0.1 (fondation)</h3>
+  <p>
+    Cette entrée établit le cadre initial de gouvernance du projet GHI.
+  </p>
+  <ul>
+    <li>Formalisation du document <strong>« GHI — Scope & Governance Principles (v0.1) »</strong>.</li>
+    <li>Confirmation d’un modèle <strong>piloté par le fondateur</strong>, avec la transparence radicale comme principal mécanisme de confiance.</li>
+    <li>Définition explicite du périmètre et du non-périmètre du standard.</li>
+    <li>Mise en place d’une discipline de changement :
       <ul>
-        <li>Formalisation du document <strong>“GHI — Scope & Governance Principles (v0.1)”</strong>.</li>
-        <li>Confirmation du modèle <strong>founder-led</strong> avec transparence radicale comme principal mécanisme de confiance.</li>
-        <li>Définition explicite du périmètre et du non-périmètre du standard.</li>
-        <li>Mise en place de la discipline de changement :
-          <ul>
-            <li>versioning sémantique ;</li>
-            <li>changelog public ;</li>
-            <li>journal de décisions documenté.</li>
-          </ul>
-        </li>
-        <li>Clarification des déclencheurs futurs de formalisation de la gouvernance
-          (usage externe, financement, arbitrage).</li>
+        <li>versionnement sémantique ;</li>
+        <li>changelog public ;</li>
+        <li>journal de décisions documenté ;</li>
+        <li>processus formalisé de gestion des changements.</li>
       </ul>
-      <p>
-        Cette version ne modifie ni la méthodologie ni les composants techniques.
-        Elle établit un socle de gouvernance auditable.
-      </p>
-    </div>
+    </li>
+    <li>Clarification des déclencheurs futurs de formalisation de la gouvernance
+      (usage externe, financement, arbitrage).</li>
+  </ul>
+  <p>
+    Cette version n’introduit aucun changement méthodologique,
+    de données ou d’API.  
+    Couche gouvernance uniquement.
+  </p>
+</div>
 
     <!-- v0.4.2-sandbox / API v1.1 -->
     <div class="card">
@@ -118,31 +120,32 @@
       sandbox engine <strong>and governance framework</strong>.
     </p>
 
-    <!-- Governance v0.1 -->
-    <div class="card">
-      <h3>2025-12-26 – Governance v0.1 (foundation)</h3>
-      <p>
-        This entry establishes the initial governance framework of the GHI project.
-      </p>
+<!-- Governance v0.1 -->
+<div class="card">
+  <h3>2025-12-26 – Governance v0.1 (foundation)</h3>
+  <p>
+    This entry establishes the initial governance framework of the GHI project.
+  </p>
+  <ul>
+    <li>Formalization of <strong>“GHI — Scope & Governance Principles (v0.1)”</strong>.</li>
+    <li>Confirmation of a <strong>founder-led</strong> model with radical transparency as the primary trust mechanism.</li>
+    <li>Explicit definition of scope and non-scope.</li>
+    <li>Introduction of change discipline:
       <ul>
-        <li>Formalization of <strong>“GHI — Scope & Governance Principles (v0.1)”</strong>.</li>
-        <li>Confirmation of a <strong>founder-led</strong> model with radical transparency as the primary trust mechanism.</li>
-        <li>Explicit definition of scope and non-scope.</li>
-        <li>Introduction of change discipline:
-          <ul>
-            <li>semantic versioning;</li>
-            <li>public changelog;</li>
-            <li>documented decision log.</li>
-          </ul>
-        </li>
-        <li>Clarification of future governance formalization triggers
-          (external usage, funding, dispute resolution).</li>
+        <li>semantic versioning;</li>
+        <li>public changelog;</li>
+        <li>documented decision log;</li>
+        <li>formal change process.</li>
       </ul>
-      <p>
-        This version introduces no methodological or technical changes.
-        It establishes an auditable governance baseline.
-      </p>
-    </div>
+    </li>
+    <li>Clarification of future governance formalization triggers
+      (external usage, funding, dispute resolution).</li>
+  </ul>
+  <p>
+    This version introduces no methodological, data or API changes.
+    Governance layer only.
+  </p>
+</div>
 
     <!-- v0.4.2-sandbox / API v1.1 -->
     <div class="card">

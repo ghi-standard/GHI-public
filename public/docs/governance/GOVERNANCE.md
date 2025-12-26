@@ -1,6 +1,38 @@
 # Gouvernance du standard GHI / GHI Governance
 
 ## 1. Objet / Purpose
+**EN**  
+### Scope of the GHI standard
+
+The Global HashCost Index (GHI) solely aims to provide a transparent,
+documented and reproducible methodology to estimate Bitcoin production cost.
+
+GHI:
+- does not provide investment advice,
+- does not generate trading signals,
+- does not claim to predict or define Bitcoin “fair value”,
+- is not a regulatory or official benchmark,
+- does not promote any political, ideological or commercial position.
+
+The GHI standard explains **how** a cost is estimated,
+not **how it should be interpreted or used**.
+
+**FR**  
+### Périmètre du standard GHI
+
+Le Global HashCost Index (GHI) a pour unique objectif de proposer une
+méthodologie transparente, documentée et reproductible permettant
+d’estimer le coût de production du Bitcoin.
+
+GHI :
+- ne fournit aucun conseil d’investissement,
+- ne produit aucun signal de trading,
+- ne prétend pas prédire ou définir un “juste prix” du Bitcoin,
+- ne constitue pas un benchmark réglementaire ou officiel,
+- ne promeut aucune position politique, idéologique ou commerciale.
+
+Le standard GHI décrit **comment** un coût est estimé,
+pas **comment il doit être interprété ou utilisé**.
 
 **FR**  
 Ce document décrit les principes de gouvernance du standard « Global HashCost Index (GHI) » pour le dépôt `GHI-public`, incluant :
