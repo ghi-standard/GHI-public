@@ -239,6 +239,8 @@ Un changement de version du standard :
 - peut introduire de nouveaux champs ou structures pour les snapshots futurs,
 - est documenté via le versioning et le changelog.
 
+L’évolution de la gouvernance du standard GHI dans le temps est décrite dans une feuille de route distincte, non contraignante et pilotée par l’usage réel : GOVERNANCE_ROADMAP.md
+
 **EN**  
 Evolution of the GHI standard (methodology, structure, API) is independent from already published snapshots.
 
@@ -246,3 +248,7 @@ A standard version change:
 - does not invalidate historical snapshots,
 - may introduce new fields or structures for future snapshots,
 - is documented through versioning and changelog updates.
+
+The evolution of GHI governance over time is described in a separate,
+non-binding, usage-driven roadmap:
+GOVERNANCE_ROADMAP.md.
