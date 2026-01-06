@@ -66,6 +66,8 @@ Ces éléments sont conservés dans des dépôts privés ou des environnements s
 
 ---
 
+**Snapshots (baseline):** GHI snapshots are append-only. A documented baseline defines the start of operational/public publication. See `SNAPSHOTS_BASELINE.md`.
+
 ## Licence
 
 Ce projet est publié sous licence :

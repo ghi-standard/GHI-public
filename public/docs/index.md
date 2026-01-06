@@ -31,3 +31,13 @@ en local, sur NAS QNAP ou dans un environnement cloud.
 
 ---
 
+## Snapshots & Operational Baseline
+
+The GHI snapshot system follows a strict **append-only** model.
+
+An explicit operational baseline defines which snapshots are considered authoritative for public indexing and institutional usage.
+
+- 📌 **Operational baseline reference**: [Snapshots & Operational Baseline](SNAPSHOTS_BASELINE.md)
+
+Only snapshots **at or after the declared baseline** are considered operational.
+Pre-baseline snapshots are retained for traceability and audit purposes.
