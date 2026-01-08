@@ -13,6 +13,8 @@ Product UI changes and website updates are documented separately.
 
 ---
 
+[Governance] Formal institutional exclusion of Phase 2.4.
+
 ## [Governance v0.1] — 2025-12-26
 
 ### Added
@@ -106,9 +108,8 @@ Product UI changes and website updates are documented separately.
 
 ---
 
-## Related Documents
-
 - Governance: `public/docs/governance/GOVERNANCE.md`
 - Change process: `public/docs/governance/CHANGE_PROCESS.md`
 - Continuity: `public/docs/governance/CONTINUITY.md`
 - Governance roadmap: `public/docs/governance/GOVERNANCE_ROADMAP.md`
+[Governance] Governance Layer Version declared: v1.0.
