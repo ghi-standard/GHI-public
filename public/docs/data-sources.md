@@ -1,3 +1,5 @@
+> Controlling instrument: public/docs/governance/NON_BENCHMARK_GLOBAL_NOTICE.md (prevailing).
+
 # 3. Data & Sources / Données & Sources  
 *Global HashCost Index (GHI) — Documentation v1.0*
 
@@ -274,7 +276,7 @@ Pour permettre l’audit indépendant, le GHI met à disposition :
 - un journal des mises à jour majeures (changelog).
 
 **EN**  
-To enable independent audit, GHI provides:
+To support independent reproducibility review (non-assurance), GHI provides:
 
 - full methodological description,  
 - normalized datasets used for calculations,  
@@ -282,3 +284,4 @@ To enable independent audit, GHI provides:
 - a log of major updates (changelog).
 
 ---
+

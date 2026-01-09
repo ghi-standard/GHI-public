@@ -21,7 +21,7 @@ In any interpretive conflict, ambiguity, overlap, silence, or competing reading,
 2) NORMATIVE PRECEDENCE ORDER instruments (this file)
 3) Scope exclusions and phase exclusions (including Phase 2.4 instruments)
 4) Terminology charter and binding definitions
-5) Continuity / non-succession instruments
+5) Continuity / non-succession instruments (including audit and assurance neutralization addenda)
 6) Governance process, change process, decisions registry
 7) Methodology, technical documentation, APIs, dashboards, roadmaps
 8) Derived artifacts and generated PDFs

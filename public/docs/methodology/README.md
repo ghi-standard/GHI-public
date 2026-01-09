@@ -1,3 +1,5 @@
+> Controlling instrument: public/docs/governance/NON_BENCHMARK_GLOBAL_NOTICE.md (prevailing).
+
 # Méthodologie — GHI (Global HashCost Index)
 
 Ce dossier contient les **documents méthodologiques sources** du projet **GHI – Global HashCost Index**.
@@ -81,3 +83,4 @@ Cette organisation vise à garantir :
 
 © 2025 GHI – Global HashCost Index
 Documentation publiée sous licence CC BY-NC-SA 4.0
+
