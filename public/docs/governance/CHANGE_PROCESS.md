@@ -1,8 +1,5 @@
 # GHI — Change Process (v0.1)
 
-Governance Layer: v1.0
-
-
 **Status:** Working draft  
 **Scope:** Governance & methodology changes  
 **Principle:** Lightweight, transparent, usage-driven

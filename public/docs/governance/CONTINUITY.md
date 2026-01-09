@@ -1,8 +1,5 @@
 # GHI — Continuity & Resilience Plan (v0.1)
 
-Governance Layer: v1.0
-
-
 **Status:** Working draft  
 **Scope:** Governance / methodology continuity  
 **Principle:** Ensure methodological and operational continuity if the founder becomes unavailable.

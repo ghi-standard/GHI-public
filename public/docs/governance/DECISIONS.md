@@ -1,8 +1,5 @@
 # GHI — Decision Log
 
-Governance Layer: v1.0
-
-
 This document records significant governance and methodological decisions
 related to the Global HashCost Index (GHI).
 
