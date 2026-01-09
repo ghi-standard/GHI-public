@@ -8,7 +8,9 @@ This changelog covers:
 - Sandbox engine versions
 - Publication milestones of the open standard
 
-This file is **normative** and serves as a source of truth.  
+This changelog is informational only and does not constitute a representation of completeness, accuracy, continuity, or future maintenance.
+It shall not be relied upon for legal, financial, or regulatory decision-making.
+
 Product UI changes and website updates are documented separately.
 
 ---
