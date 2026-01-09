@@ -8,8 +8,17 @@ This changelog covers:
 - Sandbox engine versions
 - Publication milestones of the open standard
 
-This file is **normative** and serves as a source of truth.
+This changelog is informational only and does not constitute a representation of completeness, accuracy, continuity, or future maintenance.
+It shall not be relied upon for legal, financial, or regulatory decision-making.
+
 Product UI changes and website updates are documented separately.
+
+---
+
+## [Governance] — Institutional Notices
+
+- Formal institutional exclusion of Phase 2.4.
+- Governance Layer version formally declared: **v1.0**.
 
 ---
 
@@ -106,7 +115,7 @@ Product UI changes and website updates are documented separately.
 
 ---
 
-## Related Documents
+### Governance References
 
 - Governance: `public/docs/governance/GOVERNANCE.md`
 - Change process: `public/docs/governance/CHANGE_PROCESS.md`
