@@ -1,3 +1,5 @@
+> Controlling instrument: public/docs/governance/NON_BENCHMARK_GLOBAL_NOTICE.md (prevailing).
+
 # Global HashCost Index (GHI)
 
 Le **Global HashCost Index (GHI)** est un indicateur ouvert mesurant le coût de production du Bitcoin
@@ -40,4 +42,5 @@ An explicit operational baseline defines which snapshots are considered authorit
 - 📌 **Operational baseline reference**: [Snapshots & Operational Baseline](SNAPSHOTS_BASELINE.md)
 
 Only snapshots **at or after the declared baseline** are considered operational.
-Pre-baseline snapshots are retained for traceability and audit purposes.
+Pre-baseline snapshots are retained for traceability and reproducibility review purposes (non-assurance).
+
