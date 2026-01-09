@@ -1,3 +1,5 @@
+> Controlling instrument: public/docs/governance/NON_BENCHMARK_GLOBAL_NOTICE.md (prevailing).
+
 1. Overview / Présentation générale
 
 Global HashCost Index (GHI) — Documentation v1.0
@@ -1195,7 +1197,7 @@ The model can be audited by any independent third party through:
 	•	normalized datasets,
 	•	reproducible historical examples.
 
-Optional annual audit reports may be published.
+Optional annual reproducibility review summaries may be published (non-assurance).
 
 ⸻
 
@@ -1315,7 +1317,7 @@ EN
 The GHI roadmap is structured into three phases:
 	1.	Phase 1 — Minimal open standard (v1.x)
 	2.	Phase 2 — Advanced model & increased granularity (v2.x)
-	3.	Phase 3 — Global institutional benchmark (v3.x)
+	3.	Phase 3 — Global institutional research artifact (v3.x)
 
 ⸻
 
