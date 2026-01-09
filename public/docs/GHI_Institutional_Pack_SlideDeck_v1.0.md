@@ -1,3 +1,5 @@
+> Controlling instrument: public/docs/governance/NON_BENCHMARK_GLOBAL_NOTICE.md (prevailing).
+
 INSTITUTIONAL PACK – SLIDE DECK v1.0 (ENGLISH VERSION)
 
 20-slide professional structure
@@ -26,7 +28,7 @@ Slide 3 — Motivation
 
 Why a global production cost standard?
 	•	Market volatility and opacity around miners’ economics.
-	•	Need for a neutral, reproducible benchmark.
+	•	Need for a neutral, reproducible research reference artifact.
 	•	Lack of harmonised methodology across regions.
 	•	Increasing regulatory interest for energy-intensive sectors.
 
@@ -90,7 +92,7 @@ Regional cost → weighted aggregation using regional hashrate shares:
 	•	min_cost
 	•	avg_cost
 	•	max_cost
-Provides a single global benchmark.
+Provides a single global research reference artifact (descriptive only).
 
 ⸻
 
