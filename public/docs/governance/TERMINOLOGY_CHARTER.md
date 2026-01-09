@@ -1,124 +1,80 @@
-# TERMINOLOGY CHARTER  
+# Terminology Charter
 
-Governance Layer: v1.0
-
-## Normative Definitions and Interpretive Rules
+**Governance Layer:** v1.0  
+**Effective Date:** 2026-01-08  
+**Status:** Governance — Binding (Terminology Control)
 
 ---
 
 ## 1. Purpose
 
-This Terminology Charter defines **normative meanings** for key terms used across the GHI project.
+This charter defines canonical terms used across the GHI governance corpus.
 
-Its purpose is to:
-- prevent semantic ambiguity,
-- avoid implicit legal or operational requalification,
-- and ensure consistent interpretation across governance, documentation, and publications.
-
-This charter is **binding at the governance level**.
+It prevents synonym drift, interpretive requalification, and inconsistent usage.
+Where a term in a lower-ranked document deviates from this charter, this charter controls the meaning.
 
 ---
 
-## 2. Interpretive Principle
+## 2. Canonical Terms
 
-Within the GHI project, **terminology is interpreted according to this charter**, regardless of:
-- common industry usage,
-- colloquial meaning,
-- or external technical conventions.
+### 2.1 Governance Instrument
+A document designated as part of the governance corpus and intended to control interpretation, scope, precedence, exclusions, or change procedures.
 
-Where ambiguity exists, **governance-defined meanings prevail**.
+### 2.2 Frozen Document
+A governance instrument declared intangible.
+A frozen document MUST NOT be edited, amended, corrected, restated, or reformatted.
+Any weakness detected in a frozen document may only be addressed through a higher-ranked new governance instrument.
 
----
+### 2.3 Governance Layer
+A published governance version identifier (e.g., v1.0) that groups controlling governance instruments under a single effective layer.
 
-## 3. Definition of “Design”
+### 2.4 Effective Date
+The publication date on which a governance instrument becomes controlling for interpretation, as stated within the instrument.
 
-Within the scope of the GHI project, the term **“Design”**:
+### 2.5 Normative
+A statement or instrument intended to control interpretation and governance behavior within the project’s internal governance framework.
 
-- refers exclusively to **conceptual boundary analysis**,  
-- denotes **theoretical exploration of constraints or exclusions**,  
-- and **explicitly excludes** any notion of:
-  - preparatory activity,
-  - implementation readiness,
-  - technical enablement,
-  - organizational or operational intent.
+### 2.6 Non-Normative
+A statement intended to inform only (e.g., pointers, explanations, summaries) and which carries no independent controlling force.
 
-The use of the term “Design” **shall not** be interpreted as:
-- a precursor to implementation,
-- a step toward activation,
-- or an expression of future capability.
+### 2.7 Binding (Internal)
+“Binding” means controlling for interpretation within the internal governance framework of the GHI project only.
+It does not assert legal enforceability, jurisdiction, regulatory authority, or external coercive effect.
 
----
+### 2.8 Interpretive Constraint
+A rule that limits how language may be read, including prohibitions on implied obligations, implied scope re-inclusions, or future-capability inferences.
 
-## 4. Definition of “Conceptual”
+### 2.9 Precedence
+The controlling order between governance instruments, defined exclusively by the designated precedence instrument(s).
+Where a hierarchy is defined, no other document may restate or redefine it unless explicitly authorized by a higher-ranked governance act.
 
-The term **“Conceptual”** denotes work that:
+### 2.10 Scope Exclusion
+A governance-level rule that removes a topic, capability, activity, or system class from project scope prospectively.
+Re-inclusion requires an explicit governance act stating boundaries and effective date.
 
-- has no operational target,
-- produces no actionable specifications,
-- and cannot be transitioned into execution without a separate, independent phase.
+### 2.11 Re-Inclusion
+A standalone governance act that explicitly reverses a scope exclusion.
+Re-inclusion SHALL NOT occur by implication, adjacency, evolution, roadmap language, or interpretive requalification.
 
-Conceptual work is **non-transferable by default**.
-
----
-
-## 5. Definition of “Shadow”
-
-The term **“Shadow”**, when used in any project context:
-
-- denotes **non-operational and non-executable status**,
-- excludes testing, simulation, or rehearsal,
-- and signifies the absence of system interaction.
-
-“Shadow” does **not** imply latency, dormancy, or future activation.
+### 2.12 Notice
+A governance instrument that applies interpretive constraints, exclusions, or limitations prospectively, without amending or restating prior publications.
 
 ---
 
-## 6. Definition of “Phase”
+## 3. Prohibited Practices (Interpretive Lock)
 
-A **Phase** within the GHI project:
-
-- is a bounded documentary construct,
-- has no implicit continuity beyond its declared scope,
-- and does not confer rights, expectations, or trajectories toward subsequent phases.
-
-A phase may be frozen, excluded, or invalidated without affecting other phases.
-
----
-
-## 7. Prohibition of Semantic Inference
-
-No term used within the GHI project documentation shall be interpreted as implying:
-
-- future activation,
-- preparatory intent,
-- technical readiness,
-- or organizational capability,
-
-unless such intent is **explicitly and formally declared** in a dedicated governance decision.
+The following are prohibited unless expressly defined here:
+- introducing synonyms for canonical terms without definition,
+- using “binding” to imply external enforceability,
+- using “authority” or “supremacy” to imply jurisdiction,
+- inferring scope re-inclusion from non-normative documents (including roadmaps),
+- treating pointers, summaries, or archives as normative unless explicitly designated.
 
 ---
 
-## 8. Precedence
+## 4. Canonical References
 
-This Terminology Charter takes precedence over:
-- phase-level documentation,
-- exploratory notes,
-- design narratives,
-- methodological descriptions.
-
-In case of interpretive conflict, this charter is authoritative.
-
----
-
-## 9. Status
-
-This document is:
-- public,
-- normative,
-- non-contractual,
-- and effective upon publication.
-
----
-
-
-*End of document.*
+- Frozen metadata register: `FROZEN_DOCS_METADATA.md`
+- Normative precedence (exclusive source): `NORMATIVE_PRECEDENCE_ORDER.md`
+- Interpretation constraints notice: `NORMATIVE_PRECEDENCE_AND_INTERPRETATION.md`
+- Scope exclusion (external live ingestion): `SCOPE_EXCLUSION_EXTERNAL_LIVE_INGESTION.md`
