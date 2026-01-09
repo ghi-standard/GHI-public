@@ -1,45 +1,17 @@
-# SCOPE EXCLUSION NOTICE
-## External LIVE Data Ingestion — Governance Exclusion (v1.0)
 
----
+# Scope Exclusion Notice (Pointer Only)
 
-## 1. Purpose
+This document is a non-normative pointer.
 
-This governance instrument prospectively excludes the topic commonly described as “external LIVE data ingestion” from the GHI project scope unless and until a dedicated governance act explicitly re-includes it.
+The authoritative and binding governance instrument governing the exclusion of
+external LIVE data ingestion is:
 
-This document is normative at the governance level.
+- `SCOPE_EXCLUSION_EXTERNAL_LIVE_INGESTION.md`
 
----
+This notice:
+- does not restate scope,
+- does not define exclusions,
+- does not carry independent normative authority.
 
-## 2. Scope Exclusion (Prospective)
-
-As of publication of this notice, the following are excluded from the GHI project scope:
-
-- any initiative framed as external LIVE data ingestion,
-- any activity implying real-time connection to external data sources for index production,
-- any operationalization of “live ingestion” concepts, regardless of naming conventions.
-
-This exclusion applies irrespective of terminology used in lower-ranked documents.
-
----
-
-## 3. No Implicit Re-Inclusion
-
-No phase, methodology text, technical note, architectural document, or repository artifact may be construed as re-including the excluded scope by implication, context, or adjacency.
-
-Re-inclusion requires a governance-level act that:
-- expressly states re-inclusion,
-- defines scope boundaries,
-- and states effective date and applicability.
-
----
-
-## 4. Non-Admission
-
-This notice does not amend, correct, or restate any prior publication, and does not acknowledge any defect or gap. It operates prospectively as a governance scope control.
-
----
-
-## 5. Effect
-
-Effective upon publication.
+In case of any ambiguity, conflict, or interpretive question, the referenced
+document exclusively controls.
