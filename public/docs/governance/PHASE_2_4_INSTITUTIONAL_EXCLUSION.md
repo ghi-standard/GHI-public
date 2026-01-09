@@ -1,4 +1,5 @@
-Governance Layer: Current
+Governance Layer: v1.0
+Effective Date: 2026-01-08
 PHASE 2.4 — INSTITUTIONAL EXCLUSION NOTICE
 
 1. Formal and Definitive Exclusion
