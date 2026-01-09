@@ -1,4 +1,3 @@
-cat > public/docs/governance/CONTINUITY_AUTHORITY_LIMIT.md <<'EOF'
 # CONTINUITY AUTHORITY LIMITATION NOTICE
 ## Continuity Without Succession, Delegation, or Transfer
 
@@ -63,4 +62,3 @@ Continuity language shall not be construed as:
 ## 5. Interpretive Effect
 
 This notice supersedes any inconsistent implication or reading derived from continuity or resilience discussions elsewhere in the repository.
-EOF
